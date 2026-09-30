@@ -1,0 +1,10 @@
+{
+  "enabledMcpjsonServers": [
+    "claude-flow"
+  ],
+  "permissions": {
+    "allow": [
+      "WebSearch"
+    ]
+  }
+}
