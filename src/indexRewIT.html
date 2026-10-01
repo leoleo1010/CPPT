@@ -921,7 +921,7 @@
       stages: [
         {
           type: "lab",
-          title: "Il segnale nel rumore",
+          id: "signal-in-the-noise", tier: "tactical", title: "Il segnale nel rumore",
           scenario: "Northwind Traders ha notato traffico in uscita anomalo. Ricevi una VM con strumenti OSINT (WHOIS, passive DNS, uno scraper di paste-site, una lookup in stile VirusTotal) e una manciata di indizi da trasformare in un quadro reale dell'infrastruttura dell'attaccante.",
           taskIdx: [3, 5],
           skillIdx: [1, 9, 3],
@@ -944,7 +944,7 @@
         },
         {
           type: "lab",
-          title: "Mappa l'avversario",
+          id: "map-the-adversary", tier: "operational", title: "Mappa l'avversario",
           scenario: "Dati log e una cattura di pacchetti da un host compromesso, ricostruisci la catena d'attacco, etichetta ogni passo con la sua tecnica MITRE ATT&CK e attribuisci la campagna a uno dei tre dossier candidati di threat actor.",
           taskIdx: [4, 9],
           skillIdx: [2, 6],
@@ -959,7 +959,7 @@
         },
         {
           type: "lab",
-          title: "Dai dati alla decisione",
+          id: "from-data-to-decision", tier: "operational", title: "Dai dati alla decisione",
           scenario: "Trasforma i risultati dei primi due lab in un report CTI strutturato: un elenco di indicatori leggibile da una macchina più un executive summary di un paragrafo, poi adatta lo stesso finding a tre destinatari diversi (analista SOC, CISO, consiglio).",
           taskIdx: [6, 8, 10, 11],
           skillIdx: [4, 8],
@@ -973,7 +973,7 @@
         },
         {
           type: "tabletop",
-          title: "Il requisito di intelligence",
+          id: "the-intelligence-requirement", tier: "strategic", title: "Il requisito di intelligence",
           scenario: "Niente VM stavolta. Una email vaga del CEO (\"non vogliamo finire come il nostro concorrente\") è tutto ciò che hai. Trasformala in Priority Intelligence Requirements formali e in un piano di raccolta di una pagina che il team possa davvero eseguire.",
           taskIdx: [0, 1, 2, 7],
           skillIdx: [0, 7, 5],
@@ -987,15 +987,62 @@
         }
       ],
       // Not an ECSF distinction: ECSF lists these as pure alternative titles for
-      // the very same profile (identical tasks/skills/knowledge). This is our own
-      // suggested emphasis for learners who already know which flavour they want,
-      // built by re-ordering the same 4 stages above -- no new labs invented.
-      tracks: [
-        { id: "generalist", label: "Generalist", order: [0, 1, 2, 3] },
-        { id: "analyst", label: "Cyber Intelligence Analyst", order: [0, 2, 1, 3],
-          note: "Parte da raccolta e reporting — il quotidiano di un analista di intelligence." },
-        { id: "modeller", label: "Cyber Threat Modeller", order: [1, 0, 2, 3],
-          note: "Parte dalla modellazione dell'avversario e delle TTP prima di allargarsi a raccolta e strategia." }
+      // the same profile (identical tasks/skills/knowledge) -- same treatment as
+      // the pentester profile below. The 3-level progression here is our own
+      // structure, chosen only after checking whether a real seniority ladder
+      // exists for this profile (same method used for the pentester):
+      //   - NIST NICE: the closest work role ("Cyber Threat Analyst") sits at a
+      //     single senior tier (GS-13/14/15, Technical Lead/Expert/Advisor) --
+      //     NICE does not split this profile by seniority either.
+      //   - ENISA/ECSF itself: the official role-profile document treats this as
+      //     one flat profile with e-CF competence levels, no internal sub-tiers --
+      //     the tiering below is an addition on top of ECSF, not something ECSF
+      //     defines.
+      //   - CTI-CMM (industry-led, 2024): real and current, but measures the
+      //     maturity of an organisation's CTI *programme* (CTI0 -> CTI3), not an
+      //     analyst's seniority -- wrong axis for a personal learning path.
+      //   - CREST does have a 3-level CTI certification ladder, same naming
+      //     pattern as its pentest one (Practitioner -> Registered -> Certified):
+      //     CPTIA -> CRTIA -> CCTIM. It is the only real, internationally
+      //     recognised seniority ladder for this profile, so the tiers below are
+      //     anchored to it.
+      // The tier axis itself (tactical/operational/strategic) is the standard
+      // intelligence-doctrine split taught by SANS FOR578 -- the audience changes
+      // per level (SOC / campaign-and-actor / executive-and-board), not the core
+      // analytic skillset. This is SANS's classification, not CREST's own tier
+      // names (CREST calls its 3 levels Practitioner / Registered / Certified);
+      // pairing the two systems (SANS altitude <-> CREST seniority) is our own
+      // synthesis, not something either body states directly -- flagged here so
+      // it is not mistaken for a single official source. As plain job titles,
+      // "Tactical/Strategic Threat Intelligence Analyst" do turn up in real job
+      // postings and career-overview sites, so the split is not invented out of
+      // thin air -- but unlike the pentester's CREST-tied titles, it is not
+      // standardised or certifying-body-official as a hiring ladder.
+      // No specialisation tracks, unlike the pentester's web-api/infra-ad/cloud/ot:
+      // real CTI job titles do split by subject-matter (malware/infra intel,
+      // vulnerability intel, OSINT/geopolitical, digital-risk/fraud intel), but
+      // they apply the same analytic tradecraft to different material rather than
+      // needing a different skill ladder -- candidate future labs inside the
+      // Operational tier, not a UI-level track split.
+      tiers: [
+        { id: "tactical", name: "Tactical", crest: "CREST CPTIA",
+          note: "Livello base: consumo di IOC/TTP e raccolta quotidiana a supporto del SOC — il tier Practitioner di CREST per il threat intelligence.",
+          practice: "Esperienza pratica indicativa secondo lo schema CREST: nessun minimo richiesto — il CPTIA è una qualifica d'ingresso (esame a risposta multipla) per chi si affaccia al settore. Fonte: crest-approved.org. I nomi Tactical/Operational/Strategic vengono dalla classificazione dottrinale di SANS FOR578, non da CREST stesso (che chiama i suoi tier Practitioner/Registered/Certified) — l'accoppiamento tra i due è una nostra sintesi. Job-title corrispondenti compaiono in annunci reali, ma questa suddivisione non è una scala di assunzione ufficializzata da un ente certificatore come lo sono i titoli del pentester legati a CREST.",
+          deliverable: "Infrastructure & Indicator Dossier",
+          certs: ["EC-Council C|TIA", "CREST CPTIA"],
+          outcome: "Sai trasformare indizi sparsi (OSINT, un dominio segnalato, un hash) in un quadro verificato dell'infrastruttura di un attaccante, pronto per l'azione di un SOC." },
+        { id: "operational", name: "Operational", crest: "CREST CRTIA",
+          note: "Produce CTI come parte di un team e collega i finding tattici al quadro più ampio della campagna — il tier Registered di CREST.",
+          practice: "Esperienza pratica indicativa secondo lo schema CREST: almeno 2 anni in un team che produce threat intelligence. Fonte: crest-approved.org. I nomi Tactical/Operational/Strategic vengono dalla classificazione dottrinale di SANS FOR578, non da CREST stesso (che chiama i suoi tier Practitioner/Registered/Certified) — l'accoppiamento tra i due è una nostra sintesi. Job-title corrispondenti compaiono in annunci reali, ma questa suddivisione non è una scala di assunzione ufficializzata da un ente certificatore come lo sono i titoli del pentester legati a CREST. Il GIAC GCTI è l'unica certificazione CTI di SANS — non è a livelli — e il corso FOR578 insegna la tradecraft tattica, operativa e strategica in un unico esame: per questo compare qui e nel tier Strategic, non una volta sola.",
+          deliverable: "Cyber Threat Report",
+          certs: ["GIAC GCTI", "CREST CRTIA"],
+          outcome: "Sai ricostruire una catena d'attacco, etichettarla secondo MITRE ATT&CK, attribuirla a un attore tracciato e riportare lo stesso finding all'altezza giusta per SOC, CISO e consiglio." },
+        { id: "strategic", name: "Strategic", crest: "CREST CCTIM",
+          note: "Guida una funzione di threat intelligence e la sua comunicazione verso gli stakeholder — il tier più alto di CREST per il CTI, pensato per i manager.",
+          practice: "Esperienza pratica indicativa secondo lo schema CREST (livello Certified): almeno 5 anni, pensato per manager che guidano un team che produce threat intelligence. Fonte: crest-approved.org. I nomi Tactical/Operational/Strategic vengono dalla classificazione dottrinale di SANS FOR578, non da CREST stesso (che chiama i suoi tier Practitioner/Registered/Certified) — l'accoppiamento tra i due è una nostra sintesi. Job-title corrispondenti compaiono in annunci reali, ma questa suddivisione non è una scala di assunzione ufficializzata da un ente certificatore come lo sono i titoli del pentester legati a CREST. Il GIAC GCTI è l'unica certificazione CTI di SANS — non è a livelli — e il corso FOR578 insegna la tradecraft tattica, operativa e strategica in un unico esame: per questo compare qui e nel tier Operational, non una volta sola.",
+          deliverable: "Priority Intelligence Requirements & Collection Plan",
+          certs: ["GIAC GCTI", "CREST CCTIM"],
+          outcome: "Sai trasformare una richiesta vaga di un dirigente in Priority Intelligence Requirements formali e in un piano di raccolta che il team può davvero eseguire." }
       ]
     },
     pentester: {
@@ -1405,7 +1452,7 @@
       var tierTracks = data.tracks || [];
       var activeTrack = tierTracks.filter(function(t){ return t.id === currentTrack; })[0] || tierTracks[0];
       var out = '';
-      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono una nostra progressione, allineata al percorso di CREST; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti. Livelli e ore CREST sono indicativi (fonte: crest-approved.org) — clicca la &#9432; su un tier.</div></div>';
+      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono una nostra progressione, allineata al percorso di CREST' + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e ore CREST sono indicativi (fonte: crest-approved.org) — clicca la &#9432; su un tier.</div></div>';
       var filters = [{ id: 'all', label: 'Percorso completo' }].concat(data.tiers.map(function(t){ return { id: t.id, label: t.name }; }));
       out += '<div class="track-tabs tier-filter">' + filters.map(function(f){ return '<button type="button" class="track-pill' + (f.id === currentTierFilter ? ' active' : '') + '" data-tier="' + f.id + '">' + esc(f.label) + '</button>'; }).join('') + '</div>';
       out += '<div class="path-timeline">';
