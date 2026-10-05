@@ -1569,6 +1569,73 @@
           certs: ["ISACA CISA", "CQI/IRCA Principal Auditor"],
           outcome: "Sai possedere un programma di audit end-to-end: definirne perimetro e standard, firmare i finding su più audit, e risponderne al consiglio." }
       ]
+    },
+    legal: {
+      certBody: { name: "IAPP", source: "iapp.org" },
+      // Skeleton only, no lab content yet.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Data Protection Officer (DPO) /
+      // Privacy Protection Officer / Cyber Law Consultant / Cyber Legal
+      // Advisor / Information Governance Officer / Data Compliance Officer /
+      // IT/ICT Compliance Manager / Governance Risk Compliance (GRC)
+      // Consultant as pure alternative titles for the same profile, with
+      // identical tasks/skills/knowledge. The 3-level progression here is our
+      // own structure, chosen only after checking whether a real seniority
+      // ladder (and, unlike pentester/CTI/incident/auditor, a real role
+      // *split*) exists for this profile:
+      //   - NIST NICE is the exception here: unlike every other ECSF role
+      //     checked so far, NICE does NOT treat this as one work role. It
+      //     splits it into two: "Privacy Officer/Compliance Manager"
+      //     (OV-LGA-002, OPM 732) and "Cybersecurity Legal Advice"
+      //     (OG-WRL-006, OPM 731). This is the reason the tracks below exist
+      //     -- every other tiered profile in this app has none, or has tracks
+      //     that are our own suggested specialisation, not a standard's own
+      //     split.
+      //   - ENISA/ECSF itself still treats this as one flat profile with
+      //     e-CF competence levels, no internal sub-tiers or sub-roles --
+      //     the NICE split above is layered on top of, not inside, ECSF.
+      //   - CREST has no legal/compliance scheme -- out of scope for that
+      //     certifying body, same as for the auditor profile.
+      // The tier names below are real job titles actually used in the
+      // market, not an invented axis (same approach as pentester's
+      // Vulnerability Analyst/Penetration Tester/Red Team Expert): "Data
+      // Protection Officer" is both ECSF's own #1 alternative title AND a
+      // real, legally-defined role under GDPR Art. 37-39; "Chief Privacy
+      // Officer" is a real senior/executive title distinct from the DPO.
+      // Certifications are anchored to IAPP (International Association of
+      // Privacy Professionals), whose own CIPP -> CIPM -> FIP progression is
+      // explicitly marketed by IAPP as "what" (privacy law) -> "how"
+      // (running the privacy programme) -> Fellow (senior distinction) --
+      // this is IAPP's own framing, not our synthesis of two systems, the
+      // same kind of direct mapping used for the auditor's CQI/IRCA grades.
+      // OCEG's GRCP (no experience required, open exam) covers the Analyst
+      // tier from the GRC angle, matching ECSF's "GRC Consultant" alt-title.
+      // PECB's ISO/IEC 27701 Lead Implementer (5 years' experience, 2+ in
+      // PIMS) covers the DPO tier from the ISO management-system angle.
+      tiers: [
+        { id: "analyst", name: "Compliance Analyst", crest: "IAPP",
+          note: "Livello base: apprende il panorama normativo e i meccanismi della compliance — il credential fondativo CIPP di IAPP.",
+          practice: "Esperienza pratica indicativa secondo IAPP: nessuna esperienza richiesta — il CIPP è un esame d'ingresso aperto che testa la legge sulla privacy specifica per giurisdizione (es. CIPP/E per il GDPR). Fonte: iapp.org. Il GRCP di OCEG (anch'esso senza esperienza richiesta) copre lo stesso livello d'ingresso dall'angolazione GRC, in linea con l'alt-title ECSF \"GRC Consultant\".",
+          deliverable: "Compliance Manual",
+          certs: ["IAPP CIPP", "OCEG GRCP"],
+          outcome: "Sai leggere una nuova normativa o framework e tradurla in una checklist di compliance che la tua organizzazione può davvero seguire." },
+        { id: "dpo", name: "Data Protection Officer", crest: "IAPP", hasTracks: true,
+          note: "Gestisce il programma privacy/compliance nella quotidianità — il credential operativo CIPM di IAPP, e il ruolo di DPO legalmente definito dal GDPR.",
+          practice: "Esperienza pratica indicativa secondo IAPP: nessuna esperienza richiesta — il CIPM testa il \"come\" operativo di gestire un programma privacy (DPIA, formazione, gestione delle violazioni). Fonte: iapp.org. Il Lead Implementer ISO/IEC 27701 di PECB richiede 5 anni di esperienza generale (2+ specifici in PIMS, più 300 ore di progetto PIMS) e certifica lo stesso livello operativo dall'angolazione del sistema di gestione ISO. \"Data Protection Officer\" è l'alt-title ECSF stesso per questo profilo ed è un ruolo reale, legalmente definito dagli art. 37-39 del GDPR — non un asse inventato. Le due track qui sotto riflettono lo split che NIST NICE fa di questo profilo in due work role (vedi la nota sopra i tier).",
+          deliverable: "Compliance Report",
+          certs: ["IAPP CIPM", "PECB ISO/IEC 27701 Lead Implementer"],
+          outcome: "Sai gestire un programma privacy/compliance end-to-end: DPIA, gestione delle violazioni, formazione del personale, e reportistica verso il business." },
+        { id: "cpo", name: "Chief Privacy Officer", crest: "IAPP",
+          note: "Possiede la strategia privacy/compliance a livello esecutivo e ne risponde al consiglio — la distinzione Fellow of Information Privacy (FIP) di IAPP.",
+          practice: "Esperienza pratica indicativa secondo IAPP: il FIP non è un esame ma una distinzione — richiede di possedere il CIPP più il CIPM o il CIPT, 3 anni di esperienza con la privacy per almeno il 50% del ruolo, e referenze tra pari. Fonte: iapp.org. \"Chief Privacy Officer\" è un titolo esecutivo reale usato sul mercato per questa seniority, distinto dal titolo (spesso più operativo) di DPO.",
+          deliverable: "Executive Compliance Briefing & Programme Sign-off",
+          certs: ["IAPP FIP"],
+          outcome: "Sai definire la strategia privacy/compliance a livello di consiglio e difenderla davanti a regolatori, auditor ed executive." }
+      ],
+      tracks: [
+        { id: "privacy-compliance", label: "Privacy & Compliance Management", note: "Operazionalizza il programma privacy nella quotidianità — DPIA, formazione, gestione delle violazioni, audit. Corrisponde al work role NIST NICE \"Privacy Officer/Compliance Manager\" (OV-LGA-002)." },
+        { id: "legal-advisory", label: "Legal Advisory", note: "Monitora la normativa e fornisce consulenza sull'esposizione legale, i contratti e il rischio regolatorio. Corrisponde al work role NIST NICE \"Cybersecurity Legal Advice\" (OG-WRL-006)." }
+      ]
     }
   };
 
