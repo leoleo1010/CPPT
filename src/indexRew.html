@@ -1046,10 +1046,56 @@
       ]
     },
     incident: {
-      // No lab content yet (Cyber Incident Responder is still "Coming soon" in
-      // the app) -- this is a skeleton-only pass: tiers + real-world
-      // certification mapping, labs to be designed later.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI labs, not
+      // the final lab set for this role.
+      stages: [
+        {
+          type: "lab",
+          id: "the-alert-queue", tier: "tier1", title: "The Alert Queue",
+          scenario: "Riverstone Logistics' SOC queue has four unresolved alerts from the overnight shift: a failed-login spike, an odd PowerShell execution, a blocked outbound connection and a stale antivirus signature warning. You get the SIEM alert export and the matching EDR/firewall log snippets and have to triage all four — close what's noise, escalate what's real, with evidence for each call.",
+          taskIdx: [2, 8],
+          skillIdx: [5, 0, 3],
+          knowledgeIdx: [2, 6, 0],
+          flags: [
+            { question: "Which alert ID is the true positive that needs escalation?", flag: "FLAG{ALERT-00417}" },
+            { question: "What account shows the impossible-travel login pattern behind the failed-login spike?", flag: "FLAG{svc-backup-eu}" },
+            { question: "What process name triggered the blocked outbound connection?", flag: "FLAG{powershell.exe-encoded-cmd}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "patient-zero", tier: "tier2", title: "Patient Zero",
+          scenario: "The PowerShell alert from the overnight queue escalates to you: EDR shows the same host reaching out to a second workstation over SMB an hour later. You get the full process tree, a netflow capture and a vulnerability-scan report to scope the compromise end to end, contain both hosts, and write the chain-of-custody entry for what you collected.",
+          taskIdx: [2, 5, 8],
+          skillIdx: [2, 1, 0],
+          knowledgeIdx: [7, 5, 4, 8],
+          flags: [
+            { question: "What CVE on the first host did the attacker exploit for initial access?", flag: "FLAG{CVE-2023-21554}" },
+            { question: "Which second host shows SMB lateral-movement artefacts?", flag: "FLAG{WKS-FIN-114}" },
+            { question: "What C2 domain must be blocked at the firewall to contain the channel?", flag: "FLAG{update-riverstone-cdn-net}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-war-room", tier: "tier3", title: "The War Room",
+          scenario: "Ransomware has hit 40 endpoints across Riverstone's two sites. No VM this time — you're the incident manager on the bridge call. Sequence the containment-to-recovery actions, decide what legal/regulatory breach notification is triggered and by when, and turn the post-mortem into a one-page lessons-learned brief the board will actually read.",
+          taskIdx: [0, 7, 10],
+          skillIdx: [4, 3, 0],
+          knowledgeIdx: [10, 3, 12],
+          flags: [
+            "A containment-to-recovery action sequence with no step out of order",
+            "A breach-notification decision with the correct legal trigger and deadline",
+            "One root-cause finding mapped to a concrete control fix in the lessons-learned brief"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Cyber Incident Handler / Cyber
       // Crisis Expert / Incident Response Engineer / SOC Analyst / Cyber
       // Fighter-Defender / Cybersecurity SIEM Manager as pure alternative

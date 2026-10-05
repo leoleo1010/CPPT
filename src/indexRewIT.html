@@ -1046,10 +1046,56 @@
       ]
     },
     incident: {
-      // No lab content yet (Cyber Incident Responder is still "Coming soon" in
-      // the app) -- this is a skeleton-only pass: tiers + real-world
-      // certification mapping, labs to be designed later.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI labs, not
+      // the final lab set for this role.
+      stages: [
+        {
+          type: "lab",
+          id: "the-alert-queue", tier: "tier1", title: "La coda degli alert",
+          scenario: "La coda del SOC di Riverstone Logistics ha quattro alert non risolti dal turno notturno: un picco di login falliti, un'esecuzione PowerShell anomala, una connessione in uscita bloccata e un avviso di firma antivirus non aggiornata. Ricevi l'export degli alert SIEM e gli estratti corrispondenti dei log EDR/firewall e devi triagiare tutti e quattro — chiudere ciò che è rumore, escalare ciò che è reale, con prove per ogni scelta.",
+          taskIdx: [2, 8],
+          skillIdx: [5, 0, 3],
+          knowledgeIdx: [2, 6, 0],
+          flags: [
+            { question: "Quale ID di alert è il vero positivo da escalare?", flag: "FLAG{ALERT-00417}" },
+            { question: "Quale account mostra il pattern di login impossibile dietro al picco di login falliti?", flag: "FLAG{svc-backup-eu}" },
+            { question: "Quale nome di processo ha generato la connessione in uscita bloccata?", flag: "FLAG{powershell.exe-encoded-cmd}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "patient-zero", tier: "tier2", title: "Paziente zero",
+          scenario: "L'alert PowerShell della coda notturna viene escalato a te: l'EDR mostra che lo stesso host raggiunge una seconda workstation via SMB un'ora dopo. Ricevi l'albero dei processi completo, una cattura netflow e un report di vulnerability scan per definire il perimetro della compromissione end-to-end, contenere entrambi gli host e scrivere la voce di chain-of-custody per quanto raccolto.",
+          taskIdx: [2, 5, 8],
+          skillIdx: [2, 1, 0],
+          knowledgeIdx: [7, 5, 4, 8],
+          flags: [
+            { question: "Quale CVE sul primo host è stato sfruttato dall'attaccante per l'accesso iniziale?", flag: "FLAG{CVE-2023-21554}" },
+            { question: "Quale seconda host mostra artefatti di movimento laterale via SMB?", flag: "FLAG{WKS-FIN-114}" },
+            { question: "Quale dominio C2 deve essere bloccato a firewall per contenere il canale?", flag: "FLAG{update-riverstone-cdn-net}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-war-room", tier: "tier3", title: "La war room",
+          scenario: "Un ransomware ha colpito 40 endpoint sui due siti di Riverstone. Niente VM stavolta — sei l'incident manager sulla call di crisi. Ordina le azioni dal contenimento al ripristino, decidi quale notifica legale/regolatoria è scattata ed entro quando, e trasforma il post-mortem in un brief di una pagina che il consiglio leggerà davvero.",
+          taskIdx: [0, 7, 10],
+          skillIdx: [4, 3, 0],
+          knowledgeIdx: [10, 3, 12],
+          flags: [
+            "Una sequenza di azioni dal contenimento al ripristino senza passaggi fuori ordine",
+            "Una decisione di notifica di violazione con il corretto trigger legale e la scadenza",
+            "Un finding di root-cause collegato a una correzione di controllo concreta nel brief di lessons-learned"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Cyber Incident Handler / Cyber
       // Crisis Expert / Incident Response Engineer / SOC Analyst / Cyber
       // Fighter-Defender / Cybersecurity SIEM Manager as pure alternative
