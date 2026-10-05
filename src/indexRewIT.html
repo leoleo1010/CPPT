@@ -1808,8 +1808,61 @@
     },
     implementer: {
       certBody: { name: "CompTIA, GIAC, (ISC)²", source: "comptia.org, giac.org, isc2.org", mixed: true },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role. The Engineer tier's lab is
+      // untracked (shown under either specialisation) rather than split
+      // per-track, to keep this pass at one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-hardening-checklist", tier: "associate", title: "La checklist di hardening",
+          summary: "Irrobustire un server appena provisionato secondo la checklist di base dell'organizzazione, applicare le patch mancanti, e dimostrarlo con una nuova scansione.",
+          scenario: "Vantage Dynamics ha appena attivato un nuovo server web Linux e ti ha affidato la checklist di hardening dell'organizzazione e la scansione delle vulnerabilità del mese scorso. Blocca la configurazione secondo la baseline della policy, applica le patch mancanti, e verifica che il tuo lavoro resista a una nuova scansione.",
+          taskIdx: [3, 9],
+          skillIdx: [2, 5, 6],
+          knowledgeIdx: [4, 2, 9],
+          flags: [
+            { question: "Quale porta aperta viola la checklist di hardening e deve essere chiusa?", flag: "FLAG{PORT-23-TELNET}" },
+            { question: "Quale CVE nella lista delle patch resta non applicata dopo il primo passaggio?", flag: "FLAG{CVE-2024-6387}" },
+            { question: "Quale risultato della nuova scansione confirma che il server ora soddisfa la baseline?", flag: "FLAG{ZERO-HIGH-FINDINGS}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-waf-rollout", tier: "engineer", title: "Il rollout del WAF",
+          summary: "Integrare un nuovo web application firewall in produzione, calibrarlo sul traffico reale, e riportare cosa sta effettivamente bloccando.",
+          scenario: "Vantage Dynamics ha acquistato un nuovo web application firewall da porre davanti al portale clienti. Integralo nell'infrastruttura esistente senza interrompere il traffico di produzione, calibra il set di regole su una settimana di log reali, e scrivi il report che dice al team infrastruttura cosa sta effettivamente bloccando.",
+          taskIdx: [2, 6, 7],
+          skillIdx: [1, 3, 0],
+          knowledgeIdx: [3, 4, 10],
+          flags: [
+            { question: "Quale pattern di traffico legittimo è stato segnalato come falso positivo dal set di regole predefinito?", flag: "FLAG{API-WEBHOOK-FALSE-POSITIVE}" },
+            { question: "Quale pattern di attacco nei log della settimana scorsa viene ora correttamente bloccato dal set di regole calibrato?", flag: "FLAG{SQLI-UNION-SELECT}" },
+            { question: "Quale metrica di performance confirma che il WAF non sta aggiungendo una latenza inaccettabile?", flag: "FLAG{P95-LATENCY-UNDER-50MS}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-legacy-bridge", tier: "principal", title: "Il ponte verso il sistema legacy",
+          summary: "Progettare un controllo compensativo per un sistema OT legacy non patchabile, e convincere il team operativo a implementarlo davvero.",
+          scenario: "Il reparto produttivo di Vantage Dynamics gestisce un sistema SCADA di 15 anni che non può essere patchato o sostituito senza fermare la linea. Niente lab pulito stavolta — hai lo schema di rete, i vincoli del team OT, e un exploit pubblicato per il software SCADA. Progetta il controllo compensativo che lo protegge senza toccare il dispositivo stesso, e fai in modo che il team OT accetti davvero di implementarlo.",
+          taskIdx: [0, 4, 8],
+          skillIdx: [5, 4, 6],
+          knowledgeIdx: [5, 0, 3],
+          flags: [
+            "Un controllo compensativo che isola il percorso di exploit senza modificare il dispositivo SCADA",
+            "Un piano di rollout che il team OT approva senza fermare la produzione",
+            "Una regola di monitoraggio che intercetterebbe l'exploit pubblicato se qualcuno lo tentasse comunque"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Information Security Implementer
       // / Cybersecurity Solutions Expert / Cybersecurity Developer /
       // Cybersecurity Engineer / Development, Security & Operations

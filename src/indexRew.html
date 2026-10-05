@@ -1808,8 +1808,61 @@
     },
     implementer: {
       certBody: { name: "CompTIA, GIAC, (ISC)²", source: "comptia.org, giac.org, isc2.org", mixed: true },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role. The Engineer tier's lab is
+      // untracked (shown under either specialisation) rather than split
+      // per-track, to keep this pass at one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-hardening-checklist", tier: "associate", title: "The Hardening Checklist",
+          summary: "Harden a freshly provisioned server against the organisation's baseline checklist, patch what's missing, and prove it with a re-scan.",
+          scenario: "Vantage Dynamics just stood up a new Linux web server and handed you the organisation's hardening checklist and last month's vulnerability scan. Lock down the configuration against the policy baseline, apply the missing patches, and verify your work holds up against a re-scan.",
+          taskIdx: [3, 9],
+          skillIdx: [2, 5, 6],
+          knowledgeIdx: [4, 2, 9],
+          flags: [
+            { question: "Which open port violates the hardening checklist and must be closed?", flag: "FLAG{PORT-23-TELNET}" },
+            { question: "Which CVE on the patch list is still unpatched after your first pass?", flag: "FLAG{CVE-2024-6387}" },
+            { question: "What re-scan result confirms the server now meets the baseline?", flag: "FLAG{ZERO-HIGH-FINDINGS}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-waf-rollout", tier: "engineer", title: "The WAF Rollout",
+          summary: "Integrate a new web-application firewall into production, tune it against real traffic, and report what it's actually blocking.",
+          scenario: "Vantage Dynamics bought a new web-application firewall to sit in front of its customer portal. Integrate it into the existing infrastructure without breaking production traffic, tune the rule set against a week of real logs, and write the report that tells the infrastructure team what it's actually blocking.",
+          taskIdx: [2, 6, 7],
+          skillIdx: [1, 3, 0],
+          knowledgeIdx: [3, 4, 10],
+          flags: [
+            { question: "Which legitimate traffic pattern got false-positived by the default rule set?", flag: "FLAG{API-WEBHOOK-FALSE-POSITIVE}" },
+            { question: "Which attack pattern in last week's logs does the tuned rule set now correctly block?", flag: "FLAG{SQLI-UNION-SELECT}" },
+            { question: "What performance metric confirms the WAF isn't adding unacceptable latency?", flag: "FLAG{P95-LATENCY-UNDER-50MS}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-legacy-bridge", tier: "principal", title: "The Legacy Bridge",
+          summary: "Design a compensating control for an unpatchable legacy OT system, and get the operations team to actually agree to deploy it.",
+          scenario: "Vantage Dynamics' factory floor runs a 15-year-old SCADA system that can't be patched or replaced without stopping the line. No clean lab for this one — you have the network diagram, the OT team's constraints, and a published exploit for the SCADA software. Design the compensating control that protects it without touching the device itself, and get the OT team to actually agree to deploy it.",
+          taskIdx: [0, 4, 8],
+          skillIdx: [5, 4, 6],
+          knowledgeIdx: [5, 0, 3],
+          flags: [
+            "A compensating control that isolates the exploit path without modifying the SCADA device",
+            "A rollout plan the OT team signs off without a production stoppage",
+            "A monitoring rule that would catch the published exploit if someone tried it anyway"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Information Security Implementer
       // / Cybersecurity Solutions Expert / Cybersecurity Developer /
       // Cybersecurity Engineer / Development, Security & Operations
