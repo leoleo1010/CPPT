@@ -1045,6 +1045,66 @@
           outcome: "You can translate a vague executive concern into formal Priority Intelligence Requirements and a collection plan the team can actually execute." }
       ]
     },
+    incident: {
+      // No lab content yet (Cyber Incident Responder is still "Coming soon" in
+      // the app) -- this is a skeleton-only pass: tiers + real-world
+      // certification mapping, labs to be designed later.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Cyber Incident Handler / Cyber
+      // Crisis Expert / Incident Response Engineer / SOC Analyst / Cyber
+      // Fighter-Defender / Cybersecurity SIEM Manager as pure alternative
+      // titles for the same profile (identical tasks/skills/knowledge) -- same
+      // treatment as the pentester/CTI profiles above. The 3-level progression
+      // here is our own structure, chosen only after checking whether a real
+      // seniority ladder exists for this profile (same method used for
+      // pentester and CTI):
+      //   - NIST NICE: the matching work role ("Cyber Defense Incident
+      //     Responder", PR-CIR-001 / Work Role 531) is a single role with no
+      //     seniority split.
+      //   - ENISA/ECSF itself: the official role-profile document treats this
+      //     as one flat profile with e-CF competence levels, no internal
+      //     sub-tiers.
+      //   - CREST does have a 3-level Incident Response certification ladder,
+      //     same naming pattern as its pentest and CTI ladders (Practitioner ->
+      //     Registered -> Certified): CPIA -> CRIA -> CCIM. It is the only
+      //     real, internationally recognised seniority ladder for this
+      //     profile, so the tiers below are anchored to it.
+      // The tier axis itself (Tier 1/2/3) is the de facto SOC/IR industry
+      // convention for triage -> investigation -> advanced hunting/leadership
+      // (used as literal job titles -- "SOC Analyst Tier 1/2/3" -- across
+      // SOC/MSSP job postings), not an invented label. It is not CREST's own
+      // tier wording (Practitioner/Registered/Certified); pairing the two is
+      // our own synthesis, the same approach used for SANS-altitude <->
+      // CREST-seniority on the CTI profile.
+      // No specialisation tracks, unlike the pentester's
+      // web-api/infra-ad/cloud/ot: CREST's own Registered-level exam (CRIA)
+      // already bundles network intrusion, host intrusion and malware reverse
+      // engineering into a single exam rather than separate tracks, so
+      // splitting the skeleton into tracks would misrepresent the certifying
+      // body's own structure. GIAC's sibling certs (GNFA for network forensics,
+      // GREM for malware reverse engineering) are candidate future labs inside
+      // the Tier 3 level, not a UI-level track split.
+      tiers: [
+        { id: "tier1", name: "Tier 1", crest: "CREST CPIA",
+          note: "Entry level: alert triage and first assessment — CREST's Practitioner tier for incident response.",
+          practice: "Indicative under the CREST scheme: no minimum experience required — CPIA is an entry qualification (multiple-choice exam) with no prerequisite exam. Source: crest-approved.org. The Tier 1/2/3 names are the de facto SOC/IR industry convention (used as literal job titles in SOC/MSSP postings), not CREST's own wording (CREST calls its tiers Practitioner/Registered/Certified) — pairing the two is our own synthesis.",
+          deliverable: "Incident Triage Log",
+          certs: ["EC-Council ECIH", "CREST CPIA"],
+          outcome: "You can take a raw alert queue, make the first escalate/close call, and hand off a well-evidenced ticket to Tier 2." },
+        { id: "tier2", name: "Tier 2", crest: "CREST CRIA",
+          note: "Investigates and contains escalated incidents across network, host and malware — CREST's Registered tier.",
+          practice: "Indicative under the CREST scheme: candidates must hold CPIA and should have at least 6,000 hours (3+ years) of relevant incident response, digital forensics or security-operations experience; 150-question MCQ exam. Source: crest-approved.org. The Tier 1/2/3 names are the de facto SOC/IR industry convention, not CREST's own wording — pairing the two is our own synthesis. GIAC GCIH (SANS SEC504) is the closest hands-on equivalent: a broad incident-handling certification with no mandatory prerequisite.",
+          deliverable: "Incident Investigation & Containment Report",
+          certs: ["GIAC GCIH", "CREST CRIA"],
+          outcome: "You can scope an escalated incident across network, host and malware evidence, contain it, and document the chain of custody." },
+        { id: "tier3", name: "Tier 3", crest: "CREST CCIM",
+          note: "Leads major incidents end to end and drives proactive threat hunting — CREST's top tier, aimed at incident managers.",
+          practice: "Indicative under the CREST scheme (Certified level): candidates must hold CPIA and CRIA and should have at least 6 years of regular, multi-discipline experience; exam sat on day 4 of a 4-day accelerated course. Source: crest-approved.org. The Tier 1/2/3 names are the de facto SOC/IR industry convention, not CREST's own wording — pairing the two is our own synthesis. GIAC GCFA (SANS FOR508) is the closest hands-on equivalent: advanced incident response, threat hunting and digital forensics.",
+          deliverable: "Post-Incident Root-Cause & Lessons-Learned Report",
+          certs: ["GIAC GCFA", "CREST CCIM"],
+          outcome: "You can command a major incident end to end, lead cross-discipline forensics, and turn the findings into lessons that improve the SOC's future detection." }
+      ]
+    },
     pentester: {
       // Not an ECSF distinction: ECSF lists these as pure alternative titles for the
       // same profile. This 3-level progression is our own structure, validated against
@@ -1472,7 +1532,7 @@
         out += '<div class="stage-sub">Prepares you for the certification:</div><div class="stage-tags">' + tier.certs.map(function(c){ return '<span class="tag-knowledge">' + esc(c) + '</span>'; }).join('') + '</div>';
         var tierLabs = data.stages.filter(function(st){ return st.tier === tier.id; }).length;
         out += '<div style="text-align:right;margin-top:18px"><button type="button" class="start-lab-btn capstone-btn" data-tier="' + tier.id + '">Start the final exercise</button></div>';
-        out += '<p class="capstone-note" hidden style="margin:10px 0 0;font-size:13px;color:var(--ink-muted);text-align:right">Concept preview &mdash; the final exercise will combine all ' + tierLabs + ' labs of this tier into one end-to-end run. We will design it later.</p>';
+        out += '<p class="capstone-note" hidden style="margin:10px 0 0;font-size:13px;color:var(--ink-muted);text-align:right">' + (tierLabs ? 'Concept preview &mdash; the final exercise will combine all ' + tierLabs + ' labs of this tier into one end-to-end run. We will design it later.' : 'Concept preview &mdash; this tier&rsquo;s lab scenario has not been designed yet.') + '</p>';
         out += '</div></div>';
       });
       out += '</div>';
