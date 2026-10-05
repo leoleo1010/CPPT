@@ -1805,6 +1805,75 @@
         { id: "curriculum-design", label: "Curriculum & Programme Design", note: "Designs courses, learning objectives and training materials rather than delivering them live. Matches NIST NICE's \"Cyber Instructional Curriculum Developer\" work role (OV-TEA-001)." },
         { id: "live-instruction", label: "Live Instruction & Delivery", note: "Runs live classes, labs and cyber-range exercises. Matches NIST NICE's \"Cyber Instructor\" work role (OV-TEA-002)." }
       ]
+    },
+    implementer: {
+      certBody: { name: "CompTIA, GIAC, (ISC)²", source: "comptia.org, giac.org, isc2.org", mixed: true },
+      // Skeleton only, no lab content yet.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Information Security Implementer
+      // / Cybersecurity Solutions Expert / Cybersecurity Developer /
+      // Cybersecurity Engineer / Development, Security & Operations
+      // (DevSecOps) Engineer as pure alternative titles for the same profile,
+      // with identical tasks/skills/knowledge. The 3-level progression here
+      // is our own structure, chosen only after checking whether a real
+      // seniority ladder (and a real role split) exists for this profile:
+      //   - NIST NICE splits this profile too, but along a different axis
+      //     than legal/educator's two-work-role split: here it is a build-
+      //     vs-operate axis -- "Information Systems Security Developer"
+      //     (SP-SYS-001, Securely Provision category) designs/codes/tests
+      //     security into products, while "Systems Security Analyst"
+      //     (IO-WRL-006, Implementation and Operation category) integrates
+      //     and runs them in production. This is literally the Dev/Ops
+      //     split the role's own alternative title "DevSecOps Engineer"
+      //     names directly, which is why it is used as the tracks below
+      //     rather than an invented specialisation.
+      //   - ENISA/ECSF itself still treats this as one flat profile with
+      //     e-CF competence levels, no internal sub-tiers or sub-roles.
+      //   - CREST has no general secure-engineering/DevSecOps scheme -- out
+      //     of scope for that certifying body, same as for auditor/legal/
+      //     educator.
+      // Like educator, no single certifying body's own ladder spans all 3
+      // levels here -- another genuine MIX, flagged explicitly:
+      //   - CompTIA Security+ and GIAC GSEC: both entry-level, no experience
+      //     required, broad hands-on security fundamentals from two
+      //     different bodies.
+      //   - (ISC)² SSCP: requires 1 year of experience (or Associate of
+      //     ISC2 status while gaining it) -- the hands-on practitioner tier.
+      //   - (ISC)² CSSLP: requires 4 years of experience, a deeper secure-
+      //     software-lifecycle specialist option for the Secure Development
+      //     track specifically (mentioned in that tier's practice note, not
+      //     given its own tier).
+      //   - GIAC GSE: GIAC's most prestigious, portfolio-based distinction
+      //     (multiple GIAC Gold certs plus a 2-day hands-on lab exam).
+      //     Deliberately used here instead of (ISC)²'s CISSP, which this
+      //     app reserves for governance/architecture-oriented profiles
+      //     (Chief Information Security Officer, Cybersecurity Architect)
+      //     rather than hands-on implementation, to avoid the same senior
+      //     credential being claimed by multiple unrelated ECSF profiles.
+      tiers: [
+        { id: "associate", name: "Associate Security Engineer", crest: "CompTIA Security+",
+          note: "Entry level: configures and deploys existing security controls and products — the broadest, most widely-held entry credentials for hands-on security work.",
+          practice: "Indicative: no experience required for either credential. CompTIA Security+ tests baseline configuration and installation of security controls (source: comptia.org); GIAC GSEC has no prerequisite exam either and goes deeper into hands-on technical security practice (source: giac.org).",
+          deliverable: "Cybersecurity Solutions",
+          certs: ["CompTIA Security+", "GIAC GSEC"],
+          outcome: "You can securely configure and deploy an existing security product or control, and explain why each setting matters." },
+        { id: "engineer", name: "Cybersecurity Engineer", crest: "ISC2 SSCP", hasTracks: true,
+          note: "Builds and operates the organisation's cybersecurity solutions independently — (ISC)²'s hands-on practitioner credential.",
+          practice: "Indicative under (ISC)²: at least 1 year of relevant experience, or Associate of ISC2 status while gaining it. Source: isc2.org. The two tracks below reflect NIST NICE's own split of this profile along a build/operate axis — the same distinction the role's own alternative title \"DevSecOps Engineer\" names directly: \"Information Systems Security Developer\" (SP-SYS-001) for the Secure Development track, and \"Systems Security Analyst\" (IO-WRL-006) for the Systems Operations track. (ISC)²'s own CSSLP (4 years' experience) is a deeper specialist option for the Secure Development track specifically, not a separate tier.",
+          deliverable: "Cybersecurity Solutions",
+          certs: ["ISC2 SSCP"],
+          outcome: "You can take a cybersecurity solution from integration through to day-to-day operation, independently and to the organisation's security policy." },
+        { id: "principal", name: "Principal Security Engineer", crest: "GIAC GSE",
+          note: "Elite, hands-on technical mastery across the full stack of security engineering — GIAC's most prestigious, portfolio-based distinction.",
+          practice: "Indicative: GSE requires holding multiple GIAC Gold certifications plus 2+ years of hands-on experience, then a written exam and a 2-day hands-on lab exam. Source: giac.org. Deliberately distinct from (ISC)²'s CISSP, which this app reserves for governance/architecture-oriented profiles (CISO, Cybersecurity Architect) rather than hands-on implementation.",
+          deliverable: "Cybersecurity Solutions",
+          certs: ["GIAC GSE"],
+          outcome: "You can be handed the hardest, most ambiguous implementation problem in the building and be trusted to solve it end to end." }
+      ],
+      tracks: [
+        { id: "secure-development", label: "Secure Development", note: "Designs, codes and tests security into products throughout the development lifecycle. Matches NIST NICE's \"Information Systems Security Developer\" work role (SP-SYS-001)." },
+        { id: "systems-operations", label: "Systems Operations", note: "Integrates, deploys and operates cybersecurity solutions in production. Matches NIST NICE's \"Systems Security Analyst\" work role (IO-WRL-006)." }
+      ]
     }
   };
 
