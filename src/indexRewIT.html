@@ -518,7 +518,7 @@
   .lab-topbar-title{font-size:13px;font-weight:600;color:var(--ink-muted);}
 
   .lab-main{flex:1 1 auto;overflow-y:auto;padding:32px clamp(16px,4vw,40px) 60px;}
-  .lab-hero,.path-note,.lab-section{max-width:720px;margin:0 auto 24px;}
+  .lab-hero,.path-note,.lab-section,.lab-tldr{max-width:720px;margin:0 auto 24px;}
   .lab-breadcrumb{
     font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--accent);margin-bottom:8px;
@@ -535,6 +535,8 @@
     color:var(--accent);margin:0 0 10px;
   }
   .lab-narrative{font-size:14.5px;line-height:1.7;color:var(--ink-muted);white-space:pre-line;margin:0;}
+  .lab-tldr{font-size:13px;line-height:1.6;color:var(--ink);border-left:2px solid var(--accent);padding-left:10px;}
+  .lab-tldr b{color:var(--accent);}
   .lab-section-hint{font-size:12px;color:var(--ink-faint);margin:-4px 0 12px;}
 
   .evidence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
@@ -1053,6 +1055,7 @@
         {
           type: "lab",
           id: "the-alert-queue", tier: "tier1", title: "La coda degli alert",
+          summary: "Triagia quattro alert SIEM di un turno notturno, decidi cosa è rumore e cosa è reale, ed escala il vero positivo con le prove.",
           scenario: "La coda del SOC di Riverstone Logistics ha quattro alert non risolti dal turno notturno: un picco di login falliti, un'esecuzione PowerShell anomala, una connessione in uscita bloccata e un avviso di firma antivirus non aggiornata. Ricevi l'export degli alert SIEM e gli estratti corrispondenti dei log EDR/firewall e devi triagiare tutti e quattro — chiudere ciò che è rumore, escalare ciò che è reale, con prove per ogni scelta.",
           taskIdx: [2, 8],
           skillIdx: [5, 0, 3],
@@ -1068,6 +1071,7 @@
         {
           type: "lab",
           id: "patient-zero", tier: "tier2", title: "Paziente zero",
+          summary: "Investiga e contieni un host compromesso che si è spostato lateralmente verso una seconda workstation, poi documenta la chain of custody.",
           scenario: "L'alert PowerShell della coda notturna viene escalato a te: l'EDR mostra che lo stesso host raggiunge una seconda workstation via SMB un'ora dopo. Ricevi l'albero dei processi completo, una cattura netflow e un report di vulnerability scan per definire il perimetro della compromissione end-to-end, contenere entrambi gli host e scrivere la voce di chain-of-custody per quanto raccolto.",
           taskIdx: [2, 5, 8],
           skillIdx: [2, 1, 0],
@@ -1083,6 +1087,7 @@
         {
           type: "tabletop",
           id: "the-war-room", tier: "tier3", title: "La war room",
+          summary: "Gestisci un incidente ransomware come incident manager di turno: ordina le azioni dal contenimento al ripristino, decidi sulla notifica di violazione e scrivi il brief di lessons-learned.",
           scenario: "Un ransomware ha colpito 40 endpoint sui due siti di Riverstone. Niente VM stavolta — sei l'incident manager sulla call di crisi. Ordina le azioni dal contenimento al ripristino, decidi quale notifica legale/regolatoria è scattata ed entro quando, e trasforma il post-mortem in un brief di una pagina che il consiglio leggerà davvero.",
           taskIdx: [0, 7, 10],
           skillIdx: [4, 3, 0],
@@ -1711,6 +1716,10 @@
     html += '</div>';
 
     html += '<div class="path-note"><span>&#9888;&#65039;</span><div><b>Anteprima concettuale.</b> Questa pagina di briefing è un mock-up &mdash; dietro non c\'è ancora alcun ambiente attivo.</div></div>';
+
+    if (stage.summary){
+      html += '<p class="lab-tldr"><b>In breve:</b> ' + esc(stage.summary) + '</p>';
+    }
 
     html += '<section class="lab-section"><h2>Briefing della missione</h2><p class="lab-narrative">' + esc(brief && brief.narrative ? brief.narrative : stage.scenario) + '</p></section>';
 

@@ -518,7 +518,7 @@
   .lab-topbar-title{font-size:13px;font-weight:600;color:var(--ink-muted);}
 
   .lab-main{flex:1 1 auto;overflow-y:auto;padding:32px clamp(16px,4vw,40px) 60px;}
-  .lab-hero,.path-note,.lab-section{max-width:720px;margin:0 auto 24px;}
+  .lab-hero,.path-note,.lab-section,.lab-tldr{max-width:720px;margin:0 auto 24px;}
   .lab-breadcrumb{
     font-family:var(--font-mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;
     color:var(--accent);margin-bottom:8px;
@@ -536,6 +536,8 @@
   }
   .lab-narrative{font-size:14.5px;line-height:1.7;color:var(--ink-muted);white-space:pre-line;margin:0;}
   .lab-section-hint{font-size:12px;color:var(--ink-faint);margin:-4px 0 12px;}
+  .lab-tldr{font-size:13px;line-height:1.6;color:var(--ink);border-left:2px solid var(--accent);padding-left:10px;}
+  .lab-tldr b{color:var(--accent);}
 
   .evidence-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;}
   .evidence-card{
@@ -1053,6 +1055,7 @@
         {
           type: "lab",
           id: "the-alert-queue", tier: "tier1", title: "The Alert Queue",
+          summary: "Triage four SIEM alerts from an overnight shift, decide what's noise and what's real, and escalate the true positive with evidence.",
           scenario: "Riverstone Logistics' SOC queue has four unresolved alerts from the overnight shift: a failed-login spike, an odd PowerShell execution, a blocked outbound connection and a stale antivirus signature warning. You get the SIEM alert export and the matching EDR/firewall log snippets and have to triage all four — close what's noise, escalate what's real, with evidence for each call.",
           taskIdx: [2, 8],
           skillIdx: [5, 0, 3],
@@ -1068,6 +1071,7 @@
         {
           type: "lab",
           id: "patient-zero", tier: "tier2", title: "Patient Zero",
+          summary: "Investigate and contain a compromised host that moved laterally to a second workstation, then document the chain of custody.",
           scenario: "The PowerShell alert from the overnight queue escalates to you: EDR shows the same host reaching out to a second workstation over SMB an hour later. You get the full process tree, a netflow capture and a vulnerability-scan report to scope the compromise end to end, contain both hosts, and write the chain-of-custody entry for what you collected.",
           taskIdx: [2, 5, 8],
           skillIdx: [2, 1, 0],
@@ -1083,6 +1087,7 @@
         {
           type: "tabletop",
           id: "the-war-room", tier: "tier3", title: "The War Room",
+          summary: "Run a ransomware incident as the on-call manager: sequence containment to recovery, decide on breach notification, and write the lessons-learned brief.",
           scenario: "Ransomware has hit 40 endpoints across Riverstone's two sites. No VM this time — you're the incident manager on the bridge call. Sequence the containment-to-recovery actions, decide what legal/regulatory breach notification is triggered and by when, and turn the post-mortem into a one-page lessons-learned brief the board will actually read.",
           taskIdx: [0, 7, 10],
           skillIdx: [4, 3, 0],
@@ -1711,6 +1716,10 @@
     html += '</div>';
 
     html += '<div class="path-note"><span>&#9888;&#65039;</span><div><b>Concept preview.</b> This briefing page is a design mock-up &mdash; there is no live environment behind it yet.</div></div>';
+
+    if (stage.summary){
+      html += '<p class="lab-tldr"><b>In short:</b> ' + esc(stage.summary) + '</p>';
+    }
 
     html += '<section class="lab-section"><h2>Mission briefing</h2><p class="lab-narrative">' + esc(brief && brief.narrative ? brief.narrative : stage.scenario) + '</p></section>';
 
