@@ -1572,8 +1572,61 @@
     },
     legal: {
       certBody: { name: "IAPP", source: "iapp.org" },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident/
+      // auditor labs, not the final lab set for this role. The DPO tier's
+      // lab is untracked (shown under either specialisation) rather than
+      // split per-track, to keep this pass at one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-new-regulation", tier: "analyst", title: "La nuova normativa",
+          summary: "Leggi una nuova modifica normativa sulla protezione dati, mappa ogni gap di compliance rispetto alla prassi attuale, e trasformala in una checklist che il business possa seguire.",
+          scenario: "Una nuova modifica normativa regionale sulla protezione dati è appena entrata in vigore e Thornfield Retail non sa se la riguarda. Ricevi il testo della modifica, un riepilogo dei flussi di dati attuali di Thornfield e il compliance manual dell'anno scorso. Mappa cosa è cambiato, segnala ogni gap rispetto al manuale attuale, e trasformalo in una checklist di compliance che i team di business possano davvero seguire.",
+          taskIdx: [1, 0],
+          skillIdx: [6, 0, 4],
+          knowledgeIdx: [3, 0, 2],
+          flags: [
+            { question: "Quale articolo della modifica introduce la nuova scadenza per la notifica di violazione?", flag: "FLAG{ART-12}" },
+            { question: "Quale flusso di dati attuale non ha una base giuridica documentata secondo le nuove regole?", flag: "FLAG{MARKETING-EMAIL-LIST}" },
+            { question: "Qual è la nuova scadenza di notifica che la checklist deve imporre, in ore?", flag: "FLAG{72H}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-new-customer-app", tier: "dpo", title: "La nuova app per i clienti",
+          summary: "Conduci una Valutazione d'Impatto sulla Protezione dei Dati su un nuovo prodotto, decidi le mitigazioni, e informa il team di lancio prima del go-live.",
+          scenario: "Thornfield Retail sta per lanciare un'app fedeltà che profila gli acquisti dei clienti per offerte personalizzate. Prima del lancio, conduci la Data Protection Impact Assessment: identifica il trattamento ad alto rischio, decidi quali mitigazioni lo rendono accettabile, e scrivi la nota di formazione per il personale di cui il team di lancio ha bisogno prima del go-live.",
+          taskIdx: [2, 5, 10],
+          skillIdx: [3, 1, 4],
+          knowledgeIdx: [4, 3, 1],
+          flags: [
+            { question: "Quale attività di trattamento nell'app fa scattare la soglia obbligatoria della DPIA?", flag: "FLAG{PROFILING-FOR-PERSONALISED-OFFERS}" },
+            { question: "Quale mitigazione riporta il rischio residuo a un livello accettabile?", flag: "FLAG{OPT-IN-PSEUDONYMISATION}" },
+            { question: "Se i clienti non danno consenso esplicito, quale base giuridica dell'art. 6 GDPR potrebbe comunque giustificare la profilazione?", flag: "FLAG{LEGITIMATE-INTEREST}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-regulators-call", tier: "cpo", title: "La chiamata del regolatore",
+          summary: "Gestisci una violazione di dati di terze parti su due giurisdizioni: decidi la strategia di notifica, definisci la responsabilità con il fornitore, e informa il consiglio.",
+          scenario: "Un fornitore terzo di cui Thornfield si serve ha appena rivelato una violazione che coinvolge dati dei clienti in due giurisdizioni. Niente lavoro sul campo stavolta — sei il Chief Privacy Officer al telefono con il regolatore in una giurisdizione e con il consiglio nell'altra stanza. Decidi la strategia di notifica su entrambe le giurisdizioni, definisci la questione di responsabilità con la clausola di violazione del contratto del fornitore, e scrivi la dichiarazione per il consiglio che dovrai difendere in sala.",
+          taskIdx: [9, 8, 11],
+          skillIdx: [2, 5, 0],
+          knowledgeIdx: [3, 0, 2],
+          flags: [
+            "Una decisione di notifica correttamente calibrata sulle scadenze di entrambe le giurisdizioni",
+            "Una posizione sulla responsabilità fondata sulla clausola di violazione del contratto del fornitore",
+            "Una dichiarazione per il consiglio che esprime l'impatto sul business senza sovrastimarlo né sottostimarlo"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Data Protection Officer (DPO) /
       // Privacy Protection Officer / Cyber Law Consultant / Cyber Legal
       // Advisor / Information Governance Officer / Data Compliance Officer /

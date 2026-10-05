@@ -1572,8 +1572,61 @@
     },
     legal: {
       certBody: { name: "IAPP", source: "iapp.org" },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident/
+      // auditor labs, not the final lab set for this role. The DPO tier's
+      // lab is untracked (shown under either specialisation) rather than
+      // split per-track, to keep this pass at one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-new-regulation", tier: "analyst", title: "The New Regulation",
+          summary: "Read a new data-protection amendment, map every compliance gap against current practice, and turn it into a checklist the business can follow.",
+          scenario: "A new regional data-protection amendment just came into force and Thornfield Retail has no idea if it's covered. You get the amendment text, a summary of Thornfield's current data flows, and last year's compliance manual. Map what's new, flag every gap against the current manual, and turn it into a compliance checklist the business teams can actually follow.",
+          taskIdx: [1, 0],
+          skillIdx: [6, 0, 4],
+          knowledgeIdx: [3, 0, 2],
+          flags: [
+            { question: "Which article of the amendment introduces the new breach-notification deadline?", flag: "FLAG{ART-12}" },
+            { question: "Which current data flow has no documented legal basis under the new rules?", flag: "FLAG{MARKETING-EMAIL-LIST}" },
+            { question: "What's the new notification deadline the checklist must enforce, in hours?", flag: "FLAG{72H}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-new-customer-app", tier: "dpo", title: "The New Customer App",
+          summary: "Run a Data Protection Impact Assessment on a new product launch, decide the mitigations, and brief the rollout team before go-live.",
+          scenario: "Thornfield Retail is about to launch a loyalty app that profiles customer purchases for personalised offers. Before it ships, you run the Data Protection Impact Assessment: identify the high-risk processing, decide what mitigations make it acceptable, and draft the staff training note the rollout team needs before go-live.",
+          taskIdx: [2, 5, 10],
+          skillIdx: [3, 1, 4],
+          knowledgeIdx: [4, 3, 1],
+          flags: [
+            { question: "Which processing activity in the app triggers the mandatory DPIA threshold?", flag: "FLAG{PROFILING-FOR-PERSONALISED-OFFERS}" },
+            { question: "What mitigation brings the residual risk down to an acceptable level?", flag: "FLAG{OPT-IN-PSEUDONYMISATION}" },
+            { question: "If customers don't explicitly consent, what GDPR Art. 6 legal basis could still justify the profiling?", flag: "FLAG{LEGITIMATE-INTEREST}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-regulators-call", tier: "cpo", title: "The Regulator's Call",
+          summary: "Manage a third-party data breach across two jurisdictions: decide the notification strategy, settle liability with the processor, and brief the board.",
+          scenario: "A third-party processor Thornfield relies on just disclosed a breach affecting customer data across two jurisdictions. No fieldwork this time — you're the Chief Privacy Officer on the call with the regulator in one jurisdiction and the board in the other room. Decide the notification strategy across both jurisdictions, settle the liability question with the processor's contract, and write the board statement you'll defend in the room.",
+          taskIdx: [9, 8, 11],
+          skillIdx: [2, 5, 0],
+          knowledgeIdx: [3, 0, 2],
+          flags: [
+            "A notification decision correctly scoped to both jurisdictions' deadlines",
+            "A liability position grounded in the processor contract's own breach clause",
+            "A board statement that states the business impact without overstating or understating it"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Data Protection Officer (DPO) /
       // Privacy Protection Officer / Cyber Law Consultant / Cyber Legal
       // Advisor / Information Governance Officer / Data Compliance Officer /
