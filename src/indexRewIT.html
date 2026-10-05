@@ -1689,6 +1689,68 @@
         { id: "privacy-compliance", label: "Privacy & Compliance Management", note: "Operazionalizza il programma privacy nella quotidianità — DPIA, formazione, gestione delle violazioni, audit. Corrisponde al work role NIST NICE \"Privacy Officer/Compliance Manager\" (OV-LGA-002)." },
         { id: "legal-advisory", label: "Legal Advisory", note: "Monitora la normativa e fornisce consulenza sull'esposizione legale, i contratti e il rischio regolatorio. Corrisponde al work role NIST NICE \"Cybersecurity Legal Advice\" (OG-WRL-006)." }
       ]
+    },
+    educator: {
+      certBody: { name: "CompTIA, EC-Council, ATD", source: "comptia.org, eccouncil.org, td.org", mixed: true },
+      // Skeleton only, no lab content yet.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Cybersecurity Awareness Specialist
+      // / Cybersecurity Trainer / Faculty in Cybersecurity (Professor,
+      // Lecturer) as pure alternative titles for the same profile, with
+      // identical tasks/skills/knowledge. The 3-level progression here is our
+      // own structure, chosen only after checking whether a real seniority
+      // ladder (and a real role split) exists for this profile:
+      //   - NIST NICE splits this profile into two work roles, same pattern
+      //     as the legal/compliance profile: "Cyber Instructional Curriculum
+      //     Developer" (OV-TEA-001) and "Cyber Instructor" (OV-TEA-002) --
+      //     this is why the tracks below exist, nested in the middle tier.
+      //   - ENISA/ECSF itself still treats this as one flat profile with
+      //     e-CF competence levels, no internal sub-tiers or sub-roles.
+      //   - CREST has no training/education scheme -- out of scope for that
+      //     certifying body, same as for auditor/legal.
+      // Unlike every other tiered profile in this app, no single certifying
+      // body's own ladder spans all 3 levels here -- this is a genuine MIX
+      // of three different bodies, each covering one level with no official
+      // relationship between them (flagged explicitly, including in the UI
+      // note above the tiers, so it is not mistaken for one coherent scheme
+      // like CREST's or IAPP's):
+      //   - CompTIA CTT+ (Certified Technical Trainer): entry, no experience
+      //     required, vendor-neutral instructional-delivery skill, not
+      //     cybersecurity-specific.
+      //   - EC-Council CEI (Certified EC-Council Instructor): requires
+      //     holding the certification you intend to teach plus either 2
+      //     years of training experience or a recognised trainer credential
+      //     such as CTT+ -- EC-Council explicitly accepts CTT+ as qualifying
+      //     experience, which is the one documented link between two of the
+      //     three bodies used here.
+      //   - ATD CPTD (Certified Professional in Talent Development): senior
+      //     talent-development credential, 5 years' experience, not
+      //     cybersecurity-specific either -- reached through general L&D
+      //     leadership rather than a cyber-specific exam.
+      tiers: [
+        { id: "trainer", name: "Cybersecurity Trainer", crest: "CompTIA CTT+",
+          note: "Livello base: consegna materiale di formazione già pronto — il credential fondativo di CompTIA per l'erogazione didattica.",
+          practice: "Indicativo: nessuna esperienza richiesta — il CTT+ abbina un esame teorico (principi didattici) a un esame di performance di insegnamento registrato. Fonte: comptia.org. È vendor-neutral, non cyber-specifico, ed è il credential che EC-Council accetta esplicitamente come esperienza equivalente di trainer per il proprio programma istruttori CEI (vedi il tier Instructor).",
+          deliverable: "Cybersecurity Training Material",
+          certs: ["CompTIA CTT+"],
+          outcome: "Sai prendere materiale di formazione già pronto ed erogarlo efficacemente a una classe dal vivo, adattandoti alla sala mentre procedi." },
+        { id: "instructor", name: "Certified Cybersecurity Instructor", crest: "EC-Council CEI", hasTracks: true,
+          note: "Istruttore riconosciuto per un programma di certificazione specifico, capace di progettare ed erogare corsi completi — il credential CEI di EC-Council.",
+          practice: "Indicativo: il CEI richiede di possedere la certificazione che si intende insegnare (es. CEH per insegnare CEH) più almeno 2 anni di esperienza di formazione o un credential di trainer riconosciuto come il CTT+, più la sponsorizzazione di un Accredited Training Centre. Fonte: eccouncil.org. Le due track qui sotto riflettono lo split che NIST NICE fa di questo profilo in due work role: \"Cyber Instructional Curriculum Developer\" (OV-TEA-001) e \"Cyber Instructor\" (OV-TEA-002).",
+          deliverable: "Cybersecurity Awareness Program",
+          certs: ["EC-Council CEI"],
+          outcome: "Sai progettare un corso attorno al blueprint di una certificazione specifica ed erogarlo end-to-end, supportato sia dalle credenziali di materia che da quelle didattiche." },
+        { id: "lead", name: "Training Programme Lead", crest: "ATD CPTD",
+          note: "Possiede il programma di formazione/awareness e la sua strategia a livello organizzativo — il credential senior di talent development di ATD.",
+          practice: "Indicativo: il CPTD richiede 5 anni di esperienza in talent development più 60 ore di sviluppo professionale recente, e un esame di 3 ore. Fonte: td.org. È un credential generale di talent development, non cyber-specifico — a differenza degli enti degli altri due tier, ATD non ha alcun legame formale con CompTIA o EC-Council. L'alt-title ECSF stesso \"Faculty in Cybersecurity (Professor, Lecturer)\" riflette la stessa seniority raggiunta per via accademica.",
+          deliverable: "Cybersecurity Awareness Program & Curriculum Sign-off",
+          certs: ["ATD CPTD"],
+          outcome: "Sai definire la strategia di formazione cyber di un'organizzazione, possederne budget e standard curricolari, e dimostrarne l'impatto alla leadership." }
+      ],
+      tracks: [
+        { id: "curriculum-design", label: "Curriculum & Programme Design", note: "Progetta corsi, obiettivi didattici e materiali di formazione invece di erogarli dal vivo. Corrisponde al work role NIST NICE \"Cyber Instructional Curriculum Developer\" (OV-TEA-001)." },
+        { id: "live-instruction", label: "Live Instruction & Delivery", note: "Conduce classi dal vivo, lab ed esercitazioni su cyber range. Corrisponde al work role NIST NICE \"Cyber Instructor\" (OV-TEA-002)." }
+      ]
     }
   };
 
@@ -1802,8 +1864,11 @@
       var tierTracks = data.tracks || [];
       var activeTrack = tierTracks.filter(function(t){ return t.id === currentTrack; })[0] || tierTracks[0];
       var certBody = data.certBody || { name: 'CREST', source: 'crest-approved.org' };
+      var bodyPhrase = certBody.mixed
+        ? 'una nostra progressione che mescola tre enti certificatori diversi (' + esc(certBody.name) + '), ciascuno relativo a un solo tier, senza alcuna relazione ufficiale tra loro'
+        : 'una nostra progressione, allineata al percorso di ' + esc(certBody.name);
       var out = '';
-      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono una nostra progressione, allineata al percorso di ' + esc(certBody.name) + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e requisiti di ' + esc(certBody.name) + ' sono indicativi (fonte: ' + esc(certBody.source) + ') — clicca la &#9432; su un tier.</div></div>';
+      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono ' + bodyPhrase + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e requisiti sono indicativi (fonte: ' + esc(certBody.source) + ') — clicca la &#9432; su un tier.</div></div>';
       var filters = [{ id: 'all', label: 'Percorso completo' }].concat(data.tiers.map(function(t){ return { id: t.id, label: t.name }; }));
       out += '<div class="track-tabs tier-filter">' + filters.map(function(f){ return '<button type="button" class="track-pill' + (f.id === currentTierFilter ? ' active' : '') + '" data-tier="' + f.id + '">' + esc(f.label) + '</button>'; }).join('') + '</div>';
       out += '<div class="path-timeline">';

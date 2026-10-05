@@ -1689,6 +1689,68 @@
         { id: "privacy-compliance", label: "Privacy & Compliance Management", note: "Operationalises the privacy programme day to day — DPIAs, training, breach response, audits. Matches NIST NICE's \"Privacy Officer/Compliance Manager\" work role (OV-LGA-002)." },
         { id: "legal-advisory", label: "Legal Advisory", note: "Monitors legislation and advises on legal exposure, contracts and regulatory risk. Matches NIST NICE's \"Cybersecurity Legal Advice\" work role (OG-WRL-006)." }
       ]
+    },
+    educator: {
+      certBody: { name: "CompTIA, EC-Council, ATD", source: "comptia.org, eccouncil.org, td.org", mixed: true },
+      // Skeleton only, no lab content yet.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Cybersecurity Awareness Specialist
+      // / Cybersecurity Trainer / Faculty in Cybersecurity (Professor,
+      // Lecturer) as pure alternative titles for the same profile, with
+      // identical tasks/skills/knowledge. The 3-level progression here is our
+      // own structure, chosen only after checking whether a real seniority
+      // ladder (and a real role split) exists for this profile:
+      //   - NIST NICE splits this profile into two work roles, same pattern
+      //     as the legal/compliance profile: "Cyber Instructional Curriculum
+      //     Developer" (OV-TEA-001) and "Cyber Instructor" (OV-TEA-002) --
+      //     this is why the tracks below exist, nested in the middle tier.
+      //   - ENISA/ECSF itself still treats this as one flat profile with
+      //     e-CF competence levels, no internal sub-tiers or sub-roles.
+      //   - CREST has no training/education scheme -- out of scope for that
+      //     certifying body, same as for auditor/legal.
+      // Unlike every other tiered profile in this app, no single certifying
+      // body's own ladder spans all 3 levels here -- this is a genuine MIX
+      // of three different bodies, each covering one level with no official
+      // relationship between them (flagged explicitly, including in the UI
+      // note above the tiers, so it is not mistaken for one coherent scheme
+      // like CREST's or IAPP's):
+      //   - CompTIA CTT+ (Certified Technical Trainer): entry, no experience
+      //     required, vendor-neutral instructional-delivery skill, not
+      //     cybersecurity-specific.
+      //   - EC-Council CEI (Certified EC-Council Instructor): requires
+      //     holding the certification you intend to teach plus either 2
+      //     years of training experience or a recognised trainer credential
+      //     such as CTT+ -- EC-Council explicitly accepts CTT+ as qualifying
+      //     experience, which is the one documented link between two of the
+      //     three bodies used here.
+      //   - ATD CPTD (Certified Professional in Talent Development): senior
+      //     talent-development credential, 5 years' experience, not
+      //     cybersecurity-specific either -- reached through general L&D
+      //     leadership rather than a cyber-specific exam.
+      tiers: [
+        { id: "trainer", name: "Cybersecurity Trainer", crest: "CompTIA CTT+",
+          note: "Entry level: delivers existing training content and courses — CompTIA's foundational instructional-delivery credential.",
+          practice: "Indicative: no experience required — CTT+ pairs a knowledge exam (instructional principles) with a recorded teaching-performance exam. Source: comptia.org. It is vendor-neutral, not cybersecurity-specific, and is the credential EC-Council explicitly accepts as equivalent trainer experience for its own CEI instructor programme (see the Instructor tier).",
+          deliverable: "Cybersecurity Training Material",
+          certs: ["CompTIA CTT+"],
+          outcome: "You can take existing training material and deliver it effectively to a live class, adapting to the room as you go." },
+        { id: "instructor", name: "Certified Cybersecurity Instructor", crest: "EC-Council CEI", hasTracks: true,
+          note: "Recognised instructor for a specific certification programme, able to design and run full courses — EC-Council's CEI credential.",
+          practice: "Indicative: CEI requires holding the certification you intend to teach (e.g. CEH to teach CEH) plus either 2 years of training experience or a recognised trainer credential such as CTT+, plus Accredited Training Centre sponsorship. Source: eccouncil.org. The two tracks below reflect NIST NICE's own split of this profile into two work roles: \"Cyber Instructional Curriculum Developer\" (OV-TEA-001) and \"Cyber Instructor\" (OV-TEA-002).",
+          deliverable: "Cybersecurity Awareness Program",
+          certs: ["EC-Council CEI"],
+          outcome: "You can design a course around a specific certification's blueprint and deliver it end to end, backed by both subject-matter and teaching credentials." },
+        { id: "lead", name: "Training Programme Lead", crest: "ATD CPTD",
+          note: "Owns the training/awareness programme and its strategy across an organisation — ATD's senior talent-development credential.",
+          practice: "Indicative: CPTD requires 5 years of talent-development experience plus 60 hours of recent professional development, and a 3-hour exam. Source: td.org. It is a general talent-development credential, not cybersecurity-specific — unlike the other two tiers' bodies, ATD has no formal link to CompTIA or EC-Council. ECSF's own alternative title \"Faculty in Cybersecurity (Professor, Lecturer)\" reflects the same seniority reached through an academic path instead.",
+          deliverable: "Cybersecurity Awareness Program & Curriculum Sign-off",
+          certs: ["ATD CPTD"],
+          outcome: "You can set an organisation's cybersecurity training strategy, own its budget and curriculum standards, and prove its impact to leadership." }
+      ],
+      tracks: [
+        { id: "curriculum-design", label: "Curriculum & Programme Design", note: "Designs courses, learning objectives and training materials rather than delivering them live. Matches NIST NICE's \"Cyber Instructional Curriculum Developer\" work role (OV-TEA-001)." },
+        { id: "live-instruction", label: "Live Instruction & Delivery", note: "Runs live classes, labs and cyber-range exercises. Matches NIST NICE's \"Cyber Instructor\" work role (OV-TEA-002)." }
+      ]
     }
   };
 
@@ -1802,8 +1864,11 @@
       var tierTracks = data.tracks || [];
       var activeTrack = tierTracks.filter(function(t){ return t.id === currentTrack; })[0] || tierTracks[0];
       var certBody = data.certBody || { name: 'CREST', source: 'crest-approved.org' };
+      var bodyPhrase = certBody.mixed
+        ? 'our own progression across three different certifying bodies (' + esc(certBody.name) + '), each covering one tier with no official relationship between them'
+        : 'our own progression aligned to ' + esc(certBody.name) + '&rsquo;s pathway';
       var out = '';
-      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Not an ECSF distinction.</b> ECSF lists ' + esc(role.altTitles.join(', ')) + ' as alternative titles for the exact same profile. The <b>tiers</b> below are our own progression aligned to ' + esc(certBody.name) + '&rsquo;s pathway' + (tierTracks.length ? '; the <b>tracks</b> are suggested specialisations, not separate ECSF roles' : '') + '. ' + esc(certBody.name) + ' levels and requirements are indicative (source: ' + esc(certBody.source) + ') — click the &#9432; on any tier.</div></div>';
+      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Not an ECSF distinction.</b> ECSF lists ' + esc(role.altTitles.join(', ')) + ' as alternative titles for the exact same profile. The <b>tiers</b> below are ' + bodyPhrase + (tierTracks.length ? '; the <b>tracks</b> are suggested specialisations, not separate ECSF roles' : '') + '. Levels and requirements are indicative (source: ' + esc(certBody.source) + ') — click the &#9432; on any tier.</div></div>';
       var filters = [{ id: 'all', label: 'Full path' }].concat(data.tiers.map(function(t){ return { id: t.id, label: t.name }; }));
       out += '<div class="track-tabs tier-filter">' + filters.map(function(f){ return '<button type="button" class="track-pill' + (f.id === currentTierFilter ? ' active' : '') + '" data-tier="' + f.id + '">' + esc(f.label) + '</button>'; }).join('') + '</div>';
       out += '<div class="path-timeline">';
