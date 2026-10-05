@@ -1456,8 +1456,59 @@
     },
     auditor: {
       certBody: { name: "CQI/IRCA", source: "quality.org" },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident
+      // labs, not the final lab set for this role.
+      stages: [
+        {
+          type: "lab",
+          id: "the-evidence-trail", tier: "associate", title: "The Evidence Trail",
+          summary: "Execute a slice of an audit plan against real evidence, reference every finding, and produce working papers ready for sign-off.",
+          scenario: "Castellane Finance is mid-way through its annual ISO/IEC 27001 surveillance audit. The lead auditor hands you a slice of the audit plan: verify the access-control process against three weeks of evidence — a user-access review log, two interview notes and a screenshot of the IAM console. Execute your part of the plan, reference every finding to its evidence, and hand in working papers the lead auditor can sign off without redoing your work.",
+          taskIdx: [8, 9],
+          skillIdx: [0, 6, 1],
+          knowledgeIdx: [4, 0, 2],
+          flags: [
+            { question: "Which Annex A control reference does the evidence gap map to?", flag: "FLAG{A.5.15}" },
+            { question: "Whose account was never revoked after their last working day?", flag: "FLAG{j.alder-fin-ops}" },
+            { question: "What nonconformity classification should this finding carry — Minor or Major?", flag: "FLAG{MINOR}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-surveillance-audit", tier: "lead", title: "The Surveillance Audit",
+          summary: "Scope and run a full ISO/IEC 27001 surveillance audit, classify the nonconformities you find, and write the report the board will act on.",
+          scenario: "Castellane Finance's ISMS documentation set and last year's audit report land on your desk. Define the scope and criteria for this year's ISO/IEC 27001 surveillance audit, run it against three control areas, and turn two uncomfortable findings — one your junior auditor flagged, one you find yourself — into a Cybersecurity Audit Report the board will actually act on.",
+          taskIdx: [3, 4, 10],
+          skillIdx: [3, 4, 5],
+          knowledgeIdx: [3, 5, 1],
+          flags: [
+            { question: "Which ISO/IEC 27001 Annex A control does the recurring access-review gap breach?", flag: "FLAG{A.5.18}" },
+            { question: "Should the vendor due-diligence gap be classified as Minor or Major?", flag: "FLAG{MAJOR}" },
+            { question: "What ISO/IEC 27001 clause governs how you justify excluding the newly acquired, not-yet-integrated subsidiary from this audit's scope?", flag: "FLAG{CLAUSE-4.3}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-audit-committee", tier: "principal", title: "The Audit Committee",
+          summary: "Resolve a dispute between two lead auditors, sign off next year's audit programme, and present your annual audit opinion to the committee.",
+          scenario: "No fieldwork this time. Two of your lead auditors disagree on how to classify a finding, next year's audit programme needs its scope and resourcing signed off, and the audit committee wants your annual opinion on the ISMS in plain language. Resolve the disagreement, approve the programme, and write the one-page opinion you'll defend in the room.",
+          taskIdx: [0, 1, 11],
+          skillIdx: [7, 5, 0],
+          knowledgeIdx: [4, 6, 1],
+          flags: [
+            "A finding-classification ruling with a stated rationale both lead auditors can act on",
+            "A signed-off audit programme scope with stated resourcing for next year",
+            "A one-paragraph audit opinion in language the audit committee can actually use"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Information Security Auditor / GRC
       // Auditor / Cybersecurity Audit Manager / Cybersecurity Procedures and
       // Processes Auditor / Information Security Risk and Compliance Auditor /

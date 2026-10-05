@@ -1456,8 +1456,59 @@
     },
     auditor: {
       certBody: { name: "CQI/IRCA", source: "quality.org" },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident
+      // labs, not the final lab set for this role.
+      stages: [
+        {
+          type: "lab",
+          id: "the-evidence-trail", tier: "associate", title: "La traccia delle evidenze",
+          summary: "Esegui una porzione di un piano di audit su evidenze reali, referenzia ogni finding, e produci working paper pronti per il sign-off.",
+          scenario: "Castellane Finance è a metà del suo audit di sorveglianza annuale ISO/IEC 27001. Il lead auditor ti affida una porzione del piano di audit: verifica il processo di controllo degli accessi su tre settimane di evidenze — un log di revisione degli accessi utente, due note di intervista e uno screenshot della console IAM. Esegui la tua parte del piano, referenzia ogni finding alla sua evidenza, e consegna working paper che il lead auditor possa firmare senza doverli rifare.",
+          taskIdx: [8, 9],
+          skillIdx: [0, 6, 1],
+          knowledgeIdx: [4, 0, 2],
+          flags: [
+            { question: "A quale controllo dell'Annex A corrisponde il gap evidenziato?", flag: "FLAG{A.5.15}" },
+            { question: "A chi appartiene l'account il cui accesso non è mai stato revocato dopo l'ultimo giorno di lavoro?", flag: "FLAG{j.alder-fin-ops}" },
+            { question: "Che classificazione di non conformità deve avere questo finding — Minor o Major?", flag: "FLAG{MINOR}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-surveillance-audit", tier: "lead", title: "L'audit di sorveglianza",
+          summary: "Definisci il perimetro e conduci un audit di sorveglianza ISO/IEC 27001 completo, classifica le non conformità trovate, e scrivi il report su cui il consiglio agirà.",
+          scenario: "Il set di documentazione ISMS di Castellane Finance e il report di audit dell'anno scorso arrivano sulla tua scrivania. Definisci il perimetro e i criteri per l'audit di sorveglianza ISO/IEC 27001 di quest'anno, conducilo su tre aree di controllo, e trasforma due finding scomodi — uno segnalato dal tuo auditor junior, uno trovato da te — in un Cybersecurity Audit Report su cui il consiglio agirà davvero.",
+          taskIdx: [3, 4, 10],
+          skillIdx: [3, 4, 5],
+          knowledgeIdx: [3, 5, 1],
+          flags: [
+            { question: "Quale controllo dell'Annex A ISO/IEC 27001 viola il gap ricorrente nella revisione degli accessi?", flag: "FLAG{A.5.18}" },
+            { question: "Il gap di due diligence sul fornitore va classificato come Minor o Major?", flag: "FLAG{MAJOR}" },
+            { question: "Quale clausola ISO/IEC 27001 regola come giustificare l'esclusione dal perimetro di questo audit della filiale appena acquisita e non ancora integrata?", flag: "FLAG{CLAUSE-4.3}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-audit-committee", tier: "principal", title: "Il comitato di audit",
+          summary: "Risolvi un contrasto tra due lead auditor, approva il programma di audit del prossimo anno, e presenta la tua opinione annuale al comitato.",
+          scenario: "Niente lavoro sul campo stavolta. Due dei tuoi lead auditor non sono d'accordo su come classificare un finding, il programma di audit del prossimo anno ha bisogno del sign-off su perimetro e risorse, e il comitato di audit vuole la tua opinione annuale sull'ISMS in un linguaggio comprensibile. Risolvi il contrasto, approva il programma, e scrivi l'opinione di una pagina che dovrai difendere in sala.",
+          taskIdx: [0, 1, 11],
+          skillIdx: [7, 5, 0],
+          knowledgeIdx: [4, 6, 1],
+          flags: [
+            "Una decisione di classificazione del finding con una motivazione su cui entrambi i lead auditor possono agire",
+            "Un perimetro del programma di audit approvato con le risorse indicate per il prossimo anno",
+            "Un'opinione di audit di un paragrafo in un linguaggio che il comitato possa davvero usare"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Information Security Auditor / GRC
       // Auditor / Cybersecurity Audit Manager / Cybersecurity Procedures and
       // Processes Auditor / Information Security Risk and Compliance Auditor /
