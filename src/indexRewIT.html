@@ -920,6 +920,7 @@
   // so the wording always stays in sync with the ECSF source text.
   var PATHS = {
     threatintel: {
+      certBody: { name: "CREST", source: "crest-approved.org" },
       stages: [
         {
           type: "lab",
@@ -1048,6 +1049,7 @@
       ]
     },
     incident: {
+      certBody: { name: "CREST", source: "crest-approved.org" },
       // One draft lab per tier -- a concept preview of what each tier's real
       // exercise could look like, same depth as the pentester/CTI labs, not
       // the final lab set for this role.
@@ -1157,6 +1159,7 @@
       ]
     },
     pentester: {
+      certBody: { name: "CREST", source: "crest-approved.org" },
       // Not an ECSF distinction: ECSF lists these as pure alternative titles for the
       // same profile. This 3-level progression is our own structure, validated against
       // CREST's real penetration-testing certification pathway (CPSA -> CRT -> CCT),
@@ -1450,6 +1453,71 @@
         { id: "cloud", label: "Cloud", note: "Testing di tenant cloud (identità, storage, metadata) — una competenza scarsa e in rapida crescita." },
         { id: "ot", label: "OT / ICS", note: "Confini tra IT e tecnologie operative industriali — una nicchia per difesa e infrastrutture critiche." }
       ]
+    },
+    auditor: {
+      certBody: { name: "CQI/IRCA", source: "quality.org" },
+      // Skeleton only, no lab content yet.
+      stages: [],
+      // Not an ECSF distinction: ECSF lists Information Security Auditor / GRC
+      // Auditor / Cybersecurity Audit Manager / Cybersecurity Procedures and
+      // Processes Auditor / Information Security Risk and Compliance Auditor /
+      // Data Protection Assessment Analyst as pure alternative titles for the
+      // same profile. The 3-level progression here is our own structure,
+      // chosen only after checking whether a real seniority ladder exists for
+      // this profile (same method used for pentester/CTI/incident):
+      //   - NIST NICE: the matching work role ("IT Program Auditor" /
+      //     "Technology Program Auditing", OPM code 805) is a single role
+      //     with no seniority split.
+      //   - ENISA/ECSF itself: the official role-profile document treats this
+      //     as one flat profile with e-CF competence levels, no internal
+      //     sub-tiers.
+      //   - CREST has no auditing/compliance scheme at all -- it is out of
+      //     scope for this certifying body (CREST covers offensive/defensive
+      //     technical disciplines only), unlike pentester/CTI/incident.
+      // Unlike those three profiles, the tier names below are NOT our own
+      // synthesis of two different naming systems -- they are a single real
+      // certifying body's own grade ladder, used as-is: CQI/IRCA (Chartered
+      // Quality Institute / International Register of Certificated Auditors)
+      // certifies and maintains the official register of management-systems
+      // auditors, including the ISO/IEC 27001 (ISMS) scheme used here. CQI/IRCA
+      // actually has 5 grades (Associate/Provisional, Internal Auditor,
+      // Auditor, Lead Auditor, Principal Auditor); we compress this to the 3
+      // most representative. These are certification/membership grades within
+      // one profession, not separate job titles or ECSF roles -- "Lead
+      // Auditor" is also commonly used as a literal job title in postings,
+      // the other two less so.
+      // ISACA's CISA (Certified Information Systems Auditor) is the single
+      // most globally recognised individual credential in this field. It is
+      // not tiered (one exam, 5 years' experience required for the full
+      // credential) -- same non-tiered pattern as GIAC GCTI for the CTI
+      // profile -- so it is listed at both the Lead and Principal tiers
+      // rather than only once. ISACA's own IT Audit Fundamentals Certificate
+      // (no experience required, explicitly marketed as a "pathway to CISA")
+      // fills the entry tier.
+      // No specialisation tracks: the CQI/IRCA ISMS scheme does not split by
+      // subject matter. ISACA/CSA's CCAK (Certificate of Cloud Auditing
+      // Knowledge) is a real, notable cloud-audit specialisation and a
+      // candidate future lab, not a structural track split.
+      tiers: [
+        { id: "associate", name: "Associate Auditor", crest: "CQI/IRCA",
+          note: "Livello base: formato sulla metodologia di audit, non conduce ancora audit in autonomia — il grado Associate/Provisional di CQI/IRCA.",
+          practice: "Esperienza pratica indicativa secondo lo schema ISMS di CQI/IRCA: nessuna esperienza di audit richiesta a questo grado, solo un corso di formazione per auditor certificato IRCA superato. Fonte: quality.org. L'IT Audit Fundamentals Certificate di ISACA (nessuna esperienza richiesta) copre lo stesso livello d'ingresso ed è presentato esplicitamente da ISACA come percorso verso il CISA.",
+          deliverable: "Audit Working Papers",
+          certs: ["ISACA IT Audit Fundamentals Certificate", "CQI/IRCA Associate Auditor"],
+          outcome: "Sai seguire un piano di audit, raccogliere e referenziare correttamente le evidenze, e produrre working paper su cui un altro auditor potrebbe fare affidamento." },
+        { id: "lead", name: "Lead Auditor", crest: "CQI/IRCA",
+          note: "Conduce audit completi in autonomia e guida team di audit — il grado Lead Auditor di CQI/IRCA.",
+          practice: "Esperienza pratica indicativa secondo lo schema ISMS di CQI/IRCA: almeno 10 giorni di audit negli ultimi 3 anni, relativi allo schema ISO/IEC 27001 e al grado Lead Auditor. Fonte: quality.org. Il CISA di ISACA richiede 5 anni di esperienza in IS audit/controllo/sicurezza e non è a livelli — un solo esame copre tutto, dal lavoro sul campo alla supervisione del programma — per questo compare qui e nel tier Principal, non una volta sola.",
+          deliverable: "Cybersecurity Audit Report",
+          certs: ["ISACA CISA", "CQI/IRCA Lead Auditor"],
+          outcome: "Sai definire il perimetro, condurre e riportare un audit completo end-to-end, e guidare un piccolo team di audit dalla raccolta delle evidenze ai finding." },
+        { id: "principal", name: "Principal Auditor", crest: "CQI/IRCA",
+          note: "Possiede il programma di audit e supervisiona altri auditor invece di condurre lavoro sul campo di routine — il grado più alto di CQI/IRCA, e l'alt-title ECSF stesso \"Cybersecurity Audit Manager\".",
+          practice: "Esperienza pratica indicativa secondo lo schema ISMS di CQI/IRCA (grado Principal Auditor): esperienza di audit estesa e dimostrabile, per professionisti che non conducono più o guidano più audit come parte di routine del proprio ruolo. Fonte: quality.org. Il CISA di ISACA è lo stesso credential non a livelli elencato nel tier Lead — non certifica separatamente la seniority di gestione del programma, per questo è il grado CQI/IRCA a portare questa distinzione qui.",
+          deliverable: "Cybersecurity Audit Plan & Programme Sign-off",
+          certs: ["ISACA CISA", "CQI/IRCA Principal Auditor"],
+          outcome: "Sai possedere un programma di audit end-to-end: definirne perimetro e standard, firmare i finding su più audit, e risponderne al consiglio." }
+      ]
     }
   };
 
@@ -1562,8 +1630,9 @@
     if (data.tiers){
       var tierTracks = data.tracks || [];
       var activeTrack = tierTracks.filter(function(t){ return t.id === currentTrack; })[0] || tierTracks[0];
+      var certBody = data.certBody || { name: 'CREST', source: 'crest-approved.org' };
       var out = '';
-      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono una nostra progressione, allineata al percorso di CREST' + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e ore CREST sono indicativi (fonte: crest-approved.org) — clicca la &#9432; su un tier.</div></div>';
+      out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono una nostra progressione, allineata al percorso di ' + esc(certBody.name) + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e requisiti di ' + esc(certBody.name) + ' sono indicativi (fonte: ' + esc(certBody.source) + ') — clicca la &#9432; su un tier.</div></div>';
       var filters = [{ id: 'all', label: 'Percorso completo' }].concat(data.tiers.map(function(t){ return { id: t.id, label: t.name }; }));
       out += '<div class="track-tabs tier-filter">' + filters.map(function(f){ return '<button type="button" class="track-pill' + (f.id === currentTierFilter ? ' active' : '') + '" data-tier="' + f.id + '">' + esc(f.label) + '</button>'; }).join('') + '</div>';
       out += '<div class="path-timeline">';
