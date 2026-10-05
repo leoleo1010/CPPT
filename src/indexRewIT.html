@@ -1692,8 +1692,62 @@
     },
     educator: {
       certBody: { name: "CompTIA, EC-Council, ATD", source: "comptia.org, eccouncil.org, td.org", mixed: true },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident/
+      // auditor/legal labs, not the final lab set for this role. The
+      // Instructor tier's lab is untracked (shown under either
+      // specialisation) rather than split per-track, to keep this pass at
+      // one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-phishing-awareness-session", tier: "trainer", title: "La sessione di awareness sul phishing",
+          summary: "Erogare una sessione di awareness sul phishing già pronta a un pubblico misto non tecnico, adattandola al momento, e misurare se ha davvero funzionato.",
+          scenario: "L'ufficio HR di Northgate Manufacturing ti ha prenotato per una sessione di 45 minuti sull'awareness al phishing con 30 persone tra magazzino e ufficio che non hanno mai avuto formazione sulla sicurezza. Ricevi un deck di slide già pronto e un'email di phishing di esempio, ma la sala è mista — alcuni non hanno mai usato un filtro email, altri pensano di sapere già tutto. Adatta l'erogazione, mantieni la sala coinvolta, e misura se ha davvero funzionato.",
+          taskIdx: [1, 2],
+          skillIdx: [4, 7, 8],
+          knowledgeIdx: [0, 5, 3],
+          flags: [
+            { question: "Quale sezione del deck di slide ha più bisogno di adattamento per questo pubblico non tecnico?", flag: "FLAG{TECHNICAL-JARGON-SLIDE}" },
+            { question: "Quale verifica rapida durante la sessione confirma se il messaggio è arrivato?", flag: "FLAG{LIVE-POLL-QUIZ}" },
+            { question: "Quale metrica dimostra l'efficacia della sessione una settimana dopo?", flag: "FLAG{PHISHING-CLICK-RATE-DROP}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-certification-bootcamp", tier: "instructor", title: "Il bootcamp di certificazione",
+          summary: "Progettare il curriculum completo di un bootcamp allineato a una certificazione con un lab pratico, poi insegnare in pilota il suo modulo più difficile a una coorte reale.",
+          scenario: "Un ente di formazione regionale vuole un bootcamp di 5 giorni mappato direttamente sul blueprint d'esame di una certificazione di penetration testing mainstream. Progetti il curriculum completo — moduli, un lab pratico su cyber range, e un esame di prova — poi insegni tu stesso il modulo più difficile a una coorte pilota di 12 persone in riqualificazione professionale.",
+          taskIdx: [0, 5, 6],
+          skillIdx: [1, 2, 3],
+          knowledgeIdx: [1, 2, 6],
+          flags: [
+            { question: "Quale dominio del blueprint d'esame è più scoperto dal deck di slide esistente del fornitore?", flag: "FLAG{WEB-APP-DOMAIN-GAP}" },
+            { question: "Quale esercitazione pratica di lab chiude quel gap per la coorte pilota?", flag: "FLAG{DVWA-STYLE-CYBER-RANGE-LAB}" },
+            { question: "Quale percentuale di superamento dell'esame di prova nella coorte pilota segnala che il bootcamp è pronto per scalare?", flag: "FLAG{80-PERCENT}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-board-review", tier: "lead", title: "La revisione del consiglio",
+          summary: "Difendere il budget del programma di formazione cyber davanti al consiglio: decidere cosa mantenere, sostenerlo con metriche reali, e ottenere il finanziamento.",
+          scenario: "Niente aula stavolta. Il consiglio sta rivedendo il budget del prossimo anno e il tuo programma di formazione cyber è nella lista dei tagli. Hai i tassi di completamento dell'anno, i risultati delle simulazioni di phishing e una storia di successo esemplare. Decidi cosa mantenere, cosa tagliare, e scrivi il caso di una pagina che mantiene il programma finanziato.",
+          taskIdx: [4, 7, 2],
+          skillIdx: [5, 6, 0],
+          knowledgeIdx: [1, 4, 3],
+          flags: [
+            "Un'allocazione di budget che protegge l'attività a maggiore impatto e taglia quella più debole",
+            "Un argomento di ROI sostenuto da almeno una metrica concreta del programma di quest'anno",
+            "Un caso di una pagina che il consiglio può approvare senza fare domande di chiarimento"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Cybersecurity Awareness Specialist
       // / Cybersecurity Trainer / Faculty in Cybersecurity (Professor,
       // Lecturer) as pure alternative titles for the same profile, with

@@ -1692,8 +1692,62 @@
     },
     educator: {
       certBody: { name: "CompTIA, EC-Council, ATD", source: "comptia.org, eccouncil.org, td.org", mixed: true },
-      // Skeleton only, no lab content yet.
-      stages: [],
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the pentester/CTI/incident/
+      // auditor/legal labs, not the final lab set for this role. The
+      // Instructor tier's lab is untracked (shown under either
+      // specialisation) rather than split per-track, to keep this pass at
+      // one lab per tier.
+      stages: [
+        {
+          type: "lab",
+          id: "the-phishing-awareness-session", tier: "trainer", title: "The Phishing Awareness Session",
+          summary: "Deliver a ready-made phishing-awareness session to a mixed non-technical audience, adapt it on the fly, and measure whether it actually worked.",
+          scenario: "Northgate Manufacturing's HR department has booked you for a 45-minute phishing-awareness session with 30 warehouse and office staff who have never had security training before. You get a ready-made slide deck and a sample phishing email, but the room is mixed — some have never used an email filter, others think they already know everything. Adapt the delivery, keep the room engaged, and measure whether it actually worked.",
+          taskIdx: [1, 2],
+          skillIdx: [4, 7, 8],
+          knowledgeIdx: [0, 5, 3],
+          flags: [
+            { question: "Which slide-deck section needs the most adaptation for this non-technical audience?", flag: "FLAG{TECHNICAL-JARGON-SLIDE}" },
+            { question: "What quick in-session check confirms whether the message landed?", flag: "FLAG{LIVE-POLL-QUIZ}" },
+            { question: "What metric proves the session's effectiveness a week later?", flag: "FLAG{PHISHING-CLICK-RATE-DROP}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-certification-bootcamp", tier: "instructor", title: "The Certification Bootcamp",
+          summary: "Design a full certification-aligned bootcamp curriculum with a hands-on lab, then pilot-teach its hardest module to a live cohort.",
+          scenario: "A regional training provider wants a 5-day bootcamp that maps directly onto a mainstream penetration-testing certification's exam blueprint. You design the full curriculum — modules, a hands-on cyber-range lab, and a practice exam — then teach the hardest module yourself to a pilot cohort of 12 career-switchers.",
+          taskIdx: [0, 5, 6],
+          skillIdx: [1, 2, 3],
+          knowledgeIdx: [1, 2, 6],
+          flags: [
+            { question: "Which exam-blueprint domain is most under-covered by the provider's existing slide deck?", flag: "FLAG{WEB-APP-DOMAIN-GAP}" },
+            { question: "What hands-on lab exercise closes that gap for the pilot cohort?", flag: "FLAG{DVWA-STYLE-CYBER-RANGE-LAB}" },
+            { question: "What pilot-cohort pass rate on the practice exam signals the bootcamp is ready to scale?", flag: "FLAG{80-PERCENT}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-board-review", tier: "lead", title: "The Board Review",
+          summary: "Defend the cybersecurity training programme's budget to the board: decide what to keep, back it with real metrics, and win the funding.",
+          scenario: "No classroom this time. The board is reviewing next year's budget and your cybersecurity training programme is on the list to be cut. You have the year's completion rates, phishing-simulation results and one standout success story. Decide what to keep, what to cut, and write the one-page case that keeps the programme funded.",
+          taskIdx: [4, 7, 2],
+          skillIdx: [5, 6, 0],
+          knowledgeIdx: [1, 4, 3],
+          flags: [
+            "A budget allocation that protects the highest-impact activity and cuts the weakest one",
+            "An ROI argument backed by at least one concrete metric from this year's programme",
+            "A one-page case the board can approve without asking a follow-up question"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       // Not an ECSF distinction: ECSF lists Cybersecurity Awareness Specialist
       // / Cybersecurity Trainer / Faculty in Cybersecurity (Professor,
       // Lecturer) as pure alternative titles for the same profile, with
