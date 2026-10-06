@@ -2061,8 +2061,9 @@
     },
     forensics: {
       certBody: { name: "EC-Council, GIAC, IACIS", source: "eccouncil.org, giac.org, iacis.com", mixed: true },
-      // Tier skeleton only -- labs are added in a separate pass, one per
-      // tier, same as every other role in this app.
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role.
       // Not an ECSF distinction: ECSF lists Digital Forensics Analyst /
       // Cybersecurity & Forensic Specialist / Computer Forensics Consultant
       // as pure alternative titles for the same profile, with identical
@@ -2115,7 +2116,56 @@
       //     this app's parallel cert for the Incident Responder profile's
       //     top tier, and GCFE (examiner-focused, not IR-focused) is the
       //     more precise fit for a pure digital-forensics profile anyway.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-chain-of-custody", tier: "examiner", title: "The Chain of Custody",
+          summary: "Forensically image and begin the chain-of-custody log for a departing employee's laptop before IT can wipe it.",
+          scenario: "Oakwell Financial Group's HR team has flagged a departing employee's laptop for a litigation hold, hours before IT was due to wipe and reissue it. As the associate forensic examiner on call, you get a write-blocker, imaging tooling and the laptop itself. Create a forensically sound image, verify it matches the original bit-for-bit, and open the chain-of-custody log the rest of the investigation will depend on.",
+          taskIdx: [2, 1],
+          skillIdx: [1, 0],
+          knowledgeIdx: [0, 1],
+          flags: [
+            { question: "What hash value confirms your image matches the original drive bit-for-bit?", flag: "FLAG{SHA256-MATCH-VERIFIED}" },
+            { question: "What write-blocker log entry confirms no write ever reached the source disk?", flag: "FLAG{WRITE-BLOCKER-LOG-CLEAN}" },
+            { question: "Which chain-of-custody field, if left blank, would let the defence challenge the evidence later?", flag: "FLAG{EVIDENCE-CUSTODIAN-SIGNATURE}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-exfiltration-timeline", tier: "analyst", title: "The Exfiltration Timeline",
+          summary: "Correlate a forensic image's artefacts into a timeline that shows what data was accessed, copied and exfiltrated, and when.",
+          scenario: "Oakwell Financial Group suspects the same departing employee copied client data before resigning. You inherit the associate examiner's verified image and a VM with registry, prefetch and browser-history analysis tools. Correlate the artefacts into a single timeline that shows what was accessed, copied and uploaded, and when, and write up the technical findings.",
+          taskIdx: [3, 4],
+          skillIdx: [2, 4],
+          knowledgeIdx: [2, 10, 9],
+          flags: [
+            { question: "What USB device serial number appears in the registry right before the files were copied?", flag: "FLAG{USB-SERIAL-7F3A91}" },
+            { question: "What prefetch/shimcache timestamp shows when the archiving tool actually ran?", flag: "FLAG{ARCHIVER-RUN-2331-PREFETCH}" },
+            { question: "What domain does the browser history show right after the archive was created?", flag: "FLAG{PERSONALCLOUD-UPLOAD-DOMAIN}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-cross-examination", tier: "lead", title: "The Cross-Examination",
+          summary: "Shore up a challenged chain of custody and prepare an expert-witness summary that holds up under cross-examination.",
+          scenario: "Oakwell's outside counsel wants to refer the case to law enforcement, but opposing counsel is already challenging the associate examiner's imaging step. No clean lab for this one: you have the full case file, the chain-of-custody log, and the defence's written objections. Decide how to address the gap, and prepare the expert-witness summary that will actually hold up under cross-examination.",
+          taskIdx: [0, 4, 5],
+          skillIdx: [3, 0, 4],
+          knowledgeIdx: [4, 5, 1],
+          flags: [
+            "A chain-of-custody gap identified and explained before opposing counsel can use it to get the evidence excluded",
+            "An expert-witness summary that states findings as fact and clearly separates them from interpretation or opinion",
+            "A referral decision that matches the case to the right next step, backed only by the evidence actually collected"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "examiner", name: "Associate Forensic Examiner", crest: "EC-Council CHFI",
           note: "Entry level: collects and preserves digital evidence under procedure, following a documented chain of custody — EC-Council's broad, widely-recognised forensics credential.",

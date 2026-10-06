@@ -2068,8 +2068,10 @@
     },
     forensics: {
       certBody: { name: "EC-Council, GIAC, IACIS", source: "eccouncil.org, giac.org, iacis.com", mixed: true },
-      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
-      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Un laboratorio bozza per tier -- un'anteprima concettuale di come
+      // potrebbe essere l'esercizio reale di ciascun tier, con la stessa
+      // profondità dei laboratori dei ruoli precedenti, non il set finale
+      // di laboratori per questo ruolo.
       // Non è una distinzione ECSF: ECSF elenca Digital Forensics Analyst /
       // Cybersecurity & Forensic Specialist / Computer Forensics Consultant
       // come puri alt-title dello stesso profilo, con tasks/skills/knowledge
@@ -2130,7 +2132,56 @@
       //     profilo Incident Responder, e il GCFE (focalizzato
       //     sull'esame, non sull'IR) è comunque il fit più preciso per un
       //     profilo di pura digital forensics.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-chain-of-custody", tier: "examiner", title: "The Chain of Custody",
+          summary: "Crea l'immagine forense e apri il registro di chain of custody per il laptop di un dipendente in uscita, prima che l'IT possa azzerarlo.",
+          scenario: "Il team HR di Oakwell Financial Group ha segnalato per litigation hold il laptop di un dipendente in uscita, poche ore prima che l'IT dovesse azzerarlo e reimpiegarlo. Come associate forensic examiner di turno, ricevi un write-blocker, strumenti di imaging e il laptop stesso. Crea un'immagine forense solida, verifica che corrisponda bit-per-bit all'originale, e apri il registro di chain of custody da cui dipenderà il resto dell'indagine.",
+          taskIdx: [2, 1],
+          skillIdx: [1, 0],
+          knowledgeIdx: [0, 1],
+          flags: [
+            { question: "Quale valore hash conferma che la tua immagine corrisponde bit-per-bit al disco originale?", flag: "FLAG{SHA256-MATCH-VERIFIED}" },
+            { question: "Quale voce di log del write-blocker conferma che nessuna scrittura ha mai raggiunto il disco di origine?", flag: "FLAG{WRITE-BLOCKER-LOG-CLEAN}" },
+            { question: "Quale campo della chain of custody, se lasciato vuoto, permetterebbe alla difesa di contestare in seguito la prova?", flag: "FLAG{EVIDENCE-CUSTODIAN-SIGNATURE}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-exfiltration-timeline", tier: "analyst", title: "The Exfiltration Timeline",
+          summary: "Correla gli artefatti di un'immagine forense in una timeline che mostra quali dati sono stati consultati, copiati ed esfiltrati, e quando.",
+          scenario: "Oakwell Financial Group sospetta che lo stesso dipendente in uscita abbia copiato dati clienti prima di rassegnare le dimissioni. Eredita l'immagine verificata dall'associate examiner e una VM con strumenti di analisi di registro, prefetch e cronologia browser. Correla gli artefatti in un'unica timeline che mostri cosa è stato consultato, copiato e caricato, e quando, e scrivi i risultati tecnici.",
+          taskIdx: [3, 4],
+          skillIdx: [2, 4],
+          knowledgeIdx: [2, 10, 9],
+          flags: [
+            { question: "Quale numero di serie del dispositivo USB appare nel registro subito prima che i file venissero copiati?", flag: "FLAG{USB-SERIAL-7F3A91}" },
+            { question: "Quale timestamp di prefetch/shimcache mostra quando è stato effettivamente eseguito il tool di archiviazione?", flag: "FLAG{ARCHIVER-RUN-2331-PREFETCH}" },
+            { question: "Quale dominio mostra la cronologia del browser subito dopo la creazione dell'archivio?", flag: "FLAG{PERSONALCLOUD-UPLOAD-DOMAIN}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-cross-examination", tier: "lead", title: "The Cross-Examination",
+          summary: "Rinforza una chain of custody contestata e prepara un resoconto da expert witness che regga al controinterrogatorio.",
+          scenario: "Il legale esterno di Oakwell vuole deferire il caso alle forze dell'ordine, ma la controparte sta già contestando il passo di imaging dell'associate examiner. Nessun laboratorio pulito questa volta: hai il fascicolo completo del caso, il registro di chain of custody, e le obiezioni scritte della difesa. Decidi come affrontare la lacuna, e prepara il resoconto da expert witness che regga davvero al controinterrogatorio.",
+          taskIdx: [0, 4, 5],
+          skillIdx: [3, 0, 4],
+          knowledgeIdx: [4, 5, 1],
+          flags: [
+            "Una lacuna nella chain of custody identificata e spiegata prima che la controparte possa usarla per far escludere la prova",
+            "Un resoconto da expert witness che enuncia i risultati come fatti e li separa chiaramente da interpretazione o opinione",
+            "Una decisione di deferimento che abbina il caso al passo successivo corretto, supportata solo dalle prove realmente raccolte"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "examiner", name: "Associate Forensic Examiner", crest: "EC-Council CHFI",
           note: "Livello base: raccoglie e preserva le prove digitali seguendo una procedura e una chain of custody documentata — il credential forense ampio e ampiamente riconosciuto di EC-Council.",
