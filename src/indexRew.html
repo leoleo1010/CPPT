@@ -2650,10 +2650,13 @@
   }
 
   function objectiveChecklist(stage, uid){
-    return '<ul class="objective-list">' + stage.flags.map(function(f, i){
+    var html = '<ul class="objective-list">' + stage.flags.map(function(f, i){
       var id = 'obj-' + uid + '-' + i;
       return '<li class="objective-item"><label for="' + id + '"><input type="checkbox" id="' + id + '"><span class="objective-box"></span><span class="objective-text">' + esc(f) + '</span></label></li>';
     }).join('') + '</ul>';
+    html += '<label class="challenge-label" for="decision-' + uid + '">Your decision</label>';
+    html += '<textarea class="challenge-answer" id="decision-' + uid + '" rows="4" placeholder="Write the call you would actually make, and why — this is not graded"></textarea>';
+    return html;
   }
 
   function challengeSection(stage, uid){
