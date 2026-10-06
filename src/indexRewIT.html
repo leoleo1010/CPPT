@@ -1927,6 +1927,93 @@
         { id: "secure-development", label: "Secure Development", note: "Progetta, scrive e testa la sicurezza nei prodotti durante tutto il ciclo di vita di sviluppo. Corrisponde al work role NIST NICE \"Information Systems Security Developer\" (SP-SYS-001)." },
         { id: "systems-operations", label: "Systems Operations", note: "Integra, distribuisce e gestisce le soluzioni di cybersecurity in produzione. Corrisponde al work role NIST NICE \"Systems Security Analyst\" (IO-WRL-006)." }
       ]
+    },
+    researcher: {
+      certBody: { name: "GIAC, ACM", source: "giac.org, acm.org", mixed: true },
+      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
+      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Non è una distinzione ECSF: ECSF elenca Cybersecurity Research
+      // Engineer / Chief Research Officer (CRO) in cybersecurity / Senior
+      // Research Officer in cybersecurity / Research and Development (R&D)
+      // Officer in cybersecurity / Scientific Staff in cybersecurity /
+      // Research Fellow in cybersecurity come puri alt-title dello stesso
+      // profilo, con tasks/skills/knowledge identici. La progressione a 3
+      // livelli qui è una nostra struttura, scelta solo dopo aver verificato
+      // se esiste una vera scala di seniority (e un vero split di ruolo) per
+      // questo profilo:
+      //   - NIST NICE tratta la ricerca in cybersecurity come un unico work
+      //     role, "Technology Research and Development" (DD-WRL-008,
+      //     categoria Design and Development) -- nessuno split in work role
+      //     separati, quindi qui non vengono aggiunte track (stesso pattern
+      //     di CTI/Incident Responder/Auditor).
+      //   - La pagina ufficiale di mapping ECSF di CREST elenca una
+      //     corrispondenza secondaria delle sue certificazioni offensive di
+      //     livello Certified (CCT INF/APP, CCSAS/CCSAM -- lo stesso tier
+      //     massimo usato per il profilo Penetration Tester) anche su
+      //     questo profilo, riconoscendo esplicitamente la sovrapposizione
+      //     tra vulnerability research avanzata e penetration testing.
+      //     CREST non viene però usato come ente primario qui -- quella
+      //     mappatura copre solo la fetta hands-on di vulnerability
+      //     research di questo profilo, non i task di leadership
+      //     dell'innovazione, gestione budget dei progetti o pubblicazione
+      //     che dominano i suoi alt-title più senior ("Chief Research
+      //     Officer", "Research Fellow").
+      //   - (ISC)² esplicitamente NON mappa nessuna certificazione su
+      //     questo profilo nella sua pagina ufficiale di coverage ECSF --
+      //     assenza confermata, non solo omessa qui.
+      // Come educator/implementer, nessuna scala di un singolo ente
+      // certificatore copre tutti i 3 livelli -- un altro vero MIX, ma di
+      // tipo diverso dagli altri due: qui si accoppiano credential tecnici
+      // a esame con un grado di riconoscimento tra pari di tipo accademico,
+      // perché è così che le carriere di ricerca in sicurezza vengono
+      // realmente valutate nella pratica:
+      //   - GIAC GREM (Reverse Engineering Malware): tier base/applicato,
+      //     nessun prerequisito, valida la competenza hands-on di analisi
+      //     di codice/malware dietro "condurre esperimenti ... proof of
+      //     concept, piloti e prototipi".
+      //   - GIAC GXPN (Exploit Researcher and Advanced Penetration Tester):
+      //     ha letteralmente "Researcher" nel nome, in linea con la
+      //     funzione di ricerca applicata di questo profilo; presuppone
+      //     solide basi di penetration testing.
+      //   - ACM Distinguished Member: non è affatto un esame -- è un grado
+      //     di membership avanzata nominato dai pari, che richiede almeno
+      //     15 anni di esperienza professionale, 5 anni di ACM Professional
+      //     Membership negli ultimi 10, e risultati significativi
+      //     confermati da 4 endorsement di colleghi. Scelto deliberatamente
+      //     al posto di un altro credential a esame per il tier più alto
+      //     perché corrisponde a come gli alt-title più senior di questo
+      //     profilo ("Chief Research Officer", "Research Fellow") vengono
+      //     realmente riconosciuti nel mondo reale -- tramite il curriculum
+      //     di pubblicazioni e l'impatto sul campo, non un test. ACM Fellow
+      //     (il suo grado del top ~1%) è menzionato come il tetto ulteriore
+      //     sopra questo, non come un tier separato.
+      // La gestione responsabile di qualsiasi vulnerabilità trovata lungo
+      // il percorso è regolata da ISO/IEC 29147 (divulgazione delle
+      // vulnerabilità) e ISO/IEC 30111 (processo di gestione delle
+      // vulnerabilità) -- citati nella nota practice del tier Senior,
+      // corrispondenti al knowledge item di questo profilo "Responsible
+      // information disclosure procedures".
+      stages: [],
+      tiers: [
+        { id: "associate", name: "Associate Research Engineer", crest: "GIAC GREM",
+          note: "Livello base: supporta esperimenti, proof of concept e prototipi sotto la guida di un ricercatore senior — il credential GIAC di reverse engineering di malware/codice.",
+          practice: "Indicativo: il GREM non ha prerequisiti obbligatori e viene testato con un esame proctored su analisi di malware e codice. Fonte: giac.org. Valida solo la fetta applicata/tecnica di questo profilo — i task di leadership dell'innovazione e pubblicazione sono coperti dai tier successivi.",
+          deliverable: "Proof-of-Concept & Experiment Results",
+          certs: ["GIAC GREM"],
+          outcome: "Sai condurre un esperimento definito o costruire un proof of concept sotto supervisione, e documentare chiaramente cosa hai trovato." },
+        { id: "senior", name: "Senior Security Researcher", crest: "GIAC GXPN",
+          note: "Ricerca in autonomia vulnerabilità e tecniche inedite e pubblica i primi risultati — il credential GIAC \"Exploit Researcher\".",
+          practice: "Indicativo: il GXPN presuppone solide basi di penetration testing ed è testato con un esame hands-on su exploit development, fuzzing e bypass delle protezioni. Fonte: giac.org. La pagina ufficiale di mapping ECSF di CREST elenca le sue certificazioni offensive di livello Certified (CCT INF/APP, CCSAS/CCSAM) come corrispondenza secondaria anche per questo profilo, confermando la reale sovrapposizione con il penetration testing avanzato. Qualsiasi vulnerabilità trovata qui viene gestita secondo ISO/IEC 29147 (divulgazione) e ISO/IEC 30111 (processo di gestione).",
+          deliverable: "Cybersecurity Research Publication",
+          certs: ["GIAC GXPN"],
+          outcome: "Sai ricercare in autonomia una vulnerabilità o tecnica inedita dall'inizio alla fine e pubblicarne un primo resoconto solido." },
+        { id: "chief", name: "Chief Research Officer", crest: "ACM Distinguished Member",
+          note: "Definisce la strategia di ricerca e innovazione dell'organizzazione, guida e gestisce il budget dei progetti, e rappresenta il suo lavoro nella comunità scientifica — il grado senior di riconoscimento tra pari di ACM.",
+          practice: "Indicativo: l'ACM Distinguished Member richiede almeno 15 anni di esperienza professionale, 5 anni di ACM Professional Membership negli ultimi 10, e risultati significativi o impatto sul campo, confermati da 4 endorsement di colleghi. Fonte: acm.org. A differenza di ogni altro ente certificatore usato in questa app, non è un esame — è un grado nominato dai pari, in linea con come le carriere di ricerca vengono realmente giudicate. ACM Fellow (il suo grado del top ~1%) è il tetto ulteriore, raramente raggiunto, sopra questo.",
+          deliverable: "Cybersecurity Research & Innovation Strategy",
+          certs: ["ACM Distinguished Member", "ACM Fellow"],
+          outcome: "Sai definire un'agenda di ricerca pluriennale, assicurarne il budget, e far riconoscere i contributi dell'organizzazione dalla più ampia comunità scientifica/di sicurezza." }
+      ]
     }
   };
 
@@ -2040,8 +2127,10 @@
       var tierTracks = data.tracks || [];
       var activeTrack = tierTracks.filter(function(t){ return t.id === currentTrack; })[0] || tierTracks[0];
       var certBody = data.certBody || { name: 'CREST', source: 'crest-approved.org' };
+      var bodyCount = certBody.mixed ? certBody.name.split(',').length : 0;
+      var bodyCountWord = { 2: 'due', 3: 'tre', 4: 'quattro' }[bodyCount] || (bodyCount + '');
       var bodyPhrase = certBody.mixed
-        ? 'una nostra progressione che mescola tre enti certificatori diversi (' + esc(certBody.name) + '), ciascuno relativo a un solo tier, senza alcuna relazione ufficiale tra loro'
+        ? 'una nostra progressione che mescola ' + bodyCountWord + ' enti certificatori diversi (' + esc(certBody.name) + '), ciascuno relativo a un solo tier, senza alcuna relazione ufficiale tra loro'
         : 'una nostra progressione, allineata al percorso di ' + esc(certBody.name);
       var out = '';
       out += '<div class="path-note"><span>&#8505;&#65039;</span><div><b>Non è una distinzione ECSF.</b> ECSF elenca ' + esc(role.altTitles.join(', ')) + ' come titoli alternativi dello stesso identico profilo. I <b>tier</b> qui sotto sono ' + bodyPhrase + (tierTracks.length ? '; i <b>track</b> sono specializzazioni suggerite, non ruoli ECSF distinti' : '') + '. Livelli e requisiti sono indicativi (fonte: ' + esc(certBody.source) + ') — clicca la &#9432; su un tier.</div></div>';
