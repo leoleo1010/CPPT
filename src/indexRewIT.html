@@ -2457,8 +2457,10 @@
     },
     architect: {
       certBody: { name: "SABSA", source: "sabsa.org" },
-      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
-      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Un laboratorio bozza per tier -- un'anteprima concettuale di come
+      // potrebbe essere l'esercizio reale di ciascun tier, con la stessa
+      // profondità dei laboratori dei ruoli precedenti, non il set finale
+      // di laboratori per questo ruolo.
       // Non è una distinzione ECSF: ECSF elenca Cybersecurity Solutions
       // Architect / Cybersecurity Designer / Data Security Architect come
       // puri alt-title dello stesso profilo, con tasks/skills/knowledge
@@ -2492,7 +2494,56 @@
       //     nota practice del tier senior invece di essere usato come ente
       //     primario qui, dato che SABSA è costruito apposta per questa
       //     disciplina e fornisce già una scala completa a ente unico.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-reference-diagram", tier: "associate", title: "The Reference Diagram",
+          summary: "Decomponi un nuovo sistema cloud di dati di laboratorio in zone di fiducia, disegna il diagramma di architettura di riferimento, e scrivi la specifica che un architetto senior revisionerà.",
+          scenario: "Calderwood Pharmaceuticals sta integrando un nuovo sistema cloud di dati di laboratorio che dialoga con gli strumenti del laboratorio da un lato e con il data warehouse clinico dall'altro. Come associate security architect, decomponi il sistema in zone di fiducia, disegna il diagramma di architettura di riferimento, e scrivi la specifica che un architetto senior revisionerà prima che si inizi a costruire qualcosa.",
+          taskIdx: [2, 1],
+          skillIdx: [1, 2],
+          knowledgeIdx: [5, 4],
+          flags: [
+            { question: "In quale zona di fiducia va collocato il gateway degli strumenti di laboratorio?", flag: "FLAG{OT-DMZ-ZONE}" },
+            { question: "Quale controllo di segmentazione separa la zona dei dati clinici dalla zona IT generale?", flag: "FLAG{MICRO-SEGMENTATION-FIREWALL}" },
+            { question: "A quale livello SABSA corrisponde il tuo diagramma quando un revisore chiede perché questo controllo e non un altro?", flag: "FLAG{LOGICAL-ARCHITECTURE-LAYER}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-steering-committee", tier: "solutions", title: "The Steering Committee",
+          summary: "Proponi un'architettura di sicurezza completa per una nuova piattaforma di analytics, dimensionata sul budget approvato, e fatti approvare dal comitato direttivo.",
+          scenario: "Calderwood Pharmaceuticals vuole spostare l'elaborazione dei dati dei trial clinici su una nuova piattaforma di analytics, ma l'ufficio legale ha appena segnalato un rischio di re-identificazione dei pazienti nella bozza di progetto. Come solutions architect, proponi l'architettura di sicurezza completa — inclusa una tecnica di privacy-enhancing che chiuda davvero il gap di re-identificazione — dimensionala sul budget realmente approvato, e presentala al comitato direttivo per l'approvazione.",
+          taskIdx: [0, 3, 4],
+          skillIdx: [6, 5],
+          knowledgeIdx: [3, 13],
+          flags: [
+            { question: "Quale tecnica di privacy-enhancing usa la tua architettura per impedire la re-identificazione?", flag: "FLAG{DIFFERENTIAL-PRIVACY-LAYER}" },
+            { question: "Quale componente elimina la tua architettura per rientrare nel budget approvato senza riaprire il rischio di re-identificazione?", flag: "FLAG{SCOPE-CUT-REALTIME-DASHBOARD}" },
+            { question: "Quale approvazione dà il comitato direttivo prima che inizi la costruzione?", flag: "FLAG{ARCHITECTURE-BASELINE-APPROVED}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-legacy-exception", tier: "principal", title: "The Legacy Exception",
+          summary: "Progetta un controllo compensativo per un attacco appena diventato pubblico contro un protocollo legacy che non puoi ancora sostituire, e difendi la scelta di tenerlo in funzione un po' più a lungo.",
+          scenario: "Una nuova classe di attacco contro il protocollo esatto su cui si basa la rete di strumenti di laboratorio di Calderwood, vecchia di 15 anni, è appena diventata pubblica, e sostituire gli strumenti non è un'opzione per altri tre anni. Come principal security architect, decidi l'architettura compensativa, ricertifica che l'intero parco soddisfi ancora la baseline di sicurezza, e difendi la scelta di tenere in funzione il protocollo legacy un po' più a lungo.",
+          taskIdx: [10, 11, 7],
+          skillIdx: [8, 9],
+          knowledgeIdx: [10, 12],
+          flags: [
+            "Un controllo compensativo che neutralizza la nuova classe di attacco senza toccare il protocollo legacy stesso",
+            "Una ricertificazione dell'architettura che dichiari chiaramente cosa è ancora protetto e cosa no",
+            "Un'eccezione documentata, con una data di scadenza, su cui chi approverà il budget dell'anno prossimo possa davvero fare leva"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "associate", name: "Associate Security Architect", crest: "SABSA SCF",
           note: "Livello base: produce diagrammi di architettura e documentazione per un sistema definito sotto supervisione — il credential d'ingresso proprio di SABSA.",

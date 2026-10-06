@@ -2437,8 +2437,9 @@
     },
     architect: {
       certBody: { name: "SABSA", source: "sabsa.org" },
-      // Tier skeleton only -- labs are added in a separate pass, one per
-      // tier, same as every other role in this app.
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role.
       // Not an ECSF distinction: ECSF lists Cybersecurity Solutions
       // Architect / Cybersecurity Designer / Data Security Architect as
       // pure alternative titles for the same profile, with identical
@@ -2471,7 +2472,56 @@
       //     tier's practice note rather than used as the primary body
       //     here, since SABSA is purpose-built for this exact discipline
       //     and already supplies a complete single-body ladder.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-reference-diagram", tier: "associate", title: "The Reference Diagram",
+          summary: "Decompose a new cloud lab-data system into trust zones, draw the reference architecture diagram, and write the spec a senior architect will review.",
+          scenario: "Calderwood Pharmaceuticals is onboarding a new cloud-based lab-data system that talks to the lab's instruments on one side and the clinical-data warehouse on the other. As associate security architect, decompose the system into trust zones, draw the reference architecture diagram, and write the specification a senior architect will review before anything gets built.",
+          taskIdx: [2, 1],
+          skillIdx: [1, 2],
+          knowledgeIdx: [5, 4],
+          flags: [
+            { question: "Which trust zone does the lab-instrument gateway belong in?", flag: "FLAG{OT-DMZ-ZONE}" },
+            { question: "What segmentation control separates the clinical-data zone from the general IT zone?", flag: "FLAG{MICRO-SEGMENTATION-FIREWALL}" },
+            { question: "Which SABSA layer does your diagram map to when a reviewer asks why this control and not another?", flag: "FLAG{LOGICAL-ARCHITECTURE-LAYER}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-steering-committee", tier: "solutions", title: "The Steering Committee",
+          summary: "Propose a full secure architecture for a new analytics platform, scoped to the approved budget, and get the steering committee's sign-off.",
+          scenario: "Calderwood Pharmaceuticals wants to move clinical-trial data processing to a new analytics platform, but legal just flagged a patient re-identification risk in the draft design. As solutions architect, propose the full secure architecture — including a privacy-enhancing technique that actually closes the re-identification gap — scope it to the budget that was really approved, and present it to the steering committee for sign-off.",
+          taskIdx: [0, 3, 4],
+          skillIdx: [6, 5],
+          knowledgeIdx: [3, 13],
+          flags: [
+            { question: "Which privacy-enhancing technique does your architecture use to stop re-identification?", flag: "FLAG{DIFFERENTIAL-PRIVACY-LAYER}" },
+            { question: "What component does your architecture drop to fit the approved budget without reopening the re-identification risk?", flag: "FLAG{SCOPE-CUT-REALTIME-DASHBOARD}" },
+            { question: "What sign-off does the steering committee give before build starts?", flag: "FLAG{ARCHITECTURE-BASELINE-APPROVED}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-legacy-exception", tier: "principal", title: "The Legacy Exception",
+          summary: "Design a compensating control for a newly-public attack against a legacy protocol you can't replace yet, and defend keeping it running a little longer.",
+          scenario: "A new class of attack against the exact protocol Calderwood's 15-year-old lab-equipment network relies on just went public, and replacing the equipment isn't an option for another three years. As principal security architect, decide the compensating architecture, re-certify that the whole estate still meets the security baseline, and defend the call to keep running the legacy protocol a little longer.",
+          taskIdx: [10, 11, 7],
+          skillIdx: [8, 9],
+          knowledgeIdx: [10, 12],
+          flags: [
+            "A compensating control that neutralises the new attack class without touching the legacy protocol itself",
+            "A re-certification of the architecture that states plainly what is still protected and what is not",
+            "A documented exception, with an expiry date, that whoever approves next year's budget can actually hold you to"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "associate", name: "Associate Security Architect", crest: "SABSA SCF",
           note: "Entry level: produces architecture diagrams and documentation for a defined system under direction — SABSA's own entry-level credential.",
