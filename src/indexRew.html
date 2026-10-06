@@ -2309,6 +2309,75 @@
           certs: ["ISACA CRISC"],
           outcome: "You can own an organisation's cybersecurity risk strategy end to end and ensure its risks stay at a level leadership has actually agreed to." }
       ]
+    },
+    ciso: {
+      certBody: { name: "EC-Council, ISACA, ISC2", source: "eccouncil.org, isaca.org, isc2.org", mixed: true },
+      // Tier skeleton only -- labs are added in a separate pass, one per
+      // tier, same as every other role in this app.
+      // Not an ECSF distinction: ECSF lists Cybersecurity Programme
+      // Director / Information Security Officer (ISO) / Information
+      // Security Manager / Head of Information Security / IT/ICT Security
+      // Officer as pure alternative titles for the same profile, with
+      // identical tasks/skills/knowledge. The 3-level progression here
+      // reuses three of those alternative titles directly -- ordered from
+      // the most junior-sounding ("IT/ICT Security Officer") to the most
+      // senior ("Head of Information Security") -- rather than inventing
+      // new tier names, the same approach used for the Risk Manager profile
+      // and for the same reason: this profile's own ECSF-supplied synonyms
+      // already span a seniority range, so the tiers are not inventing a
+      // distinction ECSF doesn't already imply:
+      //   - NIST NICE treats this as a single work role, "Executive
+      //     Cybersecurity Leadership" (OG-WRL-007, formerly OV-EXL-001) --
+      //     no split into separate work roles, so no tracks are added
+      //     here.
+      //   - (ISC)²'s own 2025 article "CISSP in the ECSF" states explicitly
+      //     that ISSMP is its recommended qualification for Chief
+      //     Information Security Officer, with plain CISSP as an
+      //     alternative -- the same article recommends ISSAP instead for
+      //     Cybersecurity Architect, which is why this app pairs CISSP with
+      //     a different concentration per profile rather than badging both
+      //     with plain CISSP.
+      //   - ISACA's own ECSF mapping page lists CISM against this exact
+      //     profile.
+      //   - EC-Council's certification is literally named after this
+      //     profile ("Certified CISO", C|CISO), with a lighter Associate
+      //     C|CISO path for candidates without the full domain experience
+      //     yet.
+      // Like educator/implementer/researcher/forensics/riskmanager, no
+      // single certifying body's own ladder spans all 3 levels -- another
+      // genuine MIX, ordered strictly by each body's own minimum-experience
+      // requirement:
+      //   - EC-Council Associate C|CISO: 2 years in any 1 of 5 domains.
+      //   - ISACA CISM: 5 years of information security experience, at
+      //     least 3 of them in security management across 3+ domains (up
+      //     to 2 years waivable by other certifications/education; the
+      //     management years never are).
+      //   - (ISC)² CISSP + ISSMP: CISSP's own 5 years across 2 of 8
+      //     domains, plus a further 2 years in 1+ of ISSMP's domains once
+      //     CISSP-certified (7 years without it) -- the most demanding of
+      //     the three, and (ISC)²'s own primary recommendation for this
+      //     exact profile.
+      stages: [],
+      tiers: [
+        { id: "officer", name: "IT/ICT Security Officer", crest: "EC-Council Associate CCISO",
+          note: "Entry level: owns information security for a smaller organisation or a specific business unit — EC-Council's lighter-weight entry point onto the CISO track itself.",
+          practice: "Indicative: Associate C|CISO requires 2 years of technical or management experience in any 1 of the 5 C|CISO domains, against 5 years across 3-5 domains for the full C|CISO. Source: eccouncil.org. On this being a very senior-sounding profile for an \"entry\" tier: ECSF's own alternative titles for this exact profile already span a junior-to-senior range — from \"IT/ICT Security Officer\" to \"Cybersecurity Programme Director\" — and the market independently recognises the same gradation, which is exactly why EC-Council built a lighter Associate C|CISO path alongside the full one. Nobody is handed the CISO title outright: an Information Security Manager reporting into a group CISO, or acting as the de facto CISO of a small organisation, is this same profile at an earlier career stage.",
+          deliverable: "Cybersecurity Policy",
+          certs: ["EC-Council Associate CCISO"],
+          outcome: "You can own information security for a small organisation or a specific business unit, and speak the language the full CISO role will later demand." },
+        { id: "manager", name: "Information Security Manager", crest: "ISACA CISM",
+          note: "Runs the organisation's ISMS and security programme day to day, reporting its state to senior management — ISACA's management-track credential.",
+          practice: "Indicative: CISM requires 5 years of information security experience, at least 3 of them in security management across 3+ of its domains (up to 2 years waivable by other certifications or education, though the management years never are). Source: isaca.org. ISACA's own ECSF mapping page lists CISM against this exact profile.",
+          deliverable: "Cybersecurity Strategy",
+          certs: ["ISACA CISM"],
+          outcome: "You can run the organisation's ISMS and security programme day to day, and report its state credibly to senior management." },
+        { id: "head", name: "Head of Information Security", crest: "ISC2 CISSP+ISSMP",
+          note: "Sets and defends the organisation's cybersecurity strategy and budget at board level — (ISC)²'s own primary recommendation for this exact profile.",
+          practice: "Indicative: ISSMP requires 2 years of cumulative experience in 1+ of its domains once CISSP-certified (7 years without it), on top of CISSP's own 5 years across 2 of its 8 domains. Source: isc2.org. (ISC)²'s own 2025 article on CISSP in the ECSF states ISSMP is the recommended qualification for Chief Information Security Officer specifically, with plain CISSP as an alternative — the same article recommends ISSAP instead for Cybersecurity Architect, which is why this app keeps the two credentials apart rather than badging both roles with plain CISSP.",
+          deliverable: "Cybersecurity Strategy & Board Mandate",
+          certs: ["ISC2 CISSP", "ISC2 ISSMP"],
+          outcome: "You can set and defend the organisation's cybersecurity strategy and budget at board level, and be trusted with the title this whole profile is named after." }
+      ]
     }
   };
 
