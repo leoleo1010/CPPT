@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mxfile host="app.diagrams.net" modified="2026-10-06T00:00:00.000Z" agent="CPPT-generator" version="24.7.0" type="device">
   <diagram name="CPPT Framework Skeleton" id="cppt-skeleton">
-    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="8280" pageHeight="686" math="0" shadow="0">
+    <mxGraphModel dx="1600" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="8280" pageHeight="1050" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -23,352 +23,634 @@
         <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_ciso" target="tier_ciso_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="leaf_ciso_officer_0" value="The Weekend Call&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="545" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_ciso_0" target="leaf_ciso_officer_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="tier_ciso_1" value="&lt;b&gt;Information Security Manager&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ISACA&lt;br&gt;Nome certificazione: CISM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="760" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_ciso" target="tier_ciso_1">
+        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_ciso" target="tier_ciso_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_ciso_manager_0" value="The 72-Hour Clock&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="765" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_ciso_1" target="leaf_ciso_manager_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_ciso_2" value="&lt;b&gt;Head of Information Security&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: (ISC)²&lt;br&gt;Nome certificazione: CISSP, ISSMP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="980" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_ciso" target="tier_ciso_2">
+        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_ciso" target="tier_ciso_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_ciso_head_0" value="The Ransom Call&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="985" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_ciso_2" target="leaf_ciso_head_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_legal" value="Cyber Legal, Policy &amp; Compliance Officer&lt;br&gt;Ente certificatore: IAPP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5b8ff9;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1360" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_legal">
+        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_legal">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_legal_0" value="&lt;b&gt;Compliance Analyst&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: IAPP, OCEG&lt;br&gt;Nome certificazione: CIPP, GRCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1180" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_0">
+        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_legal_analyst_0" value="The New Regulation&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1185" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_0" target="leaf_legal_analyst_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_legal_1" value="&lt;b&gt;Data Protection Officer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: IAPP, PECB&lt;br&gt;Nome certificazione: CIPM, ISO/IEC 27701 Lead Implementer" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1400" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_1">
+        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_legal_0" value="Privacy &amp; Compliance Management" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1332" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_1" target="track_legal_0">
+        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_1" target="track_legal_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_legal_1" value="Legal Advisory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1508" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_1" target="track_legal_1">
+        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_1" target="track_legal_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_legal_dpo_0" value="The New Customer App&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1405" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_1" target="leaf_legal_dpo_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_legal_2" value="&lt;b&gt;Chief Privacy Officer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: IAPP&lt;br&gt;Nome certificazione: FIP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1620" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_2">
+        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_legal" target="tier_legal_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_legal_cpo_0" value="The Regulator's Call&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1625" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_legal_2" target="leaf_legal_cpo_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_implementer" value="Cybersecurity Implementer&lt;br&gt;Enti certificatori: CompTIA, GIAC, (ISC)²" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#5b8ff9;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="2000" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_implementer">
+        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_implementer">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_implementer_0" value="&lt;b&gt;Associate Security Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: CompTIA, GIAC&lt;br&gt;Nome certificazione: Security+, GSEC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="1820" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_0">
+        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_implementer_associate_0" value="The Hardening Checklist&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="1825" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_0" target="leaf_implementer_associate_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_implementer_1" value="&lt;b&gt;Cybersecurity Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: (ISC)²&lt;br&gt;Nome certificazione: SSCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="2040" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_1">
+        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_implementer_0" value="Secure Development" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="1972" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_1" target="track_implementer_0">
+        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_1" target="track_implementer_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_implementer_1" value="Systems Operations" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="2148" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e15" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_1" target="track_implementer_1">
+        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_1" target="track_implementer_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_implementer_engineer_0" value="The WAF Rollout&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2045" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_1" target="leaf_implementer_engineer_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_implementer_2" value="&lt;b&gt;Principal Security Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC&lt;br&gt;Nome certificazione: GSE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAF1FD;strokeColor=#5b8ff9;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="2260" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e16" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_2">
+        <mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#5b8ff9;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_implementer" target="tier_implementer_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_implementer_principal_0" value="The Legacy Bridge&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2265" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_implementer_2" target="leaf_implementer_principal_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_incident" value="Cyber Incident Responder&lt;br&gt;Ente certificatore: CREST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ef6470;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="2640" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e17" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_incident">
+        <mxCell id="e26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_incident">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_incident_0" value="&lt;b&gt;Tier 1 – Triage &amp; Detection&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: EC-Council, CREST&lt;br&gt;Nome certificazione: ECIH, CPIA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="2460" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_0">
+        <mxCell id="e27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_incident_tier1_0" value="The Alert Queue&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2465" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_incident_0" target="leaf_incident_tier1_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_incident_1" value="&lt;b&gt;Tier 2 – Investigation &amp; Containment&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC, CREST&lt;br&gt;Nome certificazione: GCIH, CRIA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="2680" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e19" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_1">
+        <mxCell id="e29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_incident_tier2_0" value="Patient Zero&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2685" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_incident_1" target="leaf_incident_tier2_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_incident_2" value="&lt;b&gt;Tier 3 – Threat Hunting &amp; Leadership&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC, CREST&lt;br&gt;Nome certificazione: GCFA, CCIM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="2900" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e20" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_2">
+        <mxCell id="e31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_incident" target="tier_incident_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_incident_tier3_0" value="The War Room&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="2905" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_incident_2" target="leaf_incident_tier3_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_riskmanager" value="Cybersecurity Risk Manager&lt;br&gt;Enti certificatori: PECB, ISC2, ISACA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ef6470;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="3280" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_riskmanager">
+        <mxCell id="e33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_riskmanager">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_riskmanager_0" value="&lt;b&gt;Information Security Risk Analyst&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: PECB&lt;br&gt;Nome certificazione: ISO/IEC 27005 Risk Manager" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="3100" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_0">
+        <mxCell id="e34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_riskmanager_analyst_0" value="The Risk Register&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3105" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_riskmanager_0" target="leaf_riskmanager_analyst_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_riskmanager_1" value="&lt;b&gt;Cybersecurity Risk Assessor&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: (ISC)²&lt;br&gt;Nome certificazione: CGRC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="3320" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e23" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_1">
+        <mxCell id="e36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_riskmanager_assessor_0" value="The Authorization Package&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3325" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_riskmanager_1" target="leaf_riskmanager_assessor_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_riskmanager_2" value="&lt;b&gt;Cyber Risk Manager&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ISACA&lt;br&gt;Nome certificazione: CRISC" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="3540" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e24" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_2">
+        <mxCell id="e38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_riskmanager" target="tier_riskmanager_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_riskmanager_manager_0" value="The Risk Appetite Call&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3545" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_riskmanager_2" target="leaf_riskmanager_manager_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_pentester" value="Penetration Tester&lt;br&gt;Ente certificatore: CREST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ef6470;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="3920" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_pentester">
+        <mxCell id="e40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_pentester">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_pentester_0" value="&lt;b&gt;Vulnerability Analyst&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: INE (eLearnSecurity), CompTIA, CREST&lt;br&gt;Nome certificazione: eJPT, PenTest+, CPSA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="3740" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_0">
+        <mxCell id="e41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_va_0" value="First Contact&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3745" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_0" target="leaf_pentester_va_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_va_1" value="By the Book&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3745" y="690" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_0" target="leaf_pentester_va_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_va_2" value="The Toolbox&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3745" y="738" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_0" target="leaf_pentester_va_2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_pentester_1" value="&lt;b&gt;Penetration Tester&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: OffSec, CREST&lt;br&gt;Nome certificazione: OSCP, CRT" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="3960" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e27" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_1">
+        <mxCell id="e45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_pentester_0" value="Web / API" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="3772" y="550" width="135" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e28" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_0">
+        <mxCell id="e46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_pentester_1" value="Infra / Active Directory" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="3919" y="550" width="135" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e29" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_1">
+        <mxCell id="e47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_pentester_2" value="Cloud" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="4066" y="550" width="135" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_2">
+        <mxCell id="e48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_pentester_3" value="OT / ICS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="4213" y="550" width="135" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e31" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_3">
+        <mxCell id="e49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="track_pentester_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_0" value="Breaking In&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_1" value="Write Your Own Playbook&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="690" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_2" value="The Engagement&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="738" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_3" value="Beyond IT&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="786" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_4" value="The Application Layer&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="834" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_5" value="Inside the Domain&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="882" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_pt_6" value="Someone Else's Computer&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="3965" y="930" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_1" target="leaf_pentester_pt_6">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_pentester_2" value="&lt;b&gt;Red Team Expert&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: Zero-Point Security, CREST&lt;br&gt;Nome certificazione: CRTO, CRTL, CCSAS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDEBEC;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="4180" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_2">
+        <mxCell id="e57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_pentester" target="tier_pentester_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_rt_0" value="The Long Game&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4185" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_2" target="leaf_pentester_rt_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_rt_1" value="The Human Firewall&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4185" y="690" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_2" target="leaf_pentester_rt_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_pentester_rt_2" value="Threat-Led&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#ef6470;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4185" y="738" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#ef6470;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_pentester_2" target="leaf_pentester_rt_2">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_threatintel" value="Cyber Threat Intelligence Specialist&lt;br&gt;Ente certificatore: CREST" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0ab4d;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="4560" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e33" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_threatintel">
+        <mxCell id="e61" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_threatintel">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_threatintel_0" value="&lt;b&gt;Tactical&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: EC-Council, CREST&lt;br&gt;Nome certificazione: C|TIA, CPTIA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="4380" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_0">
+        <mxCell id="e62" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_threatintel_tactical_0" value="Signal in the Noise&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4385" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_threatintel_0" target="leaf_threatintel_tactical_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_threatintel_1" value="&lt;b&gt;Operational&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC, CREST&lt;br&gt;Nome certificazione: GCTI, CRTIA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="4600" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_1">
+        <mxCell id="e64" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_threatintel_operational_0" value="Map the Adversary&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4605" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e65" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_threatintel_1" target="leaf_threatintel_operational_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_threatintel_operational_1" value="From Data to Decision&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4605" y="690" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e66" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_threatintel_1" target="leaf_threatintel_operational_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_threatintel_2" value="&lt;b&gt;Strategic&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC, CREST&lt;br&gt;Nome certificazione: GCTI, CCTIM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="4820" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e36" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_2">
+        <mxCell id="e67" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_threatintel" target="tier_threatintel_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_threatintel_strategic_0" value="The Intelligence Requirement&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="4825" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e68" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_threatintel_2" target="leaf_threatintel_strategic_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_auditor" value="Cybersecurity Auditor&lt;br&gt;Ente certificatore: CQI/IRCA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0ab4d;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="5200" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e37" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_auditor">
+        <mxCell id="e69" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_auditor">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_auditor_0" value="&lt;b&gt;Associate Auditor&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ISACA, CQI/IRCA&lt;br&gt;Nome certificazione: IT Audit Fundamentals Certificate, Associate Auditor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="5020" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e38" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_0">
+        <mxCell id="e70" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_auditor_associate_0" value="The Evidence Trail&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="5025" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e71" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_auditor_0" target="leaf_auditor_associate_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_auditor_1" value="&lt;b&gt;Lead Auditor&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ISACA, CQI/IRCA&lt;br&gt;Nome certificazione: CISA, Lead Auditor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="5240" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e39" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_1">
+        <mxCell id="e72" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_auditor_lead_0" value="The Surveillance Audit&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="5245" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e73" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_auditor_1" target="leaf_auditor_lead_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_auditor_2" value="&lt;b&gt;Principal Auditor&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ISACA, CQI/IRCA&lt;br&gt;Nome certificazione: CISA, Principal Auditor" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="5460" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e40" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_2">
+        <mxCell id="e74" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_auditor" target="tier_auditor_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_auditor_principal_0" value="The Audit Committee&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="5465" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e75" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_auditor_2" target="leaf_auditor_principal_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_forensics" value="Digital Forensics Investigator&lt;br&gt;Enti certificatori: EC-Council, GIAC, IACIS" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f0ab4d;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="5840" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e41" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_forensics">
+        <mxCell id="e76" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_forensics">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_forensics_0" value="&lt;b&gt;Associate Forensic Examiner&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: EC-Council&lt;br&gt;Nome certificazione: CHFI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="5660" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e42" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_0">
+        <mxCell id="e77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_forensics_examiner_0" value="The Chain of Custody&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="5665" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e78" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_0" target="leaf_forensics_examiner_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_forensics_1" value="&lt;b&gt;Digital Forensics Analyst&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC&lt;br&gt;Nome certificazione: GCFE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="5880" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_1">
+        <mxCell id="e79" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_forensics_0" value="Security Operations Forensics" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="5812" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e44" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_1" target="track_forensics_0">
+        <mxCell id="e80" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_1" target="track_forensics_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_forensics_1" value="Evidentiary &amp; Criminal Investigation" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="5988" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e45" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_1" target="track_forensics_1">
+        <mxCell id="e81" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_1" target="track_forensics_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_forensics_analyst_0" value="The Exfiltration Timeline&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="5885" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e82" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_1" target="leaf_forensics_analyst_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_forensics_2" value="&lt;b&gt;Lead Forensic Investigator&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: IACIS&lt;br&gt;Nome certificazione: CFCE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FDF2E3;strokeColor=#f0ab4d;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="6100" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e46" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_2">
+        <mxCell id="e83" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#f0ab4d;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_forensics" target="tier_forensics_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_forensics_lead_0" value="The Cross-Examination&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="6105" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e84" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_forensics_2" target="leaf_forensics_lead_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_architect" value="Cybersecurity Architect&lt;br&gt;Ente certificatore: SABSA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#57c495;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="6480" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e47" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_architect">
+        <mxCell id="e85" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_architect">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_architect_0" value="&lt;b&gt;Associate Security Architect&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: SABSA, GIAC&lt;br&gt;Nome certificazione: SCF, GDSA" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="6300" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e48" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_0">
+        <mxCell id="e86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_architect_associate_0" value="The Reference Diagram&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="6305" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e87" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_architect_0" target="leaf_architect_associate_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_architect_1" value="&lt;b&gt;Cybersecurity Solutions Architect&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: SABSA&lt;br&gt;Nome certificazione: SCP" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="6520" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_1">
+        <mxCell id="e88" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_architect_solutions_0" value="The Steering Committee&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="6525" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e89" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_architect_1" target="leaf_architect_solutions_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_architect_2" value="&lt;b&gt;Principal Security Architect&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: SABSA&lt;br&gt;Nome certificazione: SCM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="6740" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_2">
+        <mxCell id="e90" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_architect" target="tier_architect_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_architect_principal_0" value="The Legacy Exception&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="6745" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e91" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_architect_2" target="leaf_architect_principal_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_educator" value="Cybersecurity Educator&lt;br&gt;Enti certificatori: CompTIA, EC-Council, ATD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#57c495;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="7120" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_educator">
+        <mxCell id="e92" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_educator">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_educator_0" value="&lt;b&gt;Cybersecurity Trainer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: CompTIA&lt;br&gt;Nome certificazione: CTT+" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="6940" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_0">
+        <mxCell id="e93" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_educator_trainer_0" value="The Phishing Awareness Session&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="6945" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e94" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_0" target="leaf_educator_trainer_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_educator_1" value="&lt;b&gt;Certified Cybersecurity Instructor&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: EC-Council&lt;br&gt;Nome certificazione: CEI" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="7160" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_1">
+        <mxCell id="e95" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_educator_0" value="Curriculum &amp; Programme Design" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="7092" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_1" target="track_educator_0">
+        <mxCell id="e96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_1" target="track_educator_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="track_educator_1" value="Live Instruction &amp; Delivery" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;dashed=1;fontColor=#1F2A44;fontSize=9.5;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="7268" y="550" width="160" height="56" as="geometry" />
         </mxCell>
-        <mxCell id="e55" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_1" target="track_educator_1">
+        <mxCell id="e97" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_1" target="track_educator_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_educator_instructor_0" value="The Certification Bootcamp&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="7165" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e98" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_1" target="leaf_educator_instructor_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_educator_2" value="&lt;b&gt;Training Programme Lead&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ATD&lt;br&gt;Nome certificazione: CPTD" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="7380" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e56" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_2">
+        <mxCell id="e99" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_educator" target="tier_educator_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_educator_lead_0" value="The Board Review&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="7385" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e100" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_educator_2" target="leaf_educator_lead_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="role_researcher" value="Cybersecurity Researcher&lt;br&gt;Enti certificatori: GIAC, ACM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#57c495;strokeColor=#1F2A44;fontColor=#FFFFFF;fontSize=12;fontStyle=1;arcSize=10;" vertex="1" parent="1">
           <mxGeometry x="7760" y="200" width="280" height="86" as="geometry" />
         </mxCell>
-        <mxCell id="e57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_researcher">
+        <mxCell id="e101" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="root" target="role_researcher">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_researcher_0" value="&lt;b&gt;Associate Research Engineer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC&lt;br&gt;Nome certificazione: GREM" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="7580" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e58" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_0">
+        <mxCell id="e102" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_0">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_researcher_associate_0" value="The Sample Vault&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="7585" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e103" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_researcher_0" target="leaf_researcher_associate_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_researcher_1" value="&lt;b&gt;Senior Security Researcher&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: GIAC&lt;br&gt;Nome certificazione: GXPN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="7800" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e59" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_1">
+        <mxCell id="e104" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_researcher_senior_0" value="The Zero-Day Clock&lt;br&gt;(VM Lab)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#57c495;fontColor=#1F2A44;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="7805" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e105" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_researcher_1" target="leaf_researcher_senior_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="tier_researcher_2" value="&lt;b&gt;Chief Research Officer&lt;/b&gt;&lt;br&gt;&lt;br&gt;Ente certificatore: ACM&lt;br&gt;Nome certificazione: Distinguished Member, Fellow" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EAFBF3;strokeColor=#57c495;fontColor=#1F2A44;fontSize=10;fontStyle=0;arcSize=8;align=center;verticalAlign=top;spacingTop=8;" vertex="1" parent="1">
           <mxGeometry x="8020" y="340" width="200" height="150" as="geometry" />
         </mxCell>
-        <mxCell id="e60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_2">
+        <mxCell id="e106" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#57c495;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="role_researcher" target="tier_researcher_2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="leaf_researcher_chief_0" value="The Disclosure Dilemma&lt;br&gt;(Tabletop)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#8a93a8;dashed=1;fontColor=#4A5366;fontSize=8.5;arcSize=10;" vertex="1" parent="1">
+          <mxGeometry x="8025" y="642" width="190" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="e107" style="edgeStyle=orthogonalEdgeStyle;rounded=0;html=1;endArrow=none;strokeColor=#8a93a8;strokeWidth=1.5;jettySize=auto;orthogonalLoop=1;" edge="1" parent="1" source="tier_researcher_2" target="leaf_researcher_chief_0">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
