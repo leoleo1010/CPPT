@@ -2434,6 +2434,64 @@
           certs: ["ISC2 CISSP", "ISC2 ISSMP"],
           outcome: "You can set and defend the organisation's cybersecurity strategy and budget at board level, and be trusted with the title this whole profile is named after." }
       ]
+    },
+    architect: {
+      certBody: { name: "SABSA", source: "sabsa.org" },
+      // Tier skeleton only -- labs are added in a separate pass, one per
+      // tier, same as every other role in this app.
+      // Not an ECSF distinction: ECSF lists Cybersecurity Solutions
+      // Architect / Cybersecurity Designer / Data Security Architect as
+      // pure alternative titles for the same profile, with identical
+      // tasks/skills/knowledge. Unlike the Risk Manager or CISO profiles,
+      // these alternative titles do not read as a junior-to-senior
+      // progression by themselves (they read more like specialisation
+      // flavours), so the tiers below follow the same "Associate X /
+      // [profile name] / Principal X" naming pattern already used for the
+      // Implementer profile, rather than forcing a seniority reading onto
+      // alt-titles that do not actually suggest one:
+      //   - NIST NICE treats this as a single work role, "Security
+      //     Architect" (SP-ARC-002) -- no split into separate work roles,
+      //     so no tracks are added here.
+      //   - SABSA (Sherwood Applied Business Security Architecture) is the
+      //     certifying body built specifically around security
+      //     architecture as a discipline, with its own genuine 3-level
+      //     ladder -- SCF (Foundation) -> SCP (Practitioner) -> SCM
+      //     (Master) -- used here as-is, the same single-body pattern
+      //     already used for CQI/IRCA (Auditor) and IAPP (Legal), not a
+      //     synthesised mix.
+      //   - GIAC GDSA is listed alongside SABSA SCF at the entry tier as a
+      //     parallel, hands-on technical credential -- the same "two
+      //     parallel certs, one tier" pattern already used for CompTIA
+      //     Security+ and GIAC GSEC on the Implementer profile.
+      //   - (ISC)²'s own 2025 article "CISSP in the ECSF" (the same one
+      //     cited for the CISO profile) names ISSAP -- its architecture
+      //     concentration -- as its recommended qualification for
+      //     Cybersecurity Architect specifically, with plain CISSP as an
+      //     alternative. It is cited as a cross-reference in the senior
+      //     tier's practice note rather than used as the primary body
+      //     here, since SABSA is purpose-built for this exact discipline
+      //     and already supplies a complete single-body ladder.
+      stages: [],
+      tiers: [
+        { id: "associate", name: "Associate Security Architect", crest: "SABSA SCF",
+          note: "Entry level: produces architecture diagrams and documentation for a defined system under direction — SABSA's own entry-level credential.",
+          practice: "Indicative: SCF requires an official SABSA Foundation training course plus two 60-minute multiple-choice exams (48 questions each, 75% passing) across 6 knowledge domains — no prior experience required. Source: sabsa.org. GIAC GDSA is listed alongside it as a parallel, hands-on technical credential: it requires 2+ years of experience (or a GIAC \"core\" certification) and tests defensible-architecture concepts like Zero Trust and micro-segmentation directly. Source: giac.org.",
+          deliverable: "Cybersecurity Architecture Diagram",
+          certs: ["SABSA SCF", "GIAC GDSA"],
+          outcome: "You can produce architecture diagrams and documentation for a defined system under a senior architect's direction, and defend the choices behind them." },
+        { id: "solutions", name: "Cybersecurity Solutions Architect", crest: "SABSA SCP",
+          note: "Designs a full security architecture end to end and presents it to stakeholders — SABSA's practitioner-level credential.",
+          practice: "Indicative: SCP builds on the Foundation and requires choosing one of five career paths, then completing the relevant Advanced module (A1-A5) through an assignment-based assessment, marked independently by two SABSA Masters (75% passing). Source: sabsa.org.",
+          deliverable: "Cybersecurity Requirements Report",
+          certs: ["SABSA SCP"],
+          outcome: "You can design a full security architecture end to end, from requirements to specifications, and present it to stakeholders." },
+        { id: "principal", name: "Principal Security Architect", crest: "SABSA SCM",
+          note: "Owns the organisation's security architecture practice and certifies it holds up against emerging threats — SABSA's most senior credential.",
+          practice: "Indicative: SCM is SABSA's highest credential, requiring SCP certification, a second Advanced module, and a Master's thesis demonstrating the framework applied in practice. Source: sabsa.org. (ISC)²'s own 2025 article on CISSP in the ECSF names ISSAP — its architecture concentration — as the recommended qualification for this exact profile, with plain CISSP as an alternative; it is cited here rather than used as the primary body, since SABSA already provides a complete single-body ladder purpose-built for this discipline.",
+          deliverable: "Cybersecurity Architecture Diagram & Requirements Report",
+          certs: ["SABSA SCM"],
+          outcome: "You can own an organisation's security architecture practice, adapt it to emerging threats, and certify that it still holds up." }
+      ]
     }
   };
 
