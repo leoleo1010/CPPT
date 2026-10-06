@@ -35,6 +35,7 @@
   #app[hidden],#lab-view[hidden]{display:none;}
 
   header.topbar{
+    position:relative;
     padding:calc(env(safe-area-inset-top,0px) + 20px) clamp(16px,4vw,32px) 16px;
     border-bottom:1px solid var(--line);
     display:flex;flex-direction:column;align-items:center;gap:6px;
@@ -56,8 +57,17 @@
     text-wrap:balance;
   }
   .count-badge{
+    position:absolute;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    right:clamp(16px,4vw,32px);
     font-family:var(--font-mono);
-    font-size:12px;
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    padding:3px 9px;
+    border-radius:100px;
+    border:1px solid var(--line-soft);
     color:var(--ink-faint);
   }
   .title-subtitle{
@@ -683,10 +693,10 @@
 
 <div id="app">
   <header class="topbar">
+    <span class="count-badge">12 roles</span>
     <div class="eyebrow">ENISA &middot; European Cybersecurity Skills Framework</div>
     <div class="title-row">
       <h1>CPPT</h1>
-      <span class="count-badge">12 roles</span>
     </div>
     <div class="title-subtitle">Cybersecurity Professional Profiles Trainer</div>
     <p class="instructions">Each node is a professional role from the ECSF framework, grouped by category. The nodes are not connected to one another. Click a node to open that role's full profile.</p>
