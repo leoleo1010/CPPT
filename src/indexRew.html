@@ -2312,8 +2312,15 @@
     },
     ciso: {
       certBody: { name: "EC-Council, ISACA, ISC2", source: "eccouncil.org, isaca.org, isc2.org", mixed: true },
-      // Tier skeleton only -- labs are added in a separate pass, one per
-      // tier, same as every other role in this app.
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role. Unlike every other role in
+      // this app, all 3 are tabletop exercises rather than a mix of VM labs
+      // and tabletops: this profile's own ECSF tasks/skills/knowledge are
+      // entirely strategic/managerial at every tier -- defining strategy,
+      // presenting to senior management, negotiating budget, supervising
+      // the ISMS -- with no hands-on technical task even at its most junior
+      // tier, so there is no honest VM-lab exercise to write for it.
       // Not an ECSF distinction: ECSF lists Cybersecurity Programme
       // Director / Information Security Officer (ISO) / Information
       // Security Manager / Head of Information Security / IT/ICT Security
@@ -2357,7 +2364,56 @@
       //     CISSP-certified (7 years without it) -- the most demanding of
       //     the three, and (ISC)²'s own primary recommendation for this
       //     exact profile.
-      stages: [],
+      stages: [
+        {
+          type: "tabletop",
+          id: "the-business-unit-policy", tier: "officer", title: "The Business Unit Policy",
+          summary: "Write and get sign-off on the first formal cybersecurity policy for one division of a multi-division group, scoped to what it can actually absorb.",
+          scenario: "Ashgrove Holdings' logistics division has never had a formal cybersecurity policy of its own — it has only ever inherited group-wide boilerplate nobody reads. As the division's IT/ICT Security Officer, you have the group's strategy document, last year's incident log, and the division's modest IT budget. Write a policy that is actually specific to this division, scope the resources it needs, and get the division's own leadership to sign off on it.",
+          taskIdx: [0, 13],
+          skillIdx: [10, 1],
+          knowledgeIdx: [0, 7],
+          flags: [
+            "A policy scoped realistically to the division's size and risk, not a copy-pasted group template",
+            "A resource ask the division's budget can actually absorb this year",
+            "A sign-off secured from the division's own leadership, not just a rubber stamp from group"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        },
+        {
+          type: "tabletop",
+          id: "the-isms-audit-finding", tier: "manager", title: "The ISMS Audit Finding",
+          summary: "An external ISMS audit just found a serious gap — decide the remediation, rate the maturity honestly, and report it to senior management without triggering panic or complacency.",
+          scenario: "Ashgrove Holdings' external ISMS audit just flagged a serious gap in a core process. As Information Security Manager, you have the audit report, the process owner's pushback, and a senior management team that doesn't speak cybersecurity. Decide how to remediate the gap, rate the ISMS's maturity honestly against it, and report the finding up in terms senior management can actually act on.",
+          taskIdx: [2, 3, 7],
+          skillIdx: [7, 11],
+          knowledgeIdx: [6, 9],
+          flags: [
+            "A remediation plan senior management can approve without a cybersecurity background",
+            "A maturity-model rating that honestly reflects where the gap leaves the ISMS today",
+            "A report that gets the right level of urgency across without under- or over-stating the risk"
+          ],
+          difficulty: "Intermediate",
+          duration: "~1.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-board-mandate", tier: "head", title: "The Board Mandate",
+          summary: "Defend next year's cybersecurity strategy and budget to a board that would rather accept the risk than pay for the fix, and get the residual risk formally signed off.",
+          scenario: "Ashgrove Holdings' board is reviewing next year's cybersecurity strategy and budget, and one director is pushing hard to accept the risk instead of funding a major remediation programme. As Head of Information Security, you have the business case, the remediation programme's real cost, and the risk register. Defend the strategy, negotiate the budget the board will actually fund, and get its formal sign-off on whatever risk is left over.",
+          taskIdx: [1, 4, 10],
+          skillIdx: [5, 12],
+          knowledgeIdx: [10, 8],
+          flags: [
+            "A strategy the board approves without gutting its core remediation programme",
+            "A budget negotiated down to what the board will actually fund, without losing the essentials",
+            "A documented risk-acceptance sign-off from the board for whatever is left over"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "officer", name: "IT/ICT Security Officer", crest: "EC-Council Associate CCISO",
           note: "Entry level: owns information security for a smaller organisation or a specific business unit — EC-Council's lighter-weight entry point onto the CISO track itself.",

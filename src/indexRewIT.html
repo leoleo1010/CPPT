@@ -2329,8 +2329,17 @@
     },
     ciso: {
       certBody: { name: "EC-Council, ISACA, ISC2", source: "eccouncil.org, isaca.org, isc2.org", mixed: true },
-      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
-      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Un laboratorio bozza per tier -- un'anteprima concettuale di come
+      // potrebbe essere l'esercizio reale di ciascun tier, con la stessa
+      // profondità dei laboratori dei ruoli precedenti, non il set finale
+      // di laboratori per questo ruolo. A differenza di ogni altro ruolo in
+      // questa app, tutti e 3 sono esercizi tabletop invece di un mix di
+      // VM lab e tabletop: i task/skill/knowledge ECSF di questo profilo
+      // sono interamente strategici/manageriali a ogni tier -- definire la
+      // strategia, presentarla al senior management, negoziare il budget,
+      // supervisionare l'ISMS -- senza alcun task hands-on anche al tier
+      // più junior, quindi non esiste un laboratorio VM onesto da scrivere
+      // per questo profilo.
       // Non è una distinzione ECSF: ECSF elenca Cybersecurity Programme
       // Director / Information Security Officer (ISO) / Information
       // Security Manager / Head of Information Security / IT/ICT Security
@@ -2375,7 +2384,56 @@
       //     certificati CISSP (7 anni senza) -- il più impegnativo dei tre,
       //     e la raccomandazione primaria di (ISC)² stesso per questo
       //     esatto profilo.
-      stages: [],
+      stages: [
+        {
+          type: "tabletop",
+          id: "the-business-unit-policy", tier: "officer", title: "The Business Unit Policy",
+          summary: "Scrivi e fai approvare la prima policy di cybersecurity formale per una divisione di un gruppo multi-divisionale, dimensionata su ciò che può davvero sostenere.",
+          scenario: "La divisione logistica di Ashgrove Holdings non ha mai avuto una propria policy di cybersecurity formale — ha sempre solo ereditato il boilerplate di gruppo che nessuno legge. Come IT/ICT Security Officer della divisione, hai il documento di strategia del gruppo, il log degli incidenti dell'anno scorso, e il modesto budget IT della divisione. Scrivi una policy davvero specifica per questa divisione, dimensiona le risorse necessarie, e fatti approvare il documento dalla leadership della divisione stessa.",
+          taskIdx: [0, 13],
+          skillIdx: [10, 1],
+          knowledgeIdx: [0, 7],
+          flags: [
+            "Una policy dimensionata realisticamente sulla taglia e il rischio della divisione, non un template di gruppo copiato e incollato",
+            "Una richiesta di risorse che il budget della divisione possa davvero sostenere quest'anno",
+            "Un'approvazione ottenuta dalla leadership della divisione stessa, non solo un timbro di gruppo"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        },
+        {
+          type: "tabletop",
+          id: "the-isms-audit-finding", tier: "manager", title: "The ISMS Audit Finding",
+          summary: "Un audit esterno dell'ISMS ha appena trovato una lacuna seria — decidi la remediation, valuta onestamente la maturità, e riporta il finding al senior management senza generare panico o compiacenza.",
+          scenario: "L'audit esterno dell'ISMS di Ashgrove Holdings ha appena segnalato una lacuna seria in un processo centrale. Come Information Security Manager, hai il report dell'audit, le resistenze del process owner, e un senior management che non parla il linguaggio della cybersecurity. Decidi come rimediare alla lacuna, valuta onestamente la maturità dell'ISMS rispetto ad essa, e riporta il finding in termini su cui il senior management possa davvero agire.",
+          taskIdx: [2, 3, 7],
+          skillIdx: [7, 11],
+          knowledgeIdx: [6, 9],
+          flags: [
+            "Un piano di remediation che il senior management possa approvare senza un background da cybersecurity",
+            "Una valutazione del modello di maturità che rifletta onestamente dove la lacuna lascia l'ISMS oggi",
+            "Un report che comunichi il giusto livello di urgenza senza sottostimare né sovrastimare il rischio"
+          ],
+          difficulty: "Intermedio",
+          duration: "~1.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-board-mandate", tier: "head", title: "The Board Mandate",
+          summary: "Difendi la strategia e il budget di cybersecurity del prossimo anno davanti a un board che preferirebbe accettare il rischio piuttosto che pagare per risolverlo, e fai approvare formalmente il rischio residuo.",
+          scenario: "Il board di Ashgrove Holdings sta rivedendo la strategia e il budget di cybersecurity del prossimo anno, e un consigliere spinge forte per accettare il rischio invece di finanziare un grande programma di remediation. Come Head of Information Security, hai il business case, il costo reale del programma di remediation, e il registro dei rischi. Difendi la strategia, negozia il budget che il board finanzierà davvero, e ottieni la sua approvazione formale su qualsiasi rischio rimanga.",
+          taskIdx: [1, 4, 10],
+          skillIdx: [5, 12],
+          knowledgeIdx: [10, 8],
+          flags: [
+            "Una strategia che il board approva senza smantellare il suo programma di remediation principale",
+            "Un budget negoziato fino a ciò che il board finanzierà davvero, senza perdere l'essenziale",
+            "Un'accettazione del rischio documentata e firmata dal board per qualsiasi cosa resti"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "officer", name: "IT/ICT Security Officer", crest: "EC-Council Associate CCISO",
           note: "Livello base: possiede la sicurezza informatica di un'organizzazione più piccola o di una specifica unità di business — il punto d'ingresso più leggero di EC-Council sulla stessa carriera CISO.",
