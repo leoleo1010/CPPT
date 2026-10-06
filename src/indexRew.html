@@ -1930,8 +1930,9 @@
     },
     researcher: {
       certBody: { name: "GIAC, ACM", source: "giac.org, acm.org", mixed: true },
-      // Tier skeleton only -- labs are added in a separate pass, one per
-      // tier, same as every other role in this app.
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role.
       // Not an ECSF distinction: ECSF lists Cybersecurity Research Engineer
       // / Chief Research Officer (CRO) in cybersecurity / Senior Research
       // Officer in cybersecurity / Research and Development (R&D) Officer in
@@ -1987,7 +1988,56 @@
       // 30111 (vulnerability handling process) -- cited in the Senior
       // tier's practice note, matching this profile's own knowledge item
       // "Responsible information disclosure procedures".
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-sample-vault", tier: "associate", title: "The Sample Vault",
+          summary: "Reverse-engineer an unidentified malware sample end to end, and turn what you find into a detection rule the SOC can deploy.",
+          scenario: "Halcyon Security Labs' threat research team has been handed a malware sample flagged by a partner SOC — nothing in their signature database matches it. As the newest associate research engineer, you get a VM with disassembly, debugging and sandboxing tools and the raw sample. Reverse-engineer it, extract its real behaviour, and turn what you find into a detection rule the SOC can actually deploy.",
+          taskIdx: [5, 6, 0],
+          skillIdx: [1, 5, 3],
+          knowledgeIdx: [0, 1],
+          flags: [
+            { question: "What scheduled-task name does the sample create to persist across reboots?", flag: "FLAG{SYSHEALTHCHECK-TASK}" },
+            { question: "What C2 domain does the decoded configuration reveal?", flag: "FLAG{GRIDSTATUS-UPDATES-NET}" },
+            { question: "What malware family does your YARA rule match confirm?", flag: "FLAG{COBALT-LOADER}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-zero-day-clock", tier: "senior", title: "The Zero-Day Clock",
+          summary: "Build and document a working proof-of-concept exploit for a newly found vulnerability, then draft its coordinated-disclosure timeline.",
+          scenario: "Halcyon Security Labs' IoT research programme has been probing a widely embedded open-source MQTT library for weaknesses. You just found a memory-corruption bug that looks exploitable. Build a working proof-of-concept that demonstrates real impact, document it so another researcher could reproduce it, and draft the coordinated-disclosure timeline before anyone outside the team sees it.",
+          taskIdx: [3, 9, 11],
+          skillIdx: [0, 2, 5],
+          knowledgeIdx: [0, 1, 4],
+          flags: [
+            { question: "Which function parameter does your PoC overflow to gain control?", flag: "FLAG{MQTT-TOPIC-LEN-OVERFLOW}" },
+            { question: "What severity do you assign the flaw in your impact write-up?", flag: "FLAG{CRITICAL-RCE}" },
+            { question: "How many days does your coordinated-disclosure timeline give the maintainer before publication?", flag: "FLAG{90-DAY-DISCLOSURE}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-disclosure-dilemma", tier: "chief", title: "The Disclosure Dilemma",
+          summary: "Decide the research lab's disclosure stance and budget under board pressure, and defend both in one roadmap.",
+          scenario: "Halcyon Security Labs' board is reviewing next year's research budget — and wants the disclosure of a serious flaw your team found in a key partner's product quietly shelved until after the funding review closes. No clean lab for this one: you have the partner contract's confidentiality clause, the vulnerability report, and this year's impact metrics for the lab's three active research programmes. Decide what gets disclosed and when, which programmes keep their funding, and make the case to the board.",
+          taskIdx: [10, 8, 2],
+          skillIdx: [4, 6, 0],
+          knowledgeIdx: [0, 2, 3],
+          flags: [
+            "A disclosure decision that honours the coordinated-disclosure timeline regardless of the board's funding-review pressure",
+            "A budget allocation that keeps the lab's highest-impact programme funded and justifies any cuts with real metrics",
+            "A roadmap the board approves without compromising the lab's publication record or standing in the research community"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "associate", name: "Associate Research Engineer", crest: "GIAC GREM",
           note: "Entry level: supports experiments, proofs of concept and prototypes under a senior researcher's direction — GIAC's malware/code reverse-engineering credential.",

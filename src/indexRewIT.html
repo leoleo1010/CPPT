@@ -1930,8 +1930,10 @@
     },
     researcher: {
       certBody: { name: "GIAC, ACM", source: "giac.org, acm.org", mixed: true },
-      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
-      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Un laboratorio bozza per tier -- un'anteprima concettuale di come
+      // potrebbe essere l'esercizio reale di ciascun tier, con la stessa
+      // profondità dei laboratori dei ruoli precedenti, non il set finale
+      // di laboratori per questo ruolo.
       // Non è una distinzione ECSF: ECSF elenca Cybersecurity Research
       // Engineer / Chief Research Officer (CRO) in cybersecurity / Senior
       // Research Officer in cybersecurity / Research and Development (R&D)
@@ -1993,7 +1995,56 @@
       // vulnerabilità) -- citati nella nota practice del tier Senior,
       // corrispondenti al knowledge item di questo profilo "Responsible
       // information disclosure procedures".
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-sample-vault", tier: "associate", title: "The Sample Vault",
+          summary: "Analizza al reverse engineering un campione di malware non identificato dall'inizio alla fine, e trasforma ciò che trovi in una regola di detection che il SOC può distribuire.",
+          scenario: "Il team di threat research di Halcyon Security Labs ha ricevuto un campione di malware segnalato da un SOC partner — nulla nel loro database di firme corrisponde. Come nuovo associate research engineer, ricevi una VM con strumenti di disassembly, debugging e sandboxing e il campione grezzo. Analizzalo al reverse engineering, estrai il suo comportamento reale, e trasforma ciò che trovi in una regola di detection che il SOC possa effettivamente distribuire.",
+          taskIdx: [5, 6, 0],
+          skillIdx: [1, 5, 3],
+          knowledgeIdx: [0, 1],
+          flags: [
+            { question: "Quale nome di scheduled task crea il campione per persistere tra i riavvii?", flag: "FLAG{SYSHEALTHCHECK-TASK}" },
+            { question: "Quale dominio C2 rivela la configurazione decodificata?", flag: "FLAG{GRIDSTATUS-UPDATES-NET}" },
+            { question: "Quale famiglia di malware confermata dal match della tua regola YARA?", flag: "FLAG{COBALT-LOADER}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-zero-day-clock", tier: "senior", title: "The Zero-Day Clock",
+          summary: "Costruisci e documenta un exploit proof-of-concept funzionante per una vulnerabilità appena trovata, poi redigi la sua timeline di coordinated disclosure.",
+          scenario: "Il programma di ricerca IoT di Halcyon Security Labs sta sondando una libreria MQTT open-source ampiamente diffusa in cerca di debolezze. Hai appena trovato un bug di corruzione della memoria che sembra sfruttabile. Costruisci un proof-of-concept funzionante che dimostri un impatto reale, documentalo in modo che un altro ricercatore possa riprodurlo, e redigi la timeline di coordinated disclosure prima che chiunque fuori dal team lo veda.",
+          taskIdx: [3, 9, 11],
+          skillIdx: [0, 2, 5],
+          knowledgeIdx: [0, 1, 4],
+          flags: [
+            { question: "Quale parametro della funzione il tuo PoC fa andare in overflow per ottenere il controllo?", flag: "FLAG{MQTT-TOPIC-LEN-OVERFLOW}" },
+            { question: "Quale severità assegni alla falla nel tuo report d'impatto?", flag: "FLAG{CRITICAL-RCE}" },
+            { question: "Quanti giorni concede al maintainer la tua timeline di coordinated disclosure prima della pubblicazione?", flag: "FLAG{90-DAY-DISCLOSURE}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-disclosure-dilemma", tier: "chief", title: "The Disclosure Dilemma",
+          summary: "Decidi la linea di disclosure e il budget del laboratorio di ricerca sotto la pressione del board, e difendi entrambi in una sola roadmap.",
+          scenario: "Il board di Halcyon Security Labs sta rivedendo il budget di ricerca del prossimo anno — e vuole che la disclosure di una grave falla trovata dal tuo team in un prodotto di un partner chiave venga accantonata in silenzio finché la revisione dei finanziamenti non si chiude. Nessun laboratorio pulito questa volta: hai la clausola di riservatezza del contratto col partner, il report sulla vulnerabilità, e le metriche d'impatto di quest'anno dei tre programmi di ricerca attivi del laboratorio. Decidi cosa divulgare e quando, quali programmi mantengono il finanziamento, e porta il caso al board.",
+          taskIdx: [10, 8, 2],
+          skillIdx: [4, 6, 0],
+          knowledgeIdx: [0, 2, 3],
+          flags: [
+            "Una decisione di disclosure che rispetta la timeline di coordinated disclosure nonostante la pressione del board legata alla revisione dei finanziamenti",
+            "Un'allocazione di budget che mantiene finanziato il programma con l'impatto più alto e giustifica con metriche reali eventuali tagli",
+            "Una roadmap che il board approva senza compromettere il curriculum di pubblicazioni o la reputazione del laboratorio nella comunità di ricerca"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "associate", name: "Associate Research Engineer", crest: "GIAC GREM",
           note: "Livello base: supporta esperimenti, proof of concept e prototipi sotto la guida di un ricercatore senior — il credential GIAC di reverse engineering di malware/codice.",
