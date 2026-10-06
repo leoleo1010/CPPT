@@ -2387,51 +2387,51 @@
       stages: [
         {
           type: "tabletop",
-          id: "the-business-unit-policy", tier: "officer", title: "The Business Unit Policy",
-          summary: "Scrivi e fai approvare la prima policy di cybersecurity formale per una divisione di un gruppo multi-divisionale, dimensionata su ciò che può davvero sostenere.",
-          scenario: "La divisione logistica di Ashgrove Holdings non ha mai avuto una propria policy di cybersecurity formale — ha sempre solo ereditato il boilerplate di gruppo che nessuno legge. Come IT/ICT Security Officer della divisione, hai il documento di strategia del gruppo, il log degli incidenti dell'anno scorso, e il modesto budget IT della divisione. Scrivi una policy davvero specifica per questa divisione, dimensiona le risorse necessarie, e fatti approvare il documento dalla leadership della divisione stessa.",
-          taskIdx: [0, 13],
-          skillIdx: [10, 1],
-          knowledgeIdx: [0, 7],
+          id: "the-weekend-call", tier: "officer", title: "The Weekend Call",
+          summary: "Decidi, da solo e senza autorizzazione, se staccare un sistema colpito da ransomware un sabato notte — poi trasforma quella notte nella policy che nessuno aveva ancora scritto.",
+          scenario: "Sono le 23 di sabato e il sistema di gestione del magazzino della divisione logistica è appena andato in blackout — ransomware, probabilmente arrivato dall'email di phishing che tre dipendenti avevano segnalato la settimana scorsa e su cui nessuno aveva agito, perché non esiste ancora una policy formale su cosa fare con un phishing segnalato. Come IT/ICT Security Officer della divisione, devi decidere se staccare il sistema — fermando le spedizioni di stanotte — senza che nessuno sopra di te sia raggiungibile per autorizzarlo, poi costruire la policy che garantisca che questa decisione non sia mai più così solitaria.",
+          taskIdx: [11, 0],
+          skillIdx: [9, 10],
+          knowledgeIdx: [7, 0],
           flags: [
-            "Una policy dimensionata realisticamente sulla taglia e il rischio della divisione, non un template di gruppo copiato e incollato",
-            "Una richiesta di risorse che il budget della divisione possa davvero sostenere quest'anno",
-            "Un'approvazione ottenuta dalla leadership della divisione stessa, non solo un timbro di gruppo"
+            "Una decisione go/no-go sullo staccare il sistema del magazzino, presa e documentata senza aspettare un'autorizzazione che stanotte non arriverà",
+            "Un'escalation nel momento esatto in cui qualcuno di livello superiore diventa raggiungibile, non una soluzione silenziosa che nessuno a monte verrà mai a sapere",
+            "Una policy, nata direttamente da questa notte, che dia alla prossima persona di turno un riferimento concreto su cui basare la decisione"
           ],
           difficulty: "Base",
           duration: "~1h"
         },
         {
           type: "tabletop",
-          id: "the-isms-audit-finding", tier: "manager", title: "The ISMS Audit Finding",
-          summary: "Un audit esterno dell'ISMS ha appena trovato una lacuna seria — decidi la remediation, valuta onestamente la maturità, e riporta il finding al senior management senza generare panico o compiacenza.",
-          scenario: "L'audit esterno dell'ISMS di Ashgrove Holdings ha appena segnalato una lacuna seria in un processo centrale. Come Information Security Manager, hai il report dell'audit, le resistenze del process owner, e un senior management che non parla il linguaggio della cybersecurity. Decidi come rimediare alla lacuna, valuta onestamente la maturità dell'ISMS rispetto ad essa, e riporta il finding in termini su cui il senior management possa davvero agire.",
-          taskIdx: [2, 3, 7],
-          skillIdx: [7, 11],
-          knowledgeIdx: [6, 9],
+          id: "the-72-hour-clock", tier: "manager", title: "The 72-Hour Clock",
+          summary: "Stabilisci se i dati dei clienti sono davvero usciti dalla rete prima che scada il countdown di notifica della violazione, contro un process owner che lo nega e una direzione che spera tu dica che va tutto bene.",
+          scenario: "Tre giorni dopo l'incidente al magazzino, l'ufficio legale di Ashgrove Holdings vuole sapere se è partito il countdown GDPR delle 72 ore per la notifica della violazione — e nessuno riesce a concordare se i dati dei clienti siano davvero usciti dalla rete. Come Information Security Manager, hai il riepilogo dei forensics, il process owner che insiste che sia un falso allarme, e un senior management che spera tu dica semplicemente che va tutto bene. Decidi cosa fa davvero scattare l'obbligo di notifica, valuta onestamente quanto l'ISMS ti ha lasciato esposto, e riporta la situazione in termini che sopravvivano al confronto col legale.",
+          taskIdx: [7, 3],
+          skillIdx: [2, 11],
+          knowledgeIdx: [3, 5],
           flags: [
-            "Un piano di remediation che il senior management possa approvare senza un background da cybersecurity",
-            "Una valutazione del modello di maturità che rifletta onestamente dove la lacuna lascia l'ISMS oggi",
-            "Un report che comunichi il giusto livello di urgenza senza sottostimare né sovrastimare il rischio"
+            "Una valutazione chiara e basata sulle evidenze su se i dati dei clienti siano davvero usciti dalla rete — non un'ipotesi vestita da certezza",
+            "Una decisione di notifica temporizzata sul countdown reale del regolamento, non su quanto sia scomoda la conversazione",
+            "Un report al senior management che dichiari l'esposizione reale, anche se \"probabilmente va tutto bene\" sarebbe la cosa più facile da dire"
           ],
           difficulty: "Intermedio",
           duration: "~1.5h"
         },
         {
           type: "tabletop",
-          id: "the-board-mandate", tier: "head", title: "The Board Mandate",
-          summary: "Difendi la strategia e il budget di cybersecurity del prossimo anno davanti a un board che preferirebbe accettare il rischio piuttosto che pagare per risolverlo, e fai approvare formalmente il rischio residuo.",
-          scenario: "Il board di Ashgrove Holdings sta rivedendo la strategia e il budget di cybersecurity del prossimo anno, e un consigliere spinge forte per accettare il rischio invece di finanziare un grande programma di remediation. Come Head of Information Security, hai il business case, il costo reale del programma di remediation, e il registro dei rischi. Difendi la strategia, negozia il budget che il board finanzierà davvero, e ottieni la sua approvazione formale su qualsiasi rischio rimanga.",
-          taskIdx: [1, 4, 10],
-          skillIdx: [5, 12],
-          knowledgeIdx: [10, 8],
+          id: "the-ransom-call", tier: "head", title: "The Ransom Call",
+          summary: "Dai al board un'unica raccomandazione unificata su riscatto, notifica al regolatore e linea pubblica — in due ore, con la fuga di dati e la stampa già in movimento.",
+          scenario: "Quarantotto ore dopo il ransomware al magazzino, gli attaccanti hanno pubblicato un campione dei dati rubati per fare pressione, un giornalista ha già chiamato l'ufficio stampa, e il board è spaccato tra pagare il riscatto prima della scadenza del regolatore o lasciare che sia il ciclo di stampa a decidere per loro. Come Head of Information Security, hai la richiesta di riscatto, la scadenza di notifica del regolatore, e un board che vuole un'unica raccomandazione unificata nelle prossime due ore — non un elenco di opzioni.",
+          taskIdx: [1, 4, 6],
+          skillIdx: [5, 11, 14],
+          knowledgeIdx: [3, 10],
           flags: [
-            "Una strategia che il board approva senza smantellare il suo programma di remediation principale",
-            "Un budget negoziato fino a ciò che il board finanzierà davvero, senza perdere l'essenziale",
-            "Un'accettazione del rischio documentata e firmata dal board per qualsiasi cosa resti"
+            "Un'unica raccomandazione al board — pagare o no — sostenuta dall'esposizione legale di ciascuna opzione, non un elenco di pro e contro",
+            "Una notifica al regolatore che parte entro la scadenza indipendentemente da cosa decida il board sul riscatto",
+            "Una linea pubblica che l'ufficio stampa possa davvero usare senza contraddire ciò che regolatori e board hanno appena sentito"
           ],
           difficulty: "Base",
-          duration: "~1h"
+          duration: "~1.5h"
         }
       ],
       tiers: [

@@ -2367,51 +2367,51 @@
       stages: [
         {
           type: "tabletop",
-          id: "the-business-unit-policy", tier: "officer", title: "The Business Unit Policy",
-          summary: "Write and get sign-off on the first formal cybersecurity policy for one division of a multi-division group, scoped to what it can actually absorb.",
-          scenario: "Ashgrove Holdings' logistics division has never had a formal cybersecurity policy of its own — it has only ever inherited group-wide boilerplate nobody reads. As the division's IT/ICT Security Officer, you have the group's strategy document, last year's incident log, and the division's modest IT budget. Write a policy that is actually specific to this division, scope the resources it needs, and get the division's own leadership to sign off on it.",
-          taskIdx: [0, 13],
-          skillIdx: [10, 1],
-          knowledgeIdx: [0, 7],
+          id: "the-weekend-call", tier: "officer", title: "The Weekend Call",
+          summary: "Decide, alone and without authorisation, whether to pull a ransomware-hit system offline on a Saturday night — then turn the night into the policy nobody had.",
+          scenario: "It's 11pm on a Saturday and the logistics division's warehouse-management system just went dark — ransomware, probably via the phishing email three staff reported last week that nobody acted on, because there's still no formal policy on what to do with a reported phish. As the division's IT/ICT Security Officer, you have to decide whether to pull the system offline — stopping tonight's shipments — with nobody senior reachable to approve it, then build the policy that makes sure this decision is never this lonely again.",
+          taskIdx: [11, 0],
+          skillIdx: [9, 10],
+          knowledgeIdx: [7, 0],
           flags: [
-            "A policy scoped realistically to the division's size and risk, not a copy-pasted group template",
-            "A resource ask the division's budget can actually absorb this year",
-            "A sign-off secured from the division's own leadership, not just a rubber stamp from group"
+            "A go/no-go call on pulling the warehouse system offline, made and documented without waiting for permission that isn't coming tonight",
+            "An escalation the moment someone senior IS reachable, not a quiet fix nobody up the chain ever hears about",
+            "A policy, born directly from tonight, that gives the next person on call an actual decision to point to"
           ],
           difficulty: "Beginner",
           duration: "~1h"
         },
         {
           type: "tabletop",
-          id: "the-isms-audit-finding", tier: "manager", title: "The ISMS Audit Finding",
-          summary: "An external ISMS audit just found a serious gap — decide the remediation, rate the maturity honestly, and report it to senior management without triggering panic or complacency.",
-          scenario: "Ashgrove Holdings' external ISMS audit just flagged a serious gap in a core process. As Information Security Manager, you have the audit report, the process owner's pushback, and a senior management team that doesn't speak cybersecurity. Decide how to remediate the gap, rate the ISMS's maturity honestly against it, and report the finding up in terms senior management can actually act on.",
-          taskIdx: [2, 3, 7],
-          skillIdx: [7, 11],
-          knowledgeIdx: [6, 9],
+          id: "the-72-hour-clock", tier: "manager", title: "The 72-Hour Clock",
+          summary: "Work out whether customer data actually left the network before legal's breach-notification clock runs out, against a process owner who denies it and a management team hoping you'll say it's fine.",
+          scenario: "Three days after the warehouse incident, Ashgrove Holdings' legal counsel wants to know if the 72-hour GDPR breach-notification clock has started — and nobody can agree on whether customer data actually left the network. As Information Security Manager, you have the forensics summary, the process owner insisting it's a false alarm, and senior management hoping you'll just tell them it's fine. Decide what actually triggers notification, rate how exposed the ISMS really left you, and report it upward in terms that survive contact with legal.",
+          taskIdx: [7, 3],
+          skillIdx: [2, 11],
+          knowledgeIdx: [3, 5],
           flags: [
-            "A remediation plan senior management can approve without a cybersecurity background",
-            "A maturity-model rating that honestly reflects where the gap leaves the ISMS today",
-            "A report that gets the right level of urgency across without under- or over-stating the risk"
+            "A clear, evidence-based call on whether customer data actually left the network — not a guess dressed up as certainty",
+            "A notification decision timed to the regulation's actual clock, not to how uncomfortable the conversation is",
+            "A report to senior management that states the real exposure, even though \"it's probably fine\" would be the easier thing to say"
           ],
           difficulty: "Intermediate",
           duration: "~1.5h"
         },
         {
           type: "tabletop",
-          id: "the-board-mandate", tier: "head", title: "The Board Mandate",
-          summary: "Defend next year's cybersecurity strategy and budget to a board that would rather accept the risk than pay for the fix, and get the residual risk formally signed off.",
-          scenario: "Ashgrove Holdings' board is reviewing next year's cybersecurity strategy and budget, and one director is pushing hard to accept the risk instead of funding a major remediation programme. As Head of Information Security, you have the business case, the remediation programme's real cost, and the risk register. Defend the strategy, negotiate the budget the board will actually fund, and get its formal sign-off on whatever risk is left over.",
-          taskIdx: [1, 4, 10],
-          skillIdx: [5, 12],
-          knowledgeIdx: [10, 8],
+          id: "the-ransom-call", tier: "head", title: "The Ransom Call",
+          summary: "Give the board one unified recommendation on the ransom, the regulator notification, and the public line — in two hours, with the data leak and the press already moving.",
+          scenario: "Forty-eight hours after the warehouse ransomware hit, the attackers have leaked a sample of stolen data to prove it, a journalist has already called the press office, and the board is split on paying the ransom before the regulator's deadline or letting the press cycle force their hand. As Head of Information Security, you have the ransom demand, the regulator's notification deadline, and a board that wants one unified recommendation in the next two hours — not a menu of options.",
+          taskIdx: [1, 4, 6],
+          skillIdx: [5, 11, 14],
+          knowledgeIdx: [3, 10],
           flags: [
-            "A strategy the board approves without gutting its core remediation programme",
-            "A budget negotiated down to what the board will actually fund, without losing the essentials",
-            "A documented risk-acceptance sign-off from the board for whatever is left over"
+            "A single unified recommendation to the board — pay or don't — backed by the legal exposure of each option, not a list of pros and cons",
+            "A regulator notification that goes out inside the deadline regardless of what the board decides about the ransom",
+            "A public-facing line the press office can actually use without it contradicting what regulators and the board were just told"
           ],
           difficulty: "Beginner",
-          duration: "~1h"
+          duration: "~1.5h"
         }
       ],
       tiers: [
