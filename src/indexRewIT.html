@@ -2206,6 +2206,75 @@
         { id: "security-operations-forensics", label: "Security Operations Forensics", note: "Forensics a supporto dell'incident response e della mitigazione delle vulnerabilità all'interno di un SOC/CSIRT. Corrisponde al work role NIST NICE \"Digital Forensics\" (PD-WRL-002)." },
         { id: "evidentiary-investigation", label: "Evidentiary & Criminal Investigation", note: "Gestione delle prove con chain of custody, pronta per il tribunale, tipicamente a fianco delle forze dell'ordine o della consulenza legale. Corrisponde al work role NIST NICE \"Digital Evidence Analysis\" (IN-WRL-002)." }
       ]
+    },
+    riskmanager: {
+      certBody: { name: "PECB, ISC2, ISACA", source: "pecb.com, isc2.org, isaca.org", mixed: true },
+      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
+      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Non è una distinzione ECSF: ECSF elenca Information Security Risk
+      // Analyst / Cybersecurity Risk Assurance Consultant / Cybersecurity
+      // Risk Assessor / Cybersecurity Impact Analyst / Cyber Risk Manager
+      // come puri alt-title dello stesso profilo, con tasks/skills/knowledge
+      // identici. La progressione a 3 livelli qui riusa direttamente tre di
+      // questi alt-title -- ordinati dal più junior-sounding al più senior
+      // -- invece di inventare nuovi nomi di tier, ed è sostenuta da enti
+      // certificatori reali di rigore crescente:
+      //   - L'area di specializzazione Risk Management di NIST NICE
+      //     (categoria Securely Provision) ha esattamente due work role:
+      //     "Security Control Assessor" (SP-RSK-002, testa in autonomia
+      //     l'efficacia dei controlli) e "Authorizing Official/Designating
+      //     Representative" (SP-RSK-001, il ruolo senior che accetta
+      //     formalmente il rischio residuo). È una progressione sequenziale
+      //     valuta-poi-autorizza, non uno split parallelo in due
+      //     specializzazioni -- per questo qui non vengono aggiunte track
+      //     (diversamente da legal/educator/implementer).
+      //   - La pagina ufficiale di coverage ECSF di (ISC)² elenca il CGRC
+      //     (ex CAP -- Certified Authorization Professional, costruito
+      //     attorno al processo di Authorizing Official/RMF) come
+      //     certificazione PRIMARIA raccomandata per questo esatto profilo
+      //     ECSF, con CISSP e SSCP solo come opzioni secondarie. Il CISSP
+      //     non viene usato qui in ogni caso -- questa app lo riserva ai
+      //     profili orientati a governance/architettura (CISO, Cybersecurity
+      //     Architect).
+      //   - La pagina ufficiale di mapping ECSF di CREST elenca una
+      //     corrispondenza secondaria delle sue certificazioni offensive,
+      //     di threat intelligence e di incident response di livello
+      //     Certified anche su questo profilo -- citata come cross-
+      //     reference nella nota practice del tier senior, non usata come
+      //     ente primario qui per evitare di triplicare certificazioni già
+      //     usate altrove in questa app.
+      // Come educator/implementer/researcher/forensics, nessuna scala di un
+      // singolo ente certificatore copre tutti i 3 livelli -- un altro vero
+      // MIX, questa volta ordinato strettamente in base al requisito minimo
+      // di esperienza di ciascun ente:
+      //   - PECB ISO/IEC 27005 Risk Manager (grado Provisional): 0 anni,
+      //     solo l'esame e il Code of Ethics PECB. Basato esplicitamente
+      //     sia su ISO/IEC 27005:2022 che su ISO 31000:2018.
+      //   - (ISC)² CGRC: 2 anni di esperienza cumulativa sui suoi 7 domini
+      //     (o status di Associate of ISC2 mentre la si acquisisce).
+      //   - ISACA CRISC: 3 anni su almeno 2 dei suoi 4 domini, negli ultimi
+      //     10 anni -- il più ampio in scope e il più strategico dei tre.
+      stages: [],
+      tiers: [
+        { id: "analyst", name: "Information Security Risk Analyst", crest: "PECB ISO 27005 RM",
+          note: "Livello base: applica una metodologia riconosciuta per identificare e valutare i rischi di cybersecurity — il credential base di PECB basato su ISO/IEC 27005 e ISO 31000.",
+          practice: "Indicativo: il grado Provisional richiede solo il superamento dell'esame e la firma del Code of Ethics PECB — nessuna esperienza pregressa. Il grado completo PECB Certified ISO/IEC 27005 Risk Manager richiede inoltre 2 anni di esperienza lavorativa generale (1 dei quali in information security risk management) più 200 ore di attività di risk management rilevante. Fonte: pecb.com. La certificazione è basata esplicitamente sia su ISO/IEC 27005:2022 (gestione del rischio per la sicurezza informatica) che su ISO 31000:2018 (lo standard generico di risk management che specializza).",
+          deliverable: "Cybersecurity Risk Assessment Report",
+          certs: ["PECB ISO 27005 RM"],
+          outcome: "Sai applicare una metodologia riconosciuta per identificare, analizzare e documentare i rischi di cybersecurity di un'organizzazione." },
+        { id: "assessor", name: "Cybersecurity Risk Assessor", crest: "ISC2 CGRC",
+          note: "Valuta in autonomia l'efficacia dei controlli e prepara il quadro del rischio su cui i decision-maker devono pronunciarsi — il credential di governance, risk and compliance di (ISC)².",
+          practice: "Indicativo: il CGRC (ex CAP) richiede 2 anni di esperienza retribuita cumulativa sui suoi 7 domini, o lo status di Associate of ISC2 mentre la si acquisisce. Fonte: isc2.org. La pagina ufficiale di coverage ECSF di (ISC)² elenca il CGRC come sua certificazione primaria raccomandata per questo esatto profilo. L'area Risk Management di NIST NICE riflette la stessa sequenza valuta-poi-autorizza su due work role — \"Security Control Assessor\" (SP-RSK-002) e \"Authorizing Official/Designating Representative\" (SP-RSK-001, il ruolo attorno a cui è stato originariamente costruito il CAP/CGRC) — non uno split parallelo, per questo il profilo non ha track.",
+          deliverable: "Cybersecurity Risk Remediation Action Plan",
+          certs: ["ISC2 CGRC"],
+          outcome: "Sai valutare in autonomia l'efficacia dei controlli e costruire il quadro del rischio su cui i decision-maker si pronunciano davvero." },
+        { id: "manager", name: "Cyber Risk Manager", crest: "ISACA CRISC",
+          note: "Possiede dall'inizio alla fine la strategia di risk management di cybersecurity dell'organizzazione, tra governance, valutazione, risposta e reporting — il credential di enterprise risk dedicato di ISACA.",
+          practice: "Indicativo: il CRISC richiede 3 anni di esperienza lavorativa cumulativa su almeno 2 dei suoi 4 domini (Governance; IT Risk Assessment; Risk Response and Mitigation; Risk and Control Monitoring and Reporting), negli ultimi 10 anni. Fonte: isaca.org. La pagina ufficiale di mapping ECSF di CREST elenca una corrispondenza secondaria delle sue certificazioni offensive, di threat intelligence e di incident response di livello Certified anche su questo profilo, a riflettere che le decisioni di rischio senior si basano sulla stessa competenza tecnica usata altrove in questa app -- non usata come ente primario qui per evitare di triplicare certificazioni già usate.",
+          deliverable: "Cybersecurity Risk Management Strategy",
+          certs: ["ISACA CRISC"],
+          outcome: "Sai possedere dall'inizio alla fine la strategia di rischio di cybersecurity di un'organizzazione e garantire che i suoi rischi restino a un livello che la leadership ha davvero approvato." }
+      ]
     }
   };
 
