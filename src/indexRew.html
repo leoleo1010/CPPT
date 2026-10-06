@@ -2058,6 +2058,88 @@
           certs: ["ACM Distinguished Member", "ACM Fellow"],
           outcome: "You can set a multi-year research agenda, secure its budget, and have the organisation's contributions recognised by the wider scientific/security community." }
       ]
+    },
+    forensics: {
+      certBody: { name: "EC-Council, GIAC, IACIS", source: "eccouncil.org, giac.org, iacis.com", mixed: true },
+      // Tier skeleton only -- labs are added in a separate pass, one per
+      // tier, same as every other role in this app.
+      // Not an ECSF distinction: ECSF lists Digital Forensics Analyst /
+      // Cybersecurity & Forensic Specialist / Computer Forensics Consultant
+      // as pure alternative titles for the same profile, with identical
+      // tasks/skills/knowledge. The 3-level progression here is our own
+      // structure, chosen only after checking whether a real seniority
+      // ladder (and a real role split) exists for this profile:
+      //   - NIST NICE splits this profile into two work roles, along an
+      //     axis that matches this profile's own two "specialist" alt-
+      //     titles: "Digital Forensics" (PD-WRL-002, Protection and Defense
+      //     category -- forensics in support of incident response and
+      //     vulnerability mitigation, matching "Cybersecurity & Forensic
+      //     Specialist") and "Digital Evidence Analysis" (IN-WRL-002,
+      //     Investigation category -- controlled, documented, chain-of-
+      //     custody evidence handling, matching "Computer Forensics
+      //     Consultant"). This is why the tracks below exist, nested in the
+      //     middle tier.
+      //   - ENISA/ECSF itself still treats this as one flat profile with
+      //     e-CF competence levels, no internal sub-tiers or sub-roles.
+      //   - CREST's own ECSF mapping page was checked directly and, unlike
+      //     every other tiered profile in this app, explicitly does NOT
+      //     claim this profile at all: its Digital Forensics and Incident
+      //     Response (DFIR) scheme (CPIA/CRIA/CCIM) is stated to map only
+      //     to Incident Responder (primary) and Cybersecurity Risk Manager
+      //     (secondary). Reusing CPIA/CRIA/CCIM here anyway would just
+      //     duplicate the Incident Responder path's own certs, so CREST is
+      //     not used for this profile at all.
+      //   - (ISC)² also does not map any certification to this profile on
+      //     its own official ECSF coverage page (confirmed absent, same
+      //     page checked for the Researcher profile).
+      // Like educator/implementer/researcher, no single certifying body's
+      // own ladder spans all 3 levels -- another genuine MIX, this time of
+      // three forensics-specific exam bodies with no formal relationship
+      // between them, ordered by how rigorous each one's own assessment
+      // actually is:
+      //   - EC-Council CHFI: no formal prerequisite with official training,
+      //     otherwise 2 years of information-security experience to sit it
+      //     independently; a DoD 8570 baseline certification covering the
+      //     general forensics process rather than one OS or specialism.
+      //   - GIAC GCFE: no prerequisite either, but a harder, Windows-
+      //     artefact-specific proctored exam (registry, browser, file-
+      //     system analysis) -- a real step up in technical depth even
+      //     though neither credential requires prior experience on paper.
+      //   - IACIS CFCE: requires 72 hours of forensics training, then an
+      //     independent, notarised practical exercise plus a peer-reviewed
+      //     practical AND written exam (80% passing) -- the most rigorous
+      //     of the three, and the one most often cited as the de-facto
+      //     standard for expert-witness-quality work.
+      //   - GIAC GCFA (its own more advanced forensics/incident-response
+      //     credential) is deliberately NOT reused here -- it is already
+      //     this app's parallel cert for the Incident Responder profile's
+      //     top tier, and GCFE (examiner-focused, not IR-focused) is the
+      //     more precise fit for a pure digital-forensics profile anyway.
+      stages: [],
+      tiers: [
+        { id: "examiner", name: "Associate Forensic Examiner", crest: "EC-Council CHFI",
+          note: "Entry level: collects and preserves digital evidence under procedure, following a documented chain of custody — EC-Council's broad, widely-recognised forensics credential.",
+          practice: "Indicative: no formal prerequisite with official EC-Council training; otherwise 2 years of information-security experience to sit the exam independently. Source: eccouncil.org. CHFI is also a DoD 8570 baseline certification, covering the general forensics process rather than one operating system or investigative specialism.",
+          deliverable: "Electronic Evidence",
+          certs: ["EC-Council CHFI"],
+          outcome: "You can collect and preserve digital evidence correctly, following a documented chain of custody that will hold up later in the investigation." },
+        { id: "analyst", name: "Digital Forensics Analyst", crest: "GIAC GCFE", hasTracks: true,
+          note: "Independently examines and correlates digital evidence, usually on Windows systems, to build the technical findings behind a case — GIAC's hands-on forensic-examination credential.",
+          practice: "Indicative: no prerequisite, tested through a proctored exam on Windows forensic artefacts, browser and registry analysis. Source: giac.org. The two tracks below reflect NIST NICE's own split of this profile into two work roles: \"Digital Forensics\" (PD-WRL-002) and \"Digital Evidence Analysis\" (IN-WRL-002).",
+          deliverable: "Digital Forensics Analysis Results",
+          certs: ["GIAC GCFE"],
+          outcome: "You can independently examine a system's artefacts and build the technical findings that support a case, in either a security-operations or an evidentiary context." },
+        { id: "lead", name: "Lead Forensic Investigator", crest: "IACIS CFCE",
+          note: "Leads the investigation end to end and is trusted to present findings as an expert witness — IACIS's rigorous, peer-reviewed practical credential.",
+          practice: "Indicative: CFCE requires 72 hours of forensics training, then an independent, notarised practical exercise plus a peer-reviewed practical and written exam (80% passing). Source: iacis.com. CREST's own ECSF mapping page explicitly does not claim this profile at all — only Incident Responder (primary) and Risk Manager (secondary) — confirming a genuinely separate certifying lineage for digital forensics specifically.",
+          deliverable: "Digital Forensics Analysis Results",
+          certs: ["IACIS CFCE"],
+          outcome: "You can lead a digital forensics investigation end to end and be trusted to present and defend its findings as an expert witness." }
+      ],
+      tracks: [
+        { id: "security-operations-forensics", label: "Security Operations Forensics", note: "Forensics in support of incident response and vulnerability mitigation inside a SOC/CSIRT. Matches NIST NICE's \"Digital Forensics\" work role (PD-WRL-002)." },
+        { id: "evidentiary-investigation", label: "Evidentiary & Criminal Investigation", note: "Chain-of-custody, courtroom-ready evidence handling, typically working with law enforcement or legal counsel. Matches NIST NICE's \"Digital Evidence Analysis\" work role (IN-WRL-002)." }
+      ]
     }
   };
 
