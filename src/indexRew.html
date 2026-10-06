@@ -2193,8 +2193,9 @@
     },
     riskmanager: {
       certBody: { name: "PECB, ISC2, ISACA", source: "pecb.com, isc2.org, isaca.org", mixed: true },
-      // Tier skeleton only -- labs are added in a separate pass, one per
-      // tier, same as every other role in this app.
+      // One draft lab per tier -- a concept preview of what each tier's real
+      // exercise could look like, same depth as the previous roles' labs,
+      // not the final lab set for this role.
       // Not an ECSF distinction: ECSF lists Information Security Risk
       // Analyst / Cybersecurity Risk Assurance Consultant / Cybersecurity
       // Risk Assessor / Cybersecurity Impact Analyst / Cyber Risk Manager as
@@ -2238,7 +2239,56 @@
       //   - ISACA CRISC: 3 years across at least 2 of its 4 domains, within
       //     the last 10 years -- the broadest-scope, most strategic of the
       //     three.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-risk-register", tier: "analyst", title: "The Risk Register",
+          summary: "Build an asset inventory and score its risks using the ISO/IEC 27005 methodology for a newly-acquired substation network.",
+          scenario: "Bramwell Energy just acquired a regional substation network and has no formal risk register for it. As information security risk analyst, build the asset inventory, map it against a vulnerability scan of the control network, and score each risk using the ISO/IEC 27005 likelihood-times-impact methodology.",
+          taskIdx: [1, 2],
+          skillIdx: [0, 1],
+          knowledgeIdx: [0, 4],
+          flags: [
+            { question: "Which asset in the inventory scores the highest for likelihood times impact?", flag: "FLAG{HMI-WORKSTATION-HIGH-RISK}" },
+            { question: "What vulnerability class dominates the scan results for the substation network?", flag: "FLAG{UNPATCHED-FIRMWARE}" },
+            { question: "What risk level does your ISO/IEC 27005 scoring assign to the top asset?", flag: "FLAG{RISK-LEVEL-CRITICAL}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-authorization-package", tier: "assessor", title: "The Authorization Package",
+          summary: "Test a new VPN deployment's controls, score the residual risk, and write the authorization package recommending accept, mitigate or reject.",
+          scenario: "Bramwell Energy's new remote-access VPN for field technicians needs a go/no-go authorization decision before rollout. As cybersecurity risk assessor, test the deployed controls against the baseline, score the residual risk, and write the authorization package recommending accept, mitigate or reject to the business owner.",
+          taskIdx: [4, 5],
+          skillIdx: [2, 4],
+          knowledgeIdx: [5, 7, 6],
+          flags: [
+            { question: "Which control baseline requirement does the VPN configuration fail?", flag: "FLAG{MFA-NOT-ENFORCED}" },
+            { question: "What residual risk level remains after your recommended mitigations?", flag: "FLAG{RESIDUAL-RISK-MODERATE}" },
+            { question: "What authorization decision does your package recommend to the business owner?", flag: "FLAG{AUTHORIZE-WITH-CONDITIONS}" }
+          ],
+          difficulty: "Intermediate",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-risk-appetite-call", tier: "manager", title: "The Risk Appetite Call",
+          summary: "Decide the organisation's risk appetite and mitigation-vs-insurance strategy for a systemic risk, and get the board to sign off on it.",
+          scenario: "Bramwell Energy's cyber-insurance renewal is weeks away, and a newly discovered systemic risk affects every substation in the fleet. No clean lab for this one: you have the risk assessment, the remediation cost estimate, and the insurer's quote for covering the exposure instead. Decide the organisation's risk-acceptance threshold, weigh mitigation spend against transfer, and present the board with a strategy they can actually sign off on.",
+          taskIdx: [0, 6, 7],
+          skillIdx: [5, 3, 4],
+          knowledgeIdx: [2, 9, 1],
+          flags: [
+            "A risk-acceptance threshold the board can defend to regulators and the insurer alike",
+            "A mitigation-vs-transfer decision backed by the actual cost of each option, not just gut feel",
+            "A risk management cycle the board can see repeated next year, not just a one-off fix"
+          ],
+          difficulty: "Beginner",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "analyst", name: "Information Security Risk Analyst", crest: "PECB ISO 27005 RM",
           note: "Entry level: applies a recognised methodology to identify and evaluate cybersecurity risks — PECB's foundation-level credential based on ISO/IEC 27005 and ISO 31000.",

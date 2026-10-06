@@ -2209,8 +2209,10 @@
     },
     riskmanager: {
       certBody: { name: "PECB, ISC2, ISACA", source: "pecb.com, isc2.org, isaca.org", mixed: true },
-      // Solo scheletro dei tier -- i laboratori vengono aggiunti in un passo
-      // separato, uno per tier, come per ogni altro ruolo in questa app.
+      // Un laboratorio bozza per tier -- un'anteprima concettuale di come
+      // potrebbe essere l'esercizio reale di ciascun tier, con la stessa
+      // profondità dei laboratori dei ruoli precedenti, non il set finale
+      // di laboratori per questo ruolo.
       // Non è una distinzione ECSF: ECSF elenca Information Security Risk
       // Analyst / Cybersecurity Risk Assurance Consultant / Cybersecurity
       // Risk Assessor / Cybersecurity Impact Analyst / Cyber Risk Manager
@@ -2254,7 +2256,56 @@
       //     (o status di Associate of ISC2 mentre la si acquisisce).
       //   - ISACA CRISC: 3 anni su almeno 2 dei suoi 4 domini, negli ultimi
       //     10 anni -- il più ampio in scope e il più strategico dei tre.
-      stages: [],
+      stages: [
+        {
+          type: "lab",
+          id: "the-risk-register", tier: "analyst", title: "The Risk Register",
+          summary: "Costruisci un inventario degli asset e assegna un punteggio di rischio con la metodologia ISO/IEC 27005 per una rete di sottostazioni appena acquisita.",
+          scenario: "Bramwell Energy ha appena acquisito una rete regionale di sottostazioni e non ha un registro dei rischi formale per essa. Come information security risk analyst, costruisci l'inventario degli asset, mappalo contro una scansione delle vulnerabilità della rete di controllo, e assegna un punteggio a ciascun rischio usando la metodologia probabilità-per-impatto di ISO/IEC 27005.",
+          taskIdx: [1, 2],
+          skillIdx: [0, 1],
+          knowledgeIdx: [0, 4],
+          flags: [
+            { question: "Quale asset dell'inventario ottiene il punteggio più alto di probabilità per impatto?", flag: "FLAG{HMI-WORKSTATION-HIGH-RISK}" },
+            { question: "Quale classe di vulnerabilità domina i risultati della scansione sulla rete di sottostazioni?", flag: "FLAG{UNPATCHED-FIRMWARE}" },
+            { question: "Quale livello di rischio assegna la tua valutazione ISO/IEC 27005 all'asset più critico?", flag: "FLAG{RISK-LEVEL-CRITICAL}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h"
+        },
+        {
+          type: "lab",
+          id: "the-authorization-package", tier: "assessor", title: "The Authorization Package",
+          summary: "Testa i controlli di una nuova VPN, assegna un punteggio al rischio residuo, e scrivi il pacchetto di autorizzazione che raccomanda accettazione, mitigazione o rifiuto.",
+          scenario: "La nuova VPN ad accesso remoto per i tecnici sul campo di Bramwell Energy richiede una decisione di autorizzazione go/no-go prima del rollout. Come cybersecurity risk assessor, testa i controlli distribuiti contro la baseline, assegna un punteggio al rischio residuo, e scrivi il pacchetto di autorizzazione che raccomanda accettazione, mitigazione o rifiuto al business owner.",
+          taskIdx: [4, 5],
+          skillIdx: [2, 4],
+          knowledgeIdx: [5, 7, 6],
+          flags: [
+            { question: "Quale requisito della baseline di controllo non soddisfa la configurazione della VPN?", flag: "FLAG{MFA-NOT-ENFORCED}" },
+            { question: "Quale livello di rischio residuo rimane dopo le mitigazioni che raccomandi?", flag: "FLAG{RESIDUAL-RISK-MODERATE}" },
+            { question: "Quale decisione di autorizzazione raccomanda il tuo pacchetto al business owner?", flag: "FLAG{AUTHORIZE-WITH-CONDITIONS}" }
+          ],
+          difficulty: "Intermedio",
+          duration: "~2.5h"
+        },
+        {
+          type: "tabletop",
+          id: "the-risk-appetite-call", tier: "manager", title: "The Risk Appetite Call",
+          summary: "Decidi l'appetito al rischio dell'organizzazione e la strategia mitigazione-vs-assicurazione per un rischio sistemico, e fattela approvare dal board.",
+          scenario: "Il rinnovo della cyber-insurance di Bramwell Energy è a poche settimane, e un rischio sistemico appena scoperto riguarda ogni sottostazione della flotta. Nessun laboratorio pulito questa volta: hai la valutazione del rischio, la stima dei costi di remediation, e il preventivo dell'assicuratore per coprire l'esposizione invece di remediarla. Decidi la soglia di accettazione del rischio dell'organizzazione, pesa la spesa di mitigazione contro il trasferimento, e presenta al board una strategia che possa davvero approvare.",
+          taskIdx: [0, 6, 7],
+          skillIdx: [5, 3, 4],
+          knowledgeIdx: [2, 9, 1],
+          flags: [
+            "Una soglia di accettazione del rischio che il board possa difendere sia davanti ai regolatori che all'assicuratore",
+            "Una decisione mitigazione-vs-trasferimento basata sul costo reale di ciascuna opzione, non solo sull'istinto",
+            "Un ciclo di risk management che il board possa vedersi ripetere l'anno prossimo, non solo una correzione isolata"
+          ],
+          difficulty: "Base",
+          duration: "~1h"
+        }
+      ],
       tiers: [
         { id: "analyst", name: "Information Security Risk Analyst", crest: "PECB ISO 27005 RM",
           note: "Livello base: applica una metodologia riconosciuta per identificare e valutare i rischi di cybersecurity — il credential base di PECB basato su ISO/IEC 27005 e ISO 31000.",
