@@ -20,6 +20,7 @@
     --accent-red:#ef6470;    --glow-red: rgba(239,100,112,.5);
     --accent-amber:#f0ab4d;  --glow-amber: rgba(240,171,77,.5);
     --accent-green:#57c495;  --glow-green: rgba(87,196,149,.5);
+    --accent-violet:#9b7ff0; --glow-violet: rgba(155,127,240,.5);
     --font-mono:'IBM Plex Mono','SFMono-Regular',Consolas,monospace;
     --font-sans:'IBM Plex Sans','Segoe UI',system-ui,sans-serif;
   }
@@ -32,7 +33,7 @@
     -webkit-font-smoothing:antialiased;
   }
   #app{height:100%;display:flex;flex-direction:column;}
-  #app[hidden],#lab-view[hidden]{display:none;}
+  #app[hidden],#lab-view[hidden],#custom-view[hidden]{display:none;}
 
   header.topbar{
     position:relative;
@@ -473,6 +474,12 @@
     background:var(--panel);border:1px solid var(--line-soft);
     border-radius:100px;padding:3px 9px;
   }
+  .tag-deliverable{
+    font-family:var(--font-mono);
+    font-size:10.5px;color:var(--ink-muted);
+    background:var(--panel);border:1px dashed var(--line-soft);
+    border-radius:100px;padding:3px 9px;
+  }
   .flag-list{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:6px;}
   .flag-item{
     display:flex;gap:8px;align-items:baseline;
@@ -515,7 +522,7 @@
   .mastery-stat b{display:block;font-size:20px;color:var(--ink);}
   .mastery-stat span{font-family:var(--font-mono);font-size:10px;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.06em;}
 
-  #lab-view{height:100%;display:flex;flex-direction:column;}
+  #lab-view,#custom-view{height:100%;display:flex;flex-direction:column;}
   .lab-topbar{
     flex:0 0 auto;
     display:flex;align-items:center;gap:16px;flex-wrap:wrap;
@@ -689,10 +696,174 @@
     .node-circle,aside.panel,.scrim{transition:none;}
     .node{animation:none;opacity:1;}
   }
+
+  .custom-entry-btn{
+    position:absolute;
+    top:calc(env(safe-area-inset-top,0px) + 16px);
+    left:clamp(16px,4vw,32px);
+    font-family:var(--font-mono);
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    white-space:nowrap;
+    padding:3px 9px;
+    border-radius:100px;
+    border:1px solid var(--line-soft);
+    color:var(--ink-faint);
+    background:none;
+    cursor:pointer;
+    transition:color .15s,border-color .15s;
+  }
+  .custom-entry-btn:hover{color:var(--ink);border-color:var(--accent-violet);}
+  .custom-entry-btn:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+
+  .pc-section{margin-bottom:28px;}
+  .pc-text-input{
+    width:100%;
+    font-family:var(--font-sans);font-size:14px;color:var(--ink);
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:8px;
+    padding:9px 12px;
+  }
+  .pc-text-input:focus-visible{outline:2px solid var(--focus);outline-offset:1px;}
+  .pc-filter{
+    width:100%;margin-bottom:8px;
+    font-family:var(--font-sans);font-size:12.5px;color:var(--ink-muted);
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;
+    padding:7px 10px;
+  }
+  .pc-filter:focus-visible{outline:2px solid var(--focus);outline-offset:1px;}
+  .pc-pool-grid{
+    max-height:220px;overflow-y:auto;
+    display:flex;flex-direction:column;gap:2px;
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:8px 10px;
+  }
+  .pc-pool-item{display:flex;align-items:flex-start;gap:8px;padding:5px 2px;cursor:pointer;border-radius:6px;}
+  .pc-pool-item:hover{background:var(--panel);}
+  .pc-pool-item input{margin-top:3px;accent-color:var(--accent-violet);flex:0 0 auto;}
+  .pc-pool-item span{font-size:12.5px;line-height:1.4;color:var(--ink-muted);}
+  .pc-pool-item input:checked ~ span{color:var(--ink);}
+  .pc-pool-item.pc-hidden{display:none;}
+  .pc-pool-count{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);margin:6px 0 0;}
+
+  .pc-competence-grid{
+    max-height:260px;overflow-y:auto;
+    display:flex;flex-direction:column;gap:4px;
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:8px 10px;
+  }
+  .pc-competence-row{display:flex;align-items:center;gap:8px;padding:5px 2px;border-radius:6px;}
+  .pc-competence-row:hover{background:var(--panel);}
+  .pc-competence-row input[type=checkbox]{accent-color:var(--accent-violet);flex:0 0 auto;}
+  .pc-competence-code{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);flex:0 0 34px;}
+  .pc-competence-name{flex:1 1 auto;font-size:12.5px;color:var(--ink-muted);}
+  .pc-competence-row input:checked ~ .pc-competence-name{color:var(--ink);}
+  .pc-level-select{
+    flex:0 0 auto;
+    font-family:var(--font-mono);font-size:11.5px;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:6px;
+    padding:3px 6px;
+  }
+  .pc-level-select:disabled{opacity:.4;}
+  .pc-hidden{display:none;}
+
+  .pc-seniority-row{display:flex;flex-wrap:wrap;gap:6px;}
+  .pc-seniority-pill{
+    font-family:var(--font-sans);font-size:12px;font-weight:600;
+    color:var(--ink-muted);background:var(--panel-2);
+    border:1px solid var(--line-soft);border-radius:100px;
+    padding:6px 14px;cursor:pointer;
+  }
+  .pc-seniority-pill:hover{color:var(--ink);}
+  .pc-seniority-pill.active{color:var(--bg);background:var(--accent-violet);border-color:var(--accent-violet);}
+  .pc-seniority-pill:focus-visible{outline:2px solid var(--focus);outline-offset:2px;}
+
+  .pc-apikey-box{
+    display:flex;gap:8px;align-items:center;flex-wrap:wrap;
+    background:var(--panel-2);border:1px dashed var(--line-soft);border-radius:10px;
+    padding:10px 12px;margin-bottom:14px;font-size:12px;color:var(--ink-muted);
+  }
+  .pc-apikey-input{
+    flex:1 1 220px;min-width:0;
+    font-family:var(--font-mono);font-size:12.5px;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;
+    padding:7px 10px;
+  }
+  .pc-apikey-btn,.pc-capability-match-btn,.pc-add-capability-btn{
+    font-family:var(--font-sans);font-size:12px;font-weight:700;
+    color:var(--bg);background:var(--accent-violet);
+    border:none;border-radius:100px;padding:7px 14px;
+    cursor:pointer;white-space:nowrap;
+  }
+  .pc-apikey-btn:hover,.pc-capability-match-btn:hover,.pc-add-capability-btn:hover{filter:brightness(1.1);}
+  .pc-apikey-btn:disabled,.pc-capability-match-btn:disabled{opacity:.5;cursor:default;}
+  .pc-apikey-clear-btn{
+    font-family:var(--font-sans);font-size:12px;font-weight:600;
+    color:var(--ink-muted);background:none;
+    border:1px solid var(--line-soft);border-radius:100px;padding:6px 13px;
+    cursor:pointer;
+  }
+  .pc-apikey-clear-btn:hover{color:var(--ink);border-color:var(--accent-red);}
+
+  .pc-capability-list{display:flex;flex-direction:column;gap:10px;margin-bottom:12px;}
+  .pc-capability-card{
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:12px 14px;
+  }
+  .pc-capability-row{display:flex;gap:8px;align-items:flex-start;}
+  .pc-capability-input{
+    flex:1 1 auto;min-width:0;
+    font-family:var(--font-sans);font-size:13px;color:var(--ink);
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:8px;
+    padding:8px 10px;
+  }
+  .pc-capability-remove{
+    flex:0 0 auto;
+    font-family:var(--font-sans);font-size:13px;
+    color:var(--ink-faint);background:none;border:none;cursor:pointer;padding:6px;
+  }
+  .pc-capability-remove:hover{color:var(--accent-red);}
+  .pc-capability-result{margin-top:10px;font-size:12px;line-height:1.5;color:var(--ink-muted);}
+  .pc-capability-result b{color:var(--ink);}
+  .pc-capability-match{
+    display:inline-flex;align-items:center;gap:6px;
+    font-size:11.5px;
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:100px;
+    padding:3px 9px;margin:3px 4px 0 0;
+  }
+  .pc-capability-match b{color:var(--accent-violet);}
+  .pc-capability-error{color:var(--accent-red);font-size:12px;margin-top:8px;}
+  .pc-capability-pending{color:var(--ink-faint);font-size:12px;margin-top:8px;font-style:italic;}
+
+  .pc-match-list{display:flex;flex-direction:column;gap:10px;}
+  .pc-match-item{
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:12px 14px;
+  }
+  .pc-match-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:8px;}
+  .pc-match-name{font-size:14px;font-weight:700;color:var(--ink);}
+  .pc-match-percent{font-family:var(--font-mono);font-size:16px;font-weight:700;color:var(--accent-violet);}
+  .pc-match-bar-track{height:6px;border-radius:100px;background:var(--panel);overflow:hidden;}
+  .pc-match-bar-fill{height:100%;background:var(--accent-violet);border-radius:100px;}
+  .pc-match-tier{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin-top:6px;}
+
+  .pc-path-list{display:flex;flex-direction:column;gap:10px;}
+  .pc-path-item{
+    display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;
+    padding:12px 14px;
+  }
+  .pc-path-info{flex:1 1 auto;min-width:0;}
+  .pc-path-title{font-size:13.5px;font-weight:700;color:var(--ink);margin-bottom:3px;}
+  .pc-path-sub{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);}
+  .pc-path-sub .pc-via-capability{color:var(--accent-violet);}
+  .pc-empty-note{color:var(--ink-faint);font-size:12.5px;font-style:italic;}
+  .pc-unavailable{text-align:center;padding:48px 16px;color:var(--ink-muted);font-size:13px;line-height:1.6;}
 </style>
 
 <div id="app">
   <header class="topbar">
+    <button class="custom-entry-btn" id="custom-entry-btn" type="button">+ Profession Custom</button>
     <span class="count-badge">12 roles</span>
     <div class="eyebrow">ENISA &middot; European Cybersecurity Skills Framework</div>
     <div class="title-row">
@@ -735,6 +906,17 @@
   <main class="lab-main" id="lab-main"></main>
 </div>
 
+<div id="custom-view" hidden>
+  <header class="lab-topbar">
+    <button class="lab-back" id="custom-back" type="button">&larr; Back to map</button>
+    <div class="lab-topbar-meta">
+      <span class="lab-topbar-title">Profession Custom</span>
+    </div>
+  </header>
+  <main class="lab-main" id="custom-main"></main>
+</div>
+
+<script src="professionCustom.js"></script>
 <script>
 (function(){
   "use strict";
@@ -2609,6 +2791,10 @@
   var labBadge = document.getElementById('lab-badge');
   var labTopbarTitle = document.getElementById('lab-topbar-title');
   var labMain = document.getElementById('lab-main');
+  var customView = document.getElementById('custom-view');
+  var customBack = document.getElementById('custom-back');
+  var customMain = document.getElementById('custom-main');
+  var customEntryBtn = document.getElementById('custom-entry-btn');
   var lastTrigger = null;
   var currentRole = null;
   var currentTab = 'profile';
@@ -2697,7 +2883,7 @@
         out += '<div class="path-stage"><div class="mastery-card">';
         out += '<div class="stage-title">Tier complete &mdash; ' + esc(tier.name) + '</div>';
         out += '<p class="stage-scenario">' + esc(tier.outcome) + '</p>';
-        out += '<div class="stage-sub">Exit deliverable</div><div class="stage-tags"><span class="tag-skill">' + esc(tier.deliverable) + '</span></div>';
+        out += '<div class="stage-sub">Exit deliverable</div><div class="stage-tags"><span class="tag-deliverable">' + esc(tier.deliverable) + '</span></div>';
         out += '<div class="stage-sub">Prepares you for the certification:</div><div class="stage-tags">' + tier.certs.map(function(c){ return '<span class="tag-knowledge">' + esc(c) + '</span>'; }).join('') + '</div>';
         var tierLabs = data.stages.filter(function(st){ return st.tier === tier.id; }).length;
         out += '<div style="text-align:right;margin-top:18px"><button type="button" class="start-lab-btn capstone-btn" data-tier="' + tier.id + '">Start the final exercise</button></div>';
@@ -2868,12 +3054,24 @@
 
   function openLab(role, stageIdx){
     renderLabView(role, stageIdx);
+    customView.hidden = true;
     appEl.hidden = true;
     labView.hidden = false;
     labBack.focus();
   }
   function closeLab(){
     labView.hidden = true;
+    appEl.hidden = false;
+  }
+
+  function openCustomView(){
+    renderCustomView();
+    appEl.hidden = true;
+    customView.hidden = false;
+    customBack.focus();
+  }
+  function closeCustomView(){
+    customView.hidden = true;
     appEl.hidden = false;
   }
 
@@ -2922,6 +3120,8 @@
   tabProfile.addEventListener('click', function(){ setTab('profile'); });
   tabPath.addEventListener('click', function(){ setTab('path'); });
   labBack.addEventListener('click', closeLab);
+  customEntryBtn.addEventListener('click', openCustomView);
+  customBack.addEventListener('click', closeCustomView);
 
   function submitChallenge(card){
     if (!currentLabStage || card.classList.contains('solved')) return;
@@ -2957,9 +3157,371 @@
     submitChallenge(input.closest('.challenge-card'));
   });
 
+  // ---------- Profession Custom ----------
+  var PC_AVAILABLE = (typeof pcBuildPools === 'function');
+  var pcPools = PC_AVAILABLE ? pcBuildPools(ROLES, PATHS) : null;
+  var PC_SENIORITY_LABELS = ['Entry', 'Associate', 'Senior', 'Principal'];
+  var currentCustomProfession = PC_AVAILABLE ? pcCreateProfession('') : null;
+  var pcFilterQuery = { tasks: '', skills: '', knowledge: '', competences: '' };
+
+  if (!PC_AVAILABLE){
+    customEntryBtn.disabled = true;
+    customEntryBtn.title = 'Profession Custom is unavailable — professionCustom.js failed to load.';
+  }
+
+  function pcComputeAll(profession){
+    var prelim = pcMergeConcreteCapabilityMatches(profession, pcPools, PATHS, []);
+    var effective = {
+      name: profession.name,
+      selectedTaskIds: profession.selectedTaskIds,
+      selectedSkillIds: profession.selectedSkillIds.concat(prelim.extraSelectedSkillIds.filter(function(id){
+        return profession.selectedSkillIds.indexOf(id) === -1;
+      })),
+      selectedKnowledgeIds: profession.selectedKnowledgeIds.concat(prelim.extraSelectedKnowledgeIds.filter(function(id){
+        return profession.selectedKnowledgeIds.indexOf(id) === -1;
+      })),
+      selectedCompetences: profession.selectedCompetences,
+      seniorityOrdinal: profession.seniorityOrdinal,
+      concreteCapabilities: profession.concreteCapabilities
+    };
+    var matches = pcMatchAll(effective, ROLES, PATHS, pcPools);
+    var affinityPath = pcGenerateLearningPath(matches, PATHS, PC_DEFAULT_TOP_MATCHES);
+    var finalMerge = pcMergeConcreteCapabilityMatches(profession, pcPools, PATHS, affinityPath);
+    return { matches: matches, path: affinityPath.concat(finalMerge.extraPathEntries) };
+  }
+
+  function pcRenderPoolChecklist(poolItems, selectedIds, category, label, hint){
+    var query = pcFilterQuery[category] || '';
+    var html = '<section class="lab-section pc-section">' +
+      '<h2>' + esc(label) + '</h2>' +
+      (hint ? '<p class="lab-section-hint">' + esc(hint) + '</p>' : '') +
+      '<input type="text" class="pc-filter" data-pool="' + category + '" placeholder="Filter ' + esc(label.toLowerCase()) + '&hellip;" value="' + esc(query) + '">' +
+      '<div class="pc-pool-grid" data-pool="' + category + '">' +
+      poolItems.map(function(item){
+        var checked = selectedIds.indexOf(item.id) !== -1 ? ' checked' : '';
+        var text = item.text.toLowerCase();
+        var hidden = query && text.indexOf(query) === -1 ? ' pc-hidden' : '';
+        return '<label class="pc-pool-item' + hidden + '" data-text="' + esc(text) + '">' +
+          '<input type="checkbox" data-category="' + category + '" data-id="' + item.id + '"' + checked + '>' +
+          '<span>' + esc(item.text) + '</span></label>';
+      }).join('') +
+      '</div>' +
+      '<p class="pc-pool-count">' + selectedIds.length + ' selected of ' + poolItems.length + '</p>' +
+      '</section>';
+    return html;
+  }
+
+  function pcRenderCompetenceSelector(competencePool, selectedCompetences){
+    var query = pcFilterQuery.competences || '';
+    var byCode = {};
+    selectedCompetences.forEach(function(c){ byCode[c.code] = c.targetLevel; });
+    var html = '<section class="lab-section pc-section">' +
+      '<h2>e-CF Competences</h2>' +
+      '<p class="lab-section-hint">Pick the competences this profession relies on, and the proficiency level (1-5) it operates at.</p>' +
+      '<input type="text" class="pc-filter" data-pool="competences" placeholder="Filter competences&hellip;" value="' + esc(query) + '">' +
+      '<div class="pc-competence-grid" data-pool="competences">' +
+      competencePool.map(function(item){
+        var checked = byCode.hasOwnProperty(item.code);
+        var level = checked ? byCode[item.code] : 3;
+        var options = [1,2,3,4,5].map(function(l){
+          return '<option value="' + l + '"' + (l === level ? ' selected' : '') + '>' + l + '</option>';
+        }).join('');
+        var text = (item.code + ' ' + item.name).toLowerCase();
+        var hidden = query && text.indexOf(query) === -1 ? ' pc-hidden' : '';
+        return '<label class="pc-competence-row' + hidden + '" data-text="' + esc(text) + '">' +
+          '<input type="checkbox" data-competence-code="' + esc(item.code) + '"' + (checked ? ' checked' : '') + '>' +
+          '<span class="pc-competence-code">' + esc(item.code) + '</span>' +
+          '<span class="pc-competence-name">' + esc(item.name) + '</span>' +
+          '<select class="pc-level-select" data-competence-level="' + esc(item.code) + '"' + (checked ? '' : ' disabled') + '>' + options + '</select>' +
+          '</label>';
+      }).join('') +
+      '</div>' +
+      '<p class="pc-pool-count">' + selectedCompetences.length + ' selected of ' + competencePool.length + '</p>' +
+      '</section>';
+    return html;
+  }
+
+  function pcRenderSeniorityControl(selectedOrdinal){
+    var html = '<section class="lab-section pc-section">' +
+      '<h2>Seniority</h2>' +
+      '<p class="lab-section-hint">Role-agnostic position in the seniority ladder &mdash; used to pick the best-fitting tier within each matching role.</p>' +
+      '<div class="pc-seniority-row">' +
+      PC_SENIORITY_LABELS.map(function(label, i){
+        var ordinal = i + 1;
+        var active = ordinal === selectedOrdinal ? ' active' : '';
+        return '<button type="button" class="pc-seniority-pill' + active + '" data-seniority="' + ordinal + '">' + ordinal + '. ' + esc(label) + '</button>';
+      }).join('') +
+      '</div></section>';
+    return html;
+  }
+
+  function pcRenderApiKeyBox(){
+    var key = pcLoadApiKey();
+    if (key){
+      return '<div class="pc-apikey-box">' +
+        '<span>Anthropic API key configured (' + esc(key.slice(0,4)) + '&hellip;' + esc(key.slice(-4)) + ').</span>' +
+        '<button type="button" class="pc-apikey-clear-btn" id="pc-apikey-clear">Remove key</button>' +
+        '</div>';
+    }
+    return '<div class="pc-apikey-box">' +
+      '<input type="password" class="pc-apikey-input" id="pc-apikey-input" placeholder="sk-ant-...">' +
+      '<button type="button" class="pc-apikey-btn" id="pc-apikey-save">Save key</button>' +
+      '<span>Stored only in this browser&rsquo;s local storage &mdash; never sent anywhere except directly to Anthropic when you ask to match a capability.</span>' +
+      '</div>';
+  }
+
+  function pcRenderCapabilityList(capabilities, hasKey){
+    if (!capabilities.length){
+      return '<p class="pc-empty-note">No concrete capabilities added yet.</p>';
+    }
+    return '<div class="pc-capability-list">' + capabilities.map(function(cap, idx){
+      var resultHtml = '';
+      if (cap.apiPending){
+        resultHtml = '<p class="pc-capability-pending">Matching with Claude&hellip;</p>';
+      } else if (cap.apiError){
+        resultHtml = '<p class="pc-capability-error">' + esc(cap.apiError) + '</p>';
+      } else if (cap.apiResult){
+        var r = cap.apiResult;
+        var chips = [];
+        r.skills.forEach(function(m){
+          var item = pcPools.skills.filter(function(s){ return s.id === m.id; })[0];
+          if (item) chips.push('<span class="pc-capability-match"><b>' + m.percent + '%</b> ' + esc(item.text) + '</span>');
+        });
+        r.knowledge.forEach(function(m){
+          var item = pcPools.knowledge.filter(function(k){ return k.id === m.id; })[0];
+          if (item) chips.push('<span class="pc-capability-match"><b>' + m.percent + '%</b> ' + esc(item.text) + '</span>');
+        });
+        r.stages.forEach(function(m){
+          var item = pcPools.stages.filter(function(s){ return s.uid === m.id; })[0];
+          if (item) chips.push('<span class="pc-capability-match"><b>' + m.percent + '%</b> ' + esc(item.title) + '</span>');
+        });
+        resultHtml = chips.length ?
+          '<div class="pc-capability-result">' + chips.join('') + '</div>' :
+          '<p class="pc-capability-result">No confident match found.</p>';
+      }
+      var canMatch = hasKey && !cap.apiPending && cap.text.trim();
+      return '<div class="pc-capability-card" data-idx="' + idx + '">' +
+        '<div class="pc-capability-row">' +
+        '<input type="text" class="pc-capability-input" data-idx="' + idx + '" placeholder="e.g. Knows how to use Wireshark" value="' + esc(cap.text) + '">' +
+        '<button type="button" class="pc-capability-match-btn" data-idx="' + idx + '"' + (canMatch ? '' : ' disabled') + '>Match with Claude</button>' +
+        '<button type="button" class="pc-capability-remove" data-idx="' + idx + '" aria-label="Remove">&#10005;</button>' +
+        '</div>' + resultHtml +
+        '</div>';
+    }).join('') + '</div>';
+  }
+
+  function pcRenderRankedMatches(matches){
+    var top = matches.slice(0, 6).filter(function(m){ return m.percent > 0; });
+    if (!top.length){
+      return '<p class="pc-empty-note">Pick at least one task, skill, knowledge item or competence to see affinity with the 12 ECSF roles.</p>';
+    }
+    return '<div class="pc-match-list">' + top.map(function(m){
+      var tierLabel = m.bestTier ? m.bestTier.tierName + ' (Tier ' + (m.bestTier.tierIndex + 1) + ')' : '';
+      return '<div class="pc-match-item">' +
+        '<div class="pc-match-head"><span class="pc-match-name">' + esc(m.role.title) + '</span><span class="pc-match-percent">' + m.percent + '%</span></div>' +
+        '<div class="pc-match-bar-track"><div class="pc-match-bar-fill" style="width:' + m.percent + '%"></div></div>' +
+        (tierLabel ? '<div class="pc-match-tier">Best fit: ' + esc(tierLabel) + '</div>' : '') +
+        '</div>';
+    }).join('') + '</div>';
+  }
+
+  function pcRenderGeneratedPath(pathEntries){
+    var meaningful = pathEntries.filter(function(e){ return e.percent > 0; });
+    if (!meaningful.length){
+      return '<p class="pc-empty-note">No learning path generated yet.</p>';
+    }
+    return '<div class="pc-path-list">' + meaningful.map(function(entry){
+      var role = ROLES.filter(function(r){ return r.id === entry.roleId; })[0];
+      var sub = entry.source === 'concrete-capability' ?
+        '<span class="pc-via-capability">via &ldquo;' + esc(entry.fromCapabilityText) + '&rdquo;</span> &middot; ' + entry.percent + '% match' :
+        (entry.tierName ? esc(entry.tierName) + ' &middot; ' : '') + entry.percent + '% match';
+      return '<div class="pc-path-item">' +
+        '<div class="pc-path-info"><div class="pc-path-title">' + esc(role.title) + ' &mdash; ' + esc(entry.stage.title) + '</div>' +
+        '<div class="pc-path-sub">' + sub + '</div></div>' +
+        '<button type="button" class="start-lab-btn" data-role="' + role.id + '" data-stage="' + entry.stageIdx + '">' + (entry.stage.type === 'tabletop' ? 'Start the tabletop' : 'Start the lab') + '</button>' +
+        '</div>';
+    }).join('') + '</div>';
+  }
+
+  function renderCustomView(){
+    if (!PC_AVAILABLE){
+      customMain.innerHTML = '<div class="pc-unavailable"><strong>Profession Custom is unavailable.</strong><br>professionCustom.js failed to load, so this feature is disabled. The rest of CPPT is unaffected.</div>';
+      return;
+    }
+    customView.style.setProperty('--accent', 'var(--accent-violet)');
+    customView.style.setProperty('--glow', 'var(--glow-violet)');
+
+    var profession = currentCustomProfession;
+    var result = pcComputeAll(profession);
+    var hasKey = !!pcLoadApiKey();
+
+    var html = '<div class="lab-hero">' +
+      '<div class="lab-breadcrumb">Profession Custom</div>' +
+      '<input type="text" class="pc-text-input" id="pc-name-input" placeholder="Name this profession, e.g. Cloud Security Engineer" value="' + esc(profession.name) + '">' +
+      '</div>';
+
+    html += pcRenderPoolChecklist(pcPools.tasks, profession.selectedTaskIds, 'tasks', 'Tasks',
+      'Pick the tasks that best describe this role, drawn from the same ECSF pool used by all 12 profiles.');
+    html += pcRenderPoolChecklist(pcPools.skills, profession.selectedSkillIds, 'skills', 'Skills', null);
+    html += pcRenderPoolChecklist(pcPools.knowledge, profession.selectedKnowledgeIds, 'knowledge', 'Knowledge', null);
+    html += pcRenderCompetenceSelector(pcPools.competences, profession.selectedCompetences);
+    html += pcRenderSeniorityControl(profession.seniorityOrdinal);
+
+    html += '<section class="lab-section pc-section">' +
+      '<h2>Concrete capabilities</h2>' +
+      '<p class="lab-section-hint">Hands-on, tool/technique-level abilities (e.g. &ldquo;knows how to use Wireshark&rdquo;) that do not map cleanly onto a single skill or knowledge entry. Matched against the existing skill, knowledge and lab/tabletop pool using your own Anthropic API key.</p>' +
+      pcRenderApiKeyBox() +
+      pcRenderCapabilityList(profession.concreteCapabilities, hasKey) +
+      '<button type="button" class="pc-add-capability-btn" id="pc-add-capability-btn">+ Add a concrete capability</button>' +
+      '</section>';
+
+    html += '<section class="lab-section pc-section">' +
+      '<h2>Affinity with the 12 ECSF roles</h2>' +
+      pcRenderRankedMatches(result.matches) +
+      '</section>';
+
+    html += '<section class="lab-section pc-section">' +
+      '<h2>Generated learning path</h2>' +
+      '<p class="lab-section-hint">Chosen automatically from the best-matching tiers above.</p>' +
+      pcRenderGeneratedPath(result.path) +
+      '</section>';
+
+    customMain.innerHTML = html;
+    customMain.scrollTop = 0;
+  }
+
+  if (PC_AVAILABLE){
+    customMain.addEventListener('change', function(e){
+      var checkbox = e.target.closest('.pc-pool-item input[type=checkbox]');
+      if (checkbox){
+        var category = checkbox.getAttribute('data-category');
+        var id = parseInt(checkbox.getAttribute('data-id'), 10);
+        var key = category === 'tasks' ? 'selectedTaskIds' : category === 'skills' ? 'selectedSkillIds' : 'selectedKnowledgeIds';
+        var list = currentCustomProfession[key];
+        var pos = list.indexOf(id);
+        if (checkbox.checked && pos === -1) list.push(id);
+        else if (!checkbox.checked && pos !== -1) list.splice(pos, 1);
+        renderCustomView();
+        return;
+      }
+      var compCheckbox = e.target.closest('[data-competence-code]');
+      if (compCheckbox){
+        var code = compCheckbox.getAttribute('data-competence-code');
+        var comps = currentCustomProfession.selectedCompetences;
+        var idx = comps.map(function(c){ return c.code; }).indexOf(code);
+        if (compCheckbox.checked && idx === -1){
+          var levelSelect = compCheckbox.closest('.pc-competence-row').querySelector('[data-competence-level]');
+          comps.push({ code: code, targetLevel: levelSelect ? parseInt(levelSelect.value, 10) : 3 });
+        } else if (!compCheckbox.checked && idx !== -1){
+          comps.splice(idx, 1);
+        }
+        renderCustomView();
+        return;
+      }
+      var levelSelect = e.target.closest('[data-competence-level]');
+      if (levelSelect){
+        var lvlCode = levelSelect.getAttribute('data-competence-level');
+        var entry = currentCustomProfession.selectedCompetences.filter(function(c){ return c.code === lvlCode; })[0];
+        if (entry) entry.targetLevel = parseInt(levelSelect.value, 10);
+        renderCustomView();
+        return;
+      }
+    });
+
+    customMain.addEventListener('input', function(e){
+      if (e.target.id === 'pc-name-input'){
+        currentCustomProfession.name = e.target.value;
+        return;
+      }
+      if (e.target.classList.contains('pc-capability-input')){
+        var capIdx = parseInt(e.target.getAttribute('data-idx'), 10);
+        var capObj = currentCustomProfession.concreteCapabilities[capIdx];
+        if (capObj){
+          capObj.text = e.target.value;
+          var matchBtnLive = customMain.querySelector('.pc-capability-match-btn[data-idx="' + capIdx + '"]');
+          if (matchBtnLive) matchBtnLive.disabled = !(pcLoadApiKey() && !capObj.apiPending && capObj.text.trim());
+        }
+        return;
+      }
+      var filterInput = e.target.closest('.pc-filter');
+      if (filterInput){
+        var pool = filterInput.getAttribute('data-pool');
+        var query = filterInput.value.trim().toLowerCase();
+        pcFilterQuery[pool] = query;
+        var container = customMain.querySelector('.pc-pool-grid[data-pool="' + pool + '"], .pc-competence-grid[data-pool="' + pool + '"]');
+        if (!container) return;
+        Array.prototype.forEach.call(container.children, function(el){
+          var text = el.getAttribute('data-text') || '';
+          el.classList.toggle('pc-hidden', query.length > 0 && text.indexOf(query) === -1);
+        });
+      }
+    });
+
+    customMain.addEventListener('click', function(e){
+      var seniorityPill = e.target.closest('.pc-seniority-pill');
+      if (seniorityPill){
+        currentCustomProfession.seniorityOrdinal = parseInt(seniorityPill.getAttribute('data-seniority'), 10);
+        renderCustomView();
+        return;
+      }
+      if (e.target.id === 'pc-add-capability-btn'){
+        currentCustomProfession.concreteCapabilities.push({ text: '', apiResult: null, apiError: null, apiPending: false });
+        renderCustomView();
+        return;
+      }
+      var removeBtn = e.target.closest('.pc-capability-remove');
+      if (removeBtn){
+        currentCustomProfession.concreteCapabilities.splice(parseInt(removeBtn.getAttribute('data-idx'), 10), 1);
+        renderCustomView();
+        return;
+      }
+      if (e.target.id === 'pc-apikey-save'){
+        var keyInput = customMain.querySelector('#pc-apikey-input');
+        if (keyInput && keyInput.value.trim()){
+          pcSaveApiKey(keyInput.value.trim());
+          renderCustomView();
+        }
+        return;
+      }
+      if (e.target.id === 'pc-apikey-clear'){
+        pcClearApiKey();
+        renderCustomView();
+        return;
+      }
+      var matchBtn = e.target.closest('.pc-capability-match-btn');
+      if (matchBtn && !matchBtn.disabled){
+        var capIdx2 = parseInt(matchBtn.getAttribute('data-idx'), 10);
+        var cap = currentCustomProfession.concreteCapabilities[capIdx2];
+        var apiKey = pcLoadApiKey();
+        if (!cap || !apiKey) return;
+        cap.apiPending = true;
+        cap.apiError = null;
+        renderCustomView();
+        pcCallClaudeForCapability(apiKey, cap.text, pcPools).then(function(result){
+          cap.apiPending = false;
+          cap.apiResult = result;
+          renderCustomView();
+        }, function(err){
+          cap.apiPending = false;
+          cap.apiError = (err && err.message) || 'Something went wrong — try again.';
+          renderCustomView();
+        });
+        return;
+      }
+      var startBtn = e.target.closest('.start-lab-btn');
+      if (startBtn){
+        var roleId = startBtn.getAttribute('data-role');
+        var stageIdx = parseInt(startBtn.getAttribute('data-stage'), 10);
+        var role = ROLES.filter(function(r){ return r.id === roleId; })[0];
+        if (role){ closeCustomView(); openLab(role, stageIdx); }
+      }
+    });
+  }
+
   document.addEventListener('keydown', function(e){
     if (e.key !== 'Escape') return;
     if (!labView.hidden) closeLab();
+    else if (!customView.hidden) closeCustomView();
     else if (panel.classList.contains('open')) closePanel();
   });
 })();
