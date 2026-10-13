@@ -477,6 +477,354 @@ function pcCallClaudeForCapability(apiKey, capabilityText, pools) {
   });
 }
 
+// ---------- Claude-reasoned affinity (full-selection reasoning) ----------
+//
+// The deterministic pipeline above (pcMatchAll etc.) remains the always-available, zero-key
+// fallback. This second API call type lets Claude reason over the *whole* selection at once —
+// tasks + skills + knowledge + competences + seniority + free-text "concrete capabilities" —
+// and produce the role affinities directly, instead of pure local arithmetic. Mirrors the
+// pcBuildCapabilityRequestBody / pcCallClaudeForCapability / pcValidateCapabilityResponse
+// pattern exactly: same headers, same output_config.format json_schema approach, same
+// {kind,message} rejection vocabulary.
+
+function pcBuildAffinityRequestBody(customProfession, pools, ROLES, PATHS, lang) {
+  var taskById = pcPoolById(pools.tasks);
+  var skillById = pcPoolById(pools.skills);
+  var knowledgeById = pcPoolById(pools.knowledge);
+  var competenceByCode = {};
+  pools.competences.forEach(function (c) { competenceByCode[c.code] = c; });
+
+  var selectedTasks = (customProfession.selectedTaskIds || []).map(function (id) {
+    return taskById[id] && taskById[id].text;
+  }).filter(Boolean);
+  var selectedSkills = (customProfession.selectedSkillIds || []).map(function (id) {
+    return skillById[id] && skillById[id].text;
+  }).filter(Boolean);
+  var selectedKnowledge = (customProfession.selectedKnowledgeIds || []).map(function (id) {
+    return knowledgeById[id] && knowledgeById[id].text;
+  }).filter(Boolean);
+  var selectedCompetences = (customProfession.selectedCompetences || []).map(function (sel) {
+    var item = competenceByCode[sel.code];
+    return { code: sel.code, name: item ? item.name : sel.code, targetLevel: sel.targetLevel };
+  });
+  var concreteCapabilities = (customProfession.concreteCapabilities || [])
+    .map(function (c) { return (c.text || "").trim(); })
+    .filter(Boolean);
+
+  var roleIds = ROLES.map(function (r) { return r.id; });
+  var roleCatalog = ROLES.map(function (r) {
+    var pathData = PATHS[r.id];
+    return {
+      id: r.id,
+      title: r.title,
+      summary: r.summary,
+      tiers: (pathData && pathData.tiers || []).map(function (t) { return { id: t.id, name: t.name }; })
+    };
+  });
+
+  var langName = lang === "it" ? "Italian" : "English";
+
+  return {
+    model: PC_API_MODEL,
+    max_tokens: PC_API_MAX_TOKENS,
+    system: "You are a careful ECSF role-affinity reasoner for a cybersecurity training platform. " +
+      "You are given one custom profession's full selection — tasks, skills, knowledge, e-CF " +
+      "competences with target levels, a seniority ordinal (1 = most junior, " + PC_MAX_SENIORITY_ORDINAL +
+      " = most senior), and free-text 'concrete capabilities' the person described in their own words " +
+      "— plus a catalogue of the 12 real ECSF roles, each with its real career tiers. Reason step by " +
+      "step about how well this profession fits each role and which tier best matches its seniority, " +
+      "grounding every judgement only in the selection and catalogue given to you — never invent a role, " +
+      "tier, or fact not present in the input. Then return one affinity entry for every role id in the " +
+      "catalogue (use 0 for roles with no genuine fit) and a short (2-4 sentence) plain-language synthesis " +
+      "of your reasoning, written in " + langName + ".",
+    messages: [{
+      role: "user",
+      content: JSON.stringify({
+        profession: {
+          name: customProfession.name,
+          selectedTasks: selectedTasks,
+          selectedSkills: selectedSkills,
+          selectedKnowledge: selectedKnowledge,
+          selectedCompetences: selectedCompetences,
+          seniorityOrdinal: customProfession.seniorityOrdinal,
+          maxSeniorityOrdinal: PC_MAX_SENIORITY_ORDINAL,
+          concreteCapabilities: concreteCapabilities
+        },
+        roles: roleCatalog
+      })
+    }],
+    output_config: {
+      format: {
+        type: "json_schema",
+        schema: {
+          type: "object",
+          properties: {
+            reasoning: { type: "string" },
+            affinities: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  roleId: { type: "string", enum: roleIds },
+                  percent: { type: "integer" },
+                  tierId: { type: "string" }
+                },
+                required: ["roleId", "percent", "tierId"],
+                additionalProperties: false
+              }
+            }
+          },
+          required: ["reasoning", "affinities"],
+          additionalProperties: false
+        }
+      }
+    }
+  };
+}
+
+// Defense-in-depth beyond the request-time enum: rebuilds real id sets from the live
+// ROLES/PATHS, clamps percent into [0,100], and validates tierId against that specific role's
+// real tiers — falling back to the seniority-proportional tier (pcSeniorityTierIndex) rather
+// than trusting an unvalidated claim. Which *stage* to recommend within the chosen tier is
+// still always resolved locally via pcTierMatch's real task/skill/knowledge overlap — Claude
+// picks the role+tier, local math picks the specific lab, so a lab recommendation is never
+// invented by the model.
+function pcValidateAffinityResponse(parsed, customProfession, ROLES, PATHS, pools) {
+  var roleById = {};
+  ROLES.forEach(function (r) { roleById[r.id] = r; });
+
+  var reasoning = typeof parsed.reasoning === "string" ? parsed.reasoning.slice(0, 2000) : "";
+  var list = Array.isArray(parsed.affinities) ? parsed.affinities : [];
+  var seenRoleIds = {};
+  var matches = [];
+
+  list.forEach(function (entry) {
+    if (!entry || seenRoleIds[entry.roleId]) return;
+    var role = roleById[entry.roleId];
+    if (!role) return;
+    var pathData = PATHS[role.id];
+    if (!pathData || !pathData.tiers || !pathData.tiers.length) return;
+    seenRoleIds[entry.roleId] = true;
+
+    var percent = Math.max(0, Math.min(100, Math.round(Number(entry.percent) || 0)));
+    var tierIndex = -1;
+    for (var i = 0; i < pathData.tiers.length; i++) {
+      if (pathData.tiers[i].id === entry.tierId) { tierIndex = i; break; }
+    }
+    if (tierIndex === -1) tierIndex = pcSeniorityTierIndex(pathData.tiers.length, customProfession.seniorityOrdinal);
+    var tier = pathData.tiers[tierIndex];
+
+    var bestTier = pcTierMatch(customProfession, role, tier, tierIndex, pathData.tiers.length, pathData.stages || [], pools);
+    matches.push({ roleId: role.id, role: role, percent: percent, bestTier: bestTier, allTiers: [] });
+  });
+
+  matches.sort(function (a, b) { return b.percent - a.percent; });
+  return { reasoning: reasoning, matches: matches };
+}
+
+// Returns a Promise resolving to { reasoning, matches } (matches shaped identically to
+// pcMatchAll's output, so pcGenerateLearningPath works unchanged on either source), or
+// rejecting with { kind, message } — same kind vocabulary as pcCallClaudeForCapability.
+function pcCallClaudeForAffinity(apiKey, customProfession, pools, ROLES, PATHS, lang) {
+  if (!apiKey) {
+    return Promise.reject({ kind: "no-key", message: "No Anthropic API key configured." });
+  }
+  var requestBody = pcBuildAffinityRequestBody(customProfession, pools, ROLES, PATHS, lang);
+  return fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json().catch(function () { return null; }).then(function (data) {
+      if (!response.ok) {
+        var errType = data && data.error && data.error.type;
+        if (response.status === 401 || errType === "authentication_error") {
+          return Promise.reject({ kind: "invalid-key", message: "Your API key was rejected — check it and try again." });
+        }
+        if (response.status === 429 || response.status === 500 || response.status === 529) {
+          return Promise.reject({ kind: "retryable", message: "Temporary failure reaching the Anthropic API — try again." });
+        }
+        return Promise.reject({ kind: "http-error", message: "Request was rejected (" + response.status + ")." });
+      }
+      if (!data) {
+        return Promise.reject({ kind: "malformed", message: "Unexpected response format — try again." });
+      }
+      if (data.stop_reason === "refusal") {
+        return Promise.reject({ kind: "refusal", message: "The request was declined by Anthropic's safety system." });
+      }
+      if (data.stop_reason === "max_tokens") {
+        return Promise.reject({ kind: "truncated", message: "The response was cut off — try a smaller selection." });
+      }
+      var text = data.content && data.content[0] && data.content[0].text;
+      var parsed;
+      try { parsed = JSON.parse(text); }
+      catch (e) { return Promise.reject({ kind: "malformed", message: "Unexpected response format — try again." }); }
+      return pcValidateAffinityResponse(parsed, customProfession, ROLES, PATHS, pools);
+    });
+  }, function () {
+    return Promise.reject({ kind: "network", message: "Could not reach the Anthropic API — check your connection, or that this browser allows direct API calls." });
+  });
+}
+
+// ---------- Claude-reasoned sequential path (tier ladder for a custom profession) ----------
+//
+// pcGenerateLearningPath / pcMergeConcreteCapabilityMatches already decide WHICH real labs are
+// relevant (grounded local math, unchanged). This reasons about ORDER: grouping that fixed,
+// already-grounded candidate set into a foundational-to-advanced progression, mirroring how
+// the real roles organise their own labs into career tiers (PATHS[roleId].tiers) — but
+// synthesized for this one custom profession. Claude can only reorder/group the given
+// candidates; it can never add, drop, rename or invent a lab.
+
+function pcPathEntryKey(entry) { return entry.roleId + "::" + entry.stageIdx; }
+
+function pcBuildSequenceRequestBody(customProfession, pathEntries, ROLES, lang) {
+  var roleById = {};
+  ROLES.forEach(function (r) { roleById[r.id] = r; });
+
+  var candidates = pathEntries.map(function (e) {
+    var role = roleById[e.roleId];
+    return {
+      key: pcPathEntryKey(e),
+      role: role ? role.title : e.roleId,
+      lab: e.stage.title,
+      relevance: e.percent,
+      via: e.fromCapabilityText || null
+    };
+  });
+  var keys = candidates.map(function (c) { return c.key; });
+  var langName = lang === "it" ? "Italian" : "English";
+
+  return {
+    model: PC_API_MODEL,
+    max_tokens: PC_API_MAX_TOKENS,
+    system: "You sequence a fixed set of real cybersecurity training labs into a foundational-to-advanced " +
+      "learning progression for one custom profession, mirroring how this platform's own 12 standard roles " +
+      "organise their labs into career tiers. You are given the exact labs already judged relevant to this " +
+      "profession (role, lab title, relevance score, and — if present — which concrete capability surfaced " +
+      "it). Group them into 2 to 4 sequential tiers, earliest/most foundational first. Every given lab must " +
+      "appear in exactly one tier; never add, remove, rename or invent a lab. Give each tier a short " +
+      "descriptive name and a one-sentence rationale, written in " + langName + ".",
+    messages: [{
+      role: "user",
+      content: JSON.stringify({
+        profession: { name: customProfession.name, seniorityOrdinal: customProfession.seniorityOrdinal },
+        candidates: candidates
+      })
+    }],
+    output_config: {
+      format: {
+        type: "json_schema",
+        schema: {
+          type: "object",
+          properties: {
+            tiers: {
+              type: "array",
+              items: {
+                type: "object",
+                properties: {
+                  name: { type: "string" },
+                  note: { type: "string" },
+                  stageKeys: { type: "array", items: { type: "string", enum: keys } }
+                },
+                required: ["name", "note", "stageKeys"],
+                additionalProperties: false
+              }
+            }
+          },
+          required: ["tiers"],
+          additionalProperties: false
+        }
+      }
+    }
+  };
+}
+
+// Defense-in-depth beyond the request-time enum: rebuilds the candidate set from the live
+// pathEntries, drops any key that doesn't exist or was already used by an earlier tier (no
+// lab appears twice), and appends any candidate Claude silently dropped to one trailing tier
+// so nothing requested is ever lost.
+function pcValidateSequenceResponse(parsed, pathEntries) {
+  var byKey = {};
+  pathEntries.forEach(function (e) { byKey[pcPathEntryKey(e)] = e; });
+  var seen = {};
+  var tiers = [];
+
+  var rawTiers = Array.isArray(parsed.tiers) ? parsed.tiers : [];
+  rawTiers.forEach(function (t) {
+    var entries = [];
+    (Array.isArray(t.stageKeys) ? t.stageKeys : []).forEach(function (k) {
+      if (seen[k] || !byKey[k]) return;
+      seen[k] = true;
+      entries.push(byKey[k]);
+    });
+    if (entries.length) {
+      tiers.push({
+        name: typeof t.name === "string" ? t.name.slice(0, 120) : "",
+        note: typeof t.note === "string" ? t.note.slice(0, 400) : "",
+        entries: entries
+      });
+    }
+  });
+
+  var leftovers = pathEntries.filter(function (e) { return !seen[pcPathEntryKey(e)]; });
+  if (leftovers.length) {
+    tiers.push({ name: "", note: "", entries: leftovers });
+  }
+
+  return { tiers: tiers };
+}
+
+function pcCallClaudeForSequence(apiKey, customProfession, pathEntries, ROLES, lang) {
+  if (!apiKey) {
+    return Promise.reject({ kind: "no-key", message: "No Anthropic API key configured." });
+  }
+  var requestBody = pcBuildSequenceRequestBody(customProfession, pathEntries, ROLES, lang);
+  return fetch("https://api.anthropic.com/v1/messages", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "x-api-key": apiKey,
+      "anthropic-version": "2023-06-01",
+      "anthropic-dangerous-direct-browser-access": "true"
+    },
+    body: JSON.stringify(requestBody)
+  }).then(function (response) {
+    return response.json().catch(function () { return null; }).then(function (data) {
+      if (!response.ok) {
+        var errType = data && data.error && data.error.type;
+        if (response.status === 401 || errType === "authentication_error") {
+          return Promise.reject({ kind: "invalid-key", message: "Your API key was rejected — check it and try again." });
+        }
+        if (response.status === 429 || response.status === 500 || response.status === 529) {
+          return Promise.reject({ kind: "retryable", message: "Temporary failure reaching the Anthropic API — try again." });
+        }
+        return Promise.reject({ kind: "http-error", message: "Request was rejected (" + response.status + ")." });
+      }
+      if (!data) {
+        return Promise.reject({ kind: "malformed", message: "Unexpected response format — try again." });
+      }
+      if (data.stop_reason === "refusal") {
+        return Promise.reject({ kind: "refusal", message: "The request was declined by Anthropic's safety system." });
+      }
+      if (data.stop_reason === "max_tokens") {
+        return Promise.reject({ kind: "truncated", message: "The response was cut off — try again." });
+      }
+      var text = data.content && data.content[0] && data.content[0].text;
+      var parsed;
+      try { parsed = JSON.parse(text); }
+      catch (e) { return Promise.reject({ kind: "malformed", message: "Unexpected response format — try again." }); }
+      return pcValidateSequenceResponse(parsed, pathEntries);
+    });
+  }, function () {
+    return Promise.reject({ kind: "network", message: "Could not reach the Anthropic API — check your connection, or that this browser allows direct API calls." });
+  });
+}
+
 // Node/CommonJS export for the deterministic-matching unit checks (no-op in the browser,
 // where this whole file runs as a plain non-module <script> and every function above is
 // already a global via normal script-tag semantics).
@@ -518,6 +866,13 @@ if (typeof module !== "undefined" && module.exports) {
     pcClearApiKey: pcClearApiKey,
     pcBuildCapabilityRequestBody: pcBuildCapabilityRequestBody,
     pcValidateCapabilityResponse: pcValidateCapabilityResponse,
-    pcCallClaudeForCapability: pcCallClaudeForCapability
+    pcCallClaudeForCapability: pcCallClaudeForCapability,
+    pcBuildAffinityRequestBody: pcBuildAffinityRequestBody,
+    pcValidateAffinityResponse: pcValidateAffinityResponse,
+    pcCallClaudeForAffinity: pcCallClaudeForAffinity,
+    pcPathEntryKey: pcPathEntryKey,
+    pcBuildSequenceRequestBody: pcBuildSequenceRequestBody,
+    pcValidateSequenceResponse: pcValidateSequenceResponse,
+    pcCallClaudeForSequence: pcCallClaudeForSequence
   };
 }

@@ -745,6 +745,13 @@
   .pc-pool-item input:checked ~ span{color:var(--ink);}
   .pc-pool-item.pc-hidden{display:none;}
   .pc-pool-count{font-family:var(--font-mono);font-size:10.5px;color:var(--ink-faint);margin:6px 0 0;}
+  .pc-selected-chips{margin:6px 0 0;}
+  .pc-selected-chip{
+    display:inline-block;font-family:var(--font-mono);font-size:10.5px;color:var(--ink-muted);
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:100px;
+    padding:3px 9px;margin:0 4px 4px 0;max-width:280px;overflow:hidden;text-overflow:ellipsis;
+    white-space:nowrap;vertical-align:top;
+  }
 
   .pc-competence-grid{
     max-height:260px;overflow-y:auto;
@@ -846,6 +853,18 @@
   .pc-match-bar-track{height:6px;border-radius:100px;background:var(--panel);overflow:hidden;}
   .pc-match-bar-fill{height:100%;background:var(--accent-violet);border-radius:100px;}
   .pc-match-tier{font-family:var(--font-mono);font-size:11px;color:var(--ink-faint);margin-top:6px;}
+
+  .pc-affinity-reasoning{font-size:13px;line-height:1.6;color:var(--ink);border-left:2px solid var(--accent-violet);padding-left:10px;margin:0 0 14px;}
+  .pc-affinity-reasoning-local{color:var(--ink-faint);font-style:italic;border-left-color:var(--line-soft);}
+  .pc-affinity-pending{color:var(--ink-faint);font-size:12px;font-style:italic;}
+  .pc-affinity-error{color:var(--accent-red);font-size:12px;margin:8px 0 0;}
+  .pc-affinity-calc-btn{
+    font-family:var(--font-sans);font-size:12px;font-weight:700;
+    color:var(--bg);background:var(--accent-violet);
+    border:none;border-radius:100px;padding:7px 14px;
+    cursor:pointer;white-space:nowrap;margin-top:8px;
+  }
+  .pc-affinity-calc-btn:hover{filter:brightness(1.1);}
 
   .pc-path-list{display:flex;flex-direction:column;gap:10px;}
   .pc-path-item{
@@ -3185,13 +3204,22 @@
   var PC_SENIORITY_LABELS = ['Junior', 'Intermedio', 'Senior', 'Principal'];
   var currentCustomProfession = PC_AVAILABLE ? pcCreateProfession('') : null;
   var pcFilterQuery = { tasks: '', skills: '', knowledge: '', competences: '' };
+  // L'affinità si calcola su richiesta (tramite un pulsante), non in automatico a ogni click —
+  // può comportare una vera chiamata API a Claude. Si torna a idle ogni volta che la selezione
+  // sottostante cambia, così non resta mai visibile un risultato riferito a una selezione diversa.
+  var pcAffinityState = { status: 'idle', source: null, reasoning: null, matches: null, error: null, path: null };
+  function pcResetAffinityState(){
+    pcAffinityState = { status: 'idle', source: null, reasoning: null, matches: null, error: null, path: null };
+  }
 
   if (!PC_AVAILABLE){
     customEntryBtn.disabled = true;
     customEntryBtn.title = 'Profession Custom non è disponibile — professionCustom.js non si è caricato.';
   }
 
-  function pcComputeAll(profession){
+  // Calcolo locale deterministico, senza chiave — stessa matematica di prima, ora attivata su
+  // richiesta invece che in automatico a ogni render.
+  function pcComputeLocalMatches(profession){
     var prelim = pcMergeConcreteCapabilityMatches(profession, pcPools, PATHS, []);
     var effective = {
       name: profession.name,
@@ -3206,10 +3234,7 @@
       seniorityOrdinal: profession.seniorityOrdinal,
       concreteCapabilities: profession.concreteCapabilities
     };
-    var matches = pcMatchAll(effective, ROLES, PATHS, pcPools);
-    var affinityPath = pcGenerateLearningPath(matches, PATHS, PC_DEFAULT_TOP_MATCHES);
-    var finalMerge = pcMergeConcreteCapabilityMatches(profession, pcPools, PATHS, affinityPath);
-    return { matches: matches, path: affinityPath.concat(finalMerge.extraPathEntries) };
+    return pcMatchAll(effective, ROLES, PATHS, pcPools);
   }
 
   function pcRenderPoolChecklist(poolItems, selectedIds, category, label, hint){
@@ -3229,8 +3254,16 @@
       }).join('') +
       '</div>' +
       '<p class="pc-pool-count">' + selectedIds.length + ' selezionati su ' + poolItems.length + '</p>' +
+      pcRenderSelectedChips(poolItems.filter(function(item){ return selectedIds.indexOf(item.id) !== -1; }).map(function(item){ return item.text; })) +
       '</section>';
     return html;
+  }
+
+  function pcRenderSelectedChips(texts){
+    if (!texts.length) return '';
+    return '<p class="pc-selected-chips">' + texts.map(function(t){
+      return '<span class="pc-selected-chip">' + esc(t) + '</span>';
+    }).join('') + '</p>';
   }
 
   function pcRenderCompetenceSelector(competencePool, selectedCompetences){
@@ -3259,6 +3292,10 @@
       }).join('') +
       '</div>' +
       '<p class="pc-pool-count">' + selectedCompetences.length + ' selezionate su ' + competencePool.length + '</p>' +
+      pcRenderSelectedChips(selectedCompetences.map(function(sel){
+        var item = competencePool.filter(function(c){ return c.code === sel.code; })[0];
+        return sel.code + ' ' + (item ? item.name : '') + ' · liv. ' + sel.targetLevel;
+      })) +
       '</section>';
     return html;
   }
@@ -3347,12 +3384,31 @@
     }).join('') + '</div>';
   }
 
-  function pcRenderGeneratedPath(pathEntries){
-    var meaningful = pathEntries.filter(function(e){ return e.percent > 0; });
-    if (!meaningful.length){
-      return '<p class="pc-empty-note">Nessun percorso generato finora.</p>';
+  function pcRenderAffinityBody(state, hasKey){
+    if (state.status === 'pending'){
+      return '<p class="pc-affinity-pending">Claude sta ragionando sulla tua selezione&hellip;</p>';
     }
-    return '<div class="pc-path-list">' + meaningful.map(function(entry){
+    if (state.status === 'done'){
+      var html = '';
+      if (state.source === 'claude' && state.reasoning){
+        html += '<p class="pc-affinity-reasoning">' + esc(state.reasoning) + '</p>';
+      } else if (state.source === 'local'){
+        html += '<p class="pc-affinity-reasoning pc-affinity-reasoning-local">Calcolo locale &mdash; nessun ragionamento Claude disponibile senza chiave API.</p>';
+      }
+      html += pcRenderRankedMatches(state.matches);
+      return html;
+    }
+    var calcLabel = hasKey ? 'Calcola l’affinità (ragionamento Claude)' : 'Calcola l’affinità (calcolo locale — nessuna chiave API)';
+    var html2 = '<p class="pc-empty-note">Scegli almeno un task, una competenza, una conoscenza o una competenza e-CF, poi calcola l&rsquo;affinit&agrave; con le 12 figure ECSF.</p>';
+    if (state.status === 'error'){
+      html2 += '<p class="pc-affinity-error">' + esc(state.error) + '</p>';
+    }
+    html2 += '<button type="button" class="pc-affinity-calc-btn" id="pc-calc-affinity-btn">' + esc(calcLabel) + '</button>';
+    return html2;
+  }
+
+  function pcRenderPathItems(entries){
+    return entries.map(function(entry){
       var role = ROLES.filter(function(r){ return r.id === entry.roleId; })[0];
       var sub = entry.source === 'concrete-capability' ?
         '<span class="pc-via-capability">tramite &ldquo;' + esc(entry.fromCapabilityText) + '&rdquo;</span> &middot; ' + entry.percent + '% di corrispondenza' :
@@ -3362,7 +3418,41 @@
         '<div class="pc-path-sub">' + sub + '</div></div>' +
         '<button type="button" class="start-lab-btn" data-role="' + role.id + '" data-stage="' + entry.stageIdx + '">' + (entry.stage.type === 'tabletop' ? 'Avvia il tabletop' : 'Avvia il lab') + '</button>' +
         '</div>';
-    }).join('') + '</div>';
+    }).join('');
+  }
+
+  // Rende il percorso sequenziato come una scala di tier, riusando esattamente il markup
+  // .tier-header/.tier-name/.tier-crest/.tier-note già usato dal pannello nativo di un ruolo
+  // per i suoi tier di carriera (segue già --accent, che Profession Custom imposta su violetto)
+  // — stesso linguaggio visivo, ma ogni tier qui è sintetizzato da Claude per questa singola
+  // figura custom, non è mai un tier ECSF reale, e non porta certificazioni/deliverable inventati.
+  function pcRenderSequencedPath(path){
+    if (path.pending){
+      return '<p class="pc-affinity-pending">Claude sta ordinando il tuo percorso formativo&hellip;</p>';
+    }
+    if (!path.tiers || !path.tiers.length){
+      return '<p class="pc-empty-note">Nessun percorso generato finora.</p>';
+    }
+    var html = '';
+    if (path.unsequencedReason === 'no-key'){
+      html += '<p class="pc-affinity-reasoning pc-affinity-reasoning-local">Solo ordine locale &mdash; ordinare in una progressione richiede una chiave API Claude.</p>';
+    } else if (path.unsequencedReason === 'error'){
+      html += '<p class="pc-affinity-error">' + esc(path.errorMessage) + '</p>';
+    }
+    html += '<div class="pc-path-list">';
+    var first = true;
+    path.tiers.forEach(function(tier, i){
+      if (tier.name || tier.note){
+        html += '<div class="tier-header' + (first ? ' first' : '') + '">' +
+          (tier.name ? '<span class="tier-name">' + esc(tier.name) + '</span><span class="tier-crest">TAPPA ' + (i + 1) + '</span>' : '') +
+          (tier.note ? '<p class="tier-note">' + esc(tier.note) + '</p>' : '') +
+          '</div>';
+        first = false;
+      }
+      html += pcRenderPathItems(tier.entries);
+    });
+    html += '</div>';
+    return html;
   }
 
   function renderCustomView(){
@@ -3374,7 +3464,6 @@
     customView.style.setProperty('--glow', 'var(--glow-violet)');
 
     var profession = currentCustomProfession;
-    var result = pcComputeAll(profession);
     var hasKey = !!pcLoadApiKey();
 
     var html = '<div class="lab-hero">' +
@@ -3399,14 +3488,18 @@
 
     html += '<section class="lab-section pc-section">' +
       '<h2>Affinit&agrave; con le 12 figure ECSF</h2>' +
-      pcRenderRankedMatches(result.matches) +
+      pcRenderAffinityBody(pcAffinityState, hasKey) +
       '</section>';
 
-    html += '<section class="lab-section pc-section">' +
-      '<h2>Percorso formativo generato</h2>' +
-      '<p class="lab-section-hint">Scelto automaticamente dai tier con affinit&agrave; pi&ugrave; alta indicati sopra.</p>' +
-      pcRenderGeneratedPath(result.path) +
-      '</section>';
+    if (pcAffinityState.status === 'done'){
+      html += '<section class="lab-section pc-section">' +
+        '<h2>Percorso formativo generato</h2>' +
+        (pcAffinityState.path ?
+          '<p class="lab-section-hint">Ordinato dalle fondamenta verso i livelli avanzati, in base ai tier con affinit&agrave; pi&ugrave; alta indicati sopra.</p>' + pcRenderSequencedPath(pcAffinityState.path) :
+          '<p class="lab-section-hint">Scelto automaticamente dai tier con affinit&agrave; pi&ugrave; alta indicati sopra, poi ordinato in una progressione.</p>' +
+          '<button type="button" class="pc-affinity-calc-btn" id="pc-build-path-btn">Crea il tuo learning path</button>') +
+        '</section>';
+    }
 
     customMain.innerHTML = html;
     customMain.scrollTop = 0;
@@ -3423,6 +3516,7 @@
         var pos = list.indexOf(id);
         if (checkbox.checked && pos === -1) list.push(id);
         else if (!checkbox.checked && pos !== -1) list.splice(pos, 1);
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
@@ -3437,6 +3531,7 @@
         } else if (!compCheckbox.checked && idx !== -1){
           comps.splice(idx, 1);
         }
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
@@ -3445,6 +3540,7 @@
         var lvlCode = levelSelect.getAttribute('data-competence-level');
         var entry = currentCustomProfession.selectedCompetences.filter(function(c){ return c.code === lvlCode; })[0];
         if (entry) entry.targetLevel = parseInt(levelSelect.value, 10);
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
@@ -3483,17 +3579,20 @@
       var seniorityPill = e.target.closest('.pc-seniority-pill');
       if (seniorityPill){
         currentCustomProfession.seniorityOrdinal = parseInt(seniorityPill.getAttribute('data-seniority'), 10);
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
       if (e.target.id === 'pc-add-capability-btn'){
         currentCustomProfession.concreteCapabilities.push({ text: '', apiResult: null, apiError: null, apiPending: false });
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
       var removeBtn = e.target.closest('.pc-capability-remove');
       if (removeBtn){
         currentCustomProfession.concreteCapabilities.splice(parseInt(removeBtn.getAttribute('data-idx'), 10), 1);
+        pcResetAffinityState();
         renderCustomView();
         return;
       }
@@ -3508,6 +3607,55 @@
       if (e.target.id === 'pc-apikey-clear'){
         pcClearApiKey();
         renderCustomView();
+        return;
+      }
+      if (e.target.id === 'pc-calc-affinity-btn'){
+        var affinityApiKey = pcLoadApiKey();
+        if (!affinityApiKey){
+          pcAffinityState = { status: 'done', source: 'local', reasoning: null, matches: pcComputeLocalMatches(currentCustomProfession), error: null, path: null };
+          renderCustomView();
+          return;
+        }
+        pcAffinityState = { status: 'pending', source: null, reasoning: null, matches: null, error: null, path: null };
+        renderCustomView();
+        pcCallClaudeForAffinity(affinityApiKey, currentCustomProfession, pcPools, ROLES, PATHS, 'it').then(function(result){
+          pcAffinityState = { status: 'done', source: 'claude', reasoning: result.reasoning, matches: result.matches, error: null, path: null };
+          renderCustomView();
+        }, function(err){
+          pcAffinityState = { status: 'error', source: null, reasoning: null, matches: null, error: (err && err.message) || 'Qualcosa è andato storto — riprova.', path: null };
+          renderCustomView();
+        });
+        return;
+      }
+      if (e.target.id === 'pc-build-path-btn'){
+        if (pcAffinityState.status === 'done' && pcAffinityState.matches && !pcAffinityState.path){
+          var affinityPath = pcGenerateLearningPath(pcAffinityState.matches, PATHS, PC_DEFAULT_TOP_MATCHES);
+          var finalMerge = pcMergeConcreteCapabilityMatches(currentCustomProfession, pcPools, PATHS, affinityPath);
+          var candidateEntries = affinityPath.concat(finalMerge.extraPathEntries).filter(function(e){ return e.percent > 0; });
+
+          if (!candidateEntries.length){
+            pcAffinityState.path = { tiers: [] };
+            renderCustomView();
+            return;
+          }
+
+          var seqApiKey = pcLoadApiKey();
+          if (!seqApiKey || candidateEntries.length <= 1){
+            pcAffinityState.path = { tiers: [{ name: '', note: '', entries: candidateEntries }], unsequencedReason: seqApiKey ? null : 'no-key' };
+            renderCustomView();
+            return;
+          }
+
+          pcAffinityState.path = { pending: true };
+          renderCustomView();
+          pcCallClaudeForSequence(seqApiKey, currentCustomProfession, candidateEntries, ROLES, 'it').then(function(result){
+            pcAffinityState.path = { tiers: result.tiers, unsequencedReason: null };
+            renderCustomView();
+          }, function(err){
+            pcAffinityState.path = { tiers: [{ name: '', note: '', entries: candidateEntries }], unsequencedReason: 'error', errorMessage: (err && err.message) || 'Qualcosa è andato storto — riprova.' };
+            renderCustomView();
+          });
+        }
         return;
       }
       var matchBtn = e.target.closest('.pc-capability-match-btn');
