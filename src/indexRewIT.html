@@ -1146,6 +1146,7 @@
         {
           type: "lab",
           id: "signal-in-the-noise", tier: "tactical", title: "Il segnale nel rumore",
+          summary: "Trasforma tre indizi scollegati — un frammento da paste-site, un dominio segnalato e un allegato in quarantena — in un quadro verificato dell'infrastruttura dell'attaccante.",
           scenario: "Northwind Traders ha notato traffico in uscita anomalo. Ricevi una VM con strumenti OSINT (WHOIS, passive DNS, uno scraper di paste-site, una lookup in stile VirusTotal) e una manciata di indizi da trasformare in un quadro reale dell'infrastruttura dell'attaccante.",
           taskIdx: [3, 5],
           skillIdx: [1, 9, 3],
@@ -1158,17 +1159,13 @@
           difficulty: "Base",
           duration: "~2h",
           brief: {
-            narrative: "Il SOC di Northwind Traders ha segnalato un picco di lookup DNS in uscita da tre workstation della finanza, che risolvono tutte nomi non appartenenti ad alcun fornitore noto. Nulla ha ancora fatto scattare gli agent endpoint, e l'help desk non ha alcun ticket che lo spieghi.\n\nTi è stato consegnato un breve fascicolo messo insieme dall'analista di turno: un frammento di un dump da paste-site, un dominio segnalato dal proxy di egress e un hash di un allegato in quarantena. Nulla di tutto ciò significa molto da solo. Il tuo compito è trasformare questi tre fili sciolti in un quadro coerente dell'infrastruttura dietro il traffico — chi l'ha registrata, cos'altro tocca e cosa rilascia sulle workstation che raggiunge — prima che diventi un report di incidente.",
-            evidence: [
-              { label: "Frammento da paste-site", value: "pastebin-mirror/raw/7f3a91c", hint: "Inoltrato da un CERT partner — cita un dominio e un alias." },
-              { label: "Dominio segnalato dal proxy", value: "cdn-nwtraders-update.net", hint: "Lookup DNS ripetute da tre workstation della finanza." },
-              { label: "Allegato in quarantena (SHA-256)", value: "9c1f3ea77b8d5f...4d02", hint: "Bloccato stamattina dalla sandbox del mail gateway." }
-            ]
+            narrative: "Il SOC di Northwind Traders ha segnalato un picco di lookup DNS in uscita da tre workstation della finanza, che risolvono tutte nomi non appartenenti ad alcun fornitore noto. Nulla ha ancora fatto scattare gli agent endpoint, e l'help desk non ha alcun ticket che lo spieghi.\n\nTi è stato consegnato un breve fascicolo messo insieme dall'analista di turno: un frammento di un dump da paste-site, un dominio segnalato dal proxy di egress e un hash di un allegato in quarantena. Nulla di tutto ciò significa molto da solo. Il tuo compito è trasformare questi tre fili sciolti in un quadro coerente dell'infrastruttura dietro il traffico — chi l'ha registrata, cos'altro tocca e cosa rilascia sulle workstation che raggiunge — prima che diventi un report di incidente."
           }
         },
         {
           type: "lab",
           id: "map-the-adversary", tier: "operational", title: "Mappa l'avversario",
+          summary: "Ricostruisci una catena d'attacco da log e cattura di pacchetti, etichetta ogni passo con MITRE ATT&CK e attribuisci la campagna al giusto threat actor.",
           scenario: "Dati log e una cattura di pacchetti da un host compromesso, ricostruisci la catena d'attacco, etichetta ogni passo con la sua tecnica MITRE ATT&CK e attribuisci la campagna a uno dei tre dossier candidati di threat actor.",
           taskIdx: [4, 9],
           skillIdx: [2, 6],
@@ -1184,6 +1181,7 @@
         {
           type: "lab",
           id: "from-data-to-decision", tier: "operational", title: "Dai dati alla decisione",
+          summary: "Trasforma i finding dei lab precedenti in un report CTI strutturato e adatta lo stesso finding a tre pubblici diversi: analista SOC, CISO e consiglio.",
           scenario: "Trasforma i risultati dei primi due lab in un report CTI strutturato: un elenco di indicatori leggibile da una macchina più un executive summary di un paragrafo, poi adatta lo stesso finding a tre destinatari diversi (analista SOC, CISO, consiglio).",
           taskIdx: [6, 8, 10, 11],
           skillIdx: [4, 8],
@@ -1198,6 +1196,7 @@
         {
           type: "tabletop",
           id: "the-intelligence-requirement", tier: "strategic", title: "Il requisito di intelligence",
+          summary: "Trasforma una richiesta vaga del CEO in Priority Intelligence Requirements formali e in un piano di raccolta che il team può davvero eseguire.",
           scenario: "Niente VM stavolta. Una email vaga del CEO (\"non vogliamo finire come il nostro concorrente\") è tutto ciò che hai. Trasformala in Priority Intelligence Requirements formali e in un piano di raccolta di una pagina che il team possa davvero eseguire.",
           taskIdx: [0, 1, 2, 7],
           skillIdx: [0, 7, 5],
@@ -1390,29 +1389,28 @@
         {
           type: "lab",
           id: "first-contact", tier: "va", labComponents: ["lxr:net-perimeter"], links: [{ role: "incident", kind: "prereq", label: "Cyber Incident Responder — entry route" }], title: "Primo contatto",
+          summary: "Scansiona il perimetro pubblico di un rivenditore prima del suo picco stagionale e trasforma l'output grezzo dello scanner in un elenco di findings ordinato per gravità.",
           scenario: "Meridian Outfitters vuole una fotografia onesta di ciò che è raggiungibile da internet prima del suo trimestre di punta. Ricevi un perimetro firmato e uno scanner — trova ciò che è esposto e ordinalo per gravità.",
           taskIdx: [0],
           skillIdx: [9],
           knowledgeIdx: [3, 4, 9],
           flags: [
-            { question: "In quale fascia di gravità CVSS v3 ricade il banner OpenSSH obsoleto sulla porta 22 (Low/Medium/High/Critical)?", flag: "FLAG{MEDIUM}" },
-            { question: "In quale fascia di gravità CVSS v3 ricade il banner Apache obsoleto sulla porta 80 (Low/Medium/High/Critical)?", flag: "FLAG{HIGH}" },
-            { question: "Quale dei due servizi va prioritizzato per primo nel report di remediation?", flag: "FLAG{APACHE-PORT-80}" }
+            { question: "Quale CVE specifica affligge OpenSSH 7.2p2, permettendo una negazione di servizio pre-autenticazione tramite l'invio di una password eccessivamente lunga?", flag: "FLAG{CVE-2016-6515}" },
+            { question: "Secondo NVD, questa CVE è sfruttabile da remoto, senza privilegi né interazione utente, con impatto solo sulla disponibilità (nessun impatto su dati). Quale vettore CVSS v3 base la descrive?", flag: "FLAG{AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
+            { question: "Quale CVE specifica affligge Apache 2.4.17/2.4.18 con mod_http2 abilitato, permettendo una negazione di servizio tramite manipolazione delle finestre di flow-control HTTP/2?", flag: "FLAG{CVE-2016-1546}" },
+            { question: "Questa CVE è sfruttabile da remoto, senza privilegi né interazione utente, ma con complessità di attacco alta, e impatto solo sulla disponibilità. Quale vettore CVSS v3 base la descrive?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
+            { question: "Confrontando i due punteggi base CVSS v3 appena derivati, quale dei due servizi presenta l'impatto complessivo più alto e va prioritizzato per primo nel report di remediation?", flag: "FLAG{SSH-PORT-22}" }
           ],
           difficulty: "Base",
-          duration: "~2h",
+          duration: "~2.5h-3h",
           brief: {
-            narrative: "Meridian Outfitters è un rivenditore di medie dimensioni di attrezzatura da outdoor che si prepara al suo trimestre online più intenso. Prima del picco di traffico, il nuovo responsabile IT vuole una fotografia onesta di ciò che è davvero raggiungibile da internet — non un claim di marketing, un elenco reale. Nessuno ha svolto un assessment vero da oltre due anni.\n\nRicevi una lettera di autorizzazione firmata e un unico range IP nel perimetro: il web tier pubblico e i suoi servizi di supporto. Nient'altro rientra nel perimetro. Il tuo compito in questa fase è semplice in teoria e implacabile in pratica: scansiona il range, fai il fingerprint di ogni servizio aperto e trasforma un muro di output dello scanner in un elenco breve e difendibile di ciò che è esposto e di quanto ogni finding sia davvero grave.",
-            evidence: [
-              { label: "Autorizzazione di scope firmata", value: "Range IP 203.0.113.0/28 — solo web tier", hint: "Qualsiasi cosa fuori da questo range è esplicitamente fuori perimetro." },
-              { label: "Banner del servizio (porta 22)", value: "SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8", hint: "Catturato durante la scansione iniziale delle porte." },
-              { label: "Banner del servizio (porta 80)", value: "Apache/2.4.18 (Ubuntu)", hint: "Stesso host, front end web." }
-            ]
+            narrative: "Meridian Outfitters è un rivenditore di medie dimensioni di attrezzatura da outdoor che si prepara al suo trimestre online più intenso. Prima del picco di traffico, il nuovo responsabile IT vuole una fotografia onesta di ciò che è davvero raggiungibile da internet — non un claim di marketing, un elenco reale. Nessuno ha svolto un assessment vero da oltre due anni.\n\nRicevi una lettera di autorizzazione firmata e un unico range IP nel perimetro: il web tier pubblico e i suoi servizi di supporto. Nient'altro rientra nel perimetro. Il tuo compito in questa fase è semplice in teoria e implacabile in pratica: scansiona il range, fai il fingerprint di ogni servizio aperto e trasforma un muro di output dello scanner in un elenco breve e difendibile di ciò che è esposto e di quanto ogni finding sia davvero grave."
           }
         },
         {
           type: "lab",
           id: "by-the-book", tier: "va", labComponents: ["lxr:net-perimeter"], title: "Come da manuale",
+          summary: "Traduci i finding di «Primo contatto» nel linguaggio di un auditor, mappandoli sulla giusta famiglia di controlli e segnalando cosa non supererebbe un audit oggi.",
           scenario: "Il responsabile compliance di Meridian ha bisogno che i findings di «Primo contatto» siano tradotti in qualcosa che un auditor riconosce. Associa ogni finding alla giusta famiglia di controlli e segnala ciò che oggi non supererebbe un audit.",
           taskIdx: [2],
           skillIdx: [5],
@@ -1428,6 +1426,7 @@
         {
           type: "lab",
           id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "La cassetta degli attrezzi",
+          summary: "Configura da zero scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona contro un target noto.",
           scenario: "Prima del prossimo ingaggio ti serve un toolkit funzionante, non una lista dei desideri. Configura scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona dall'inizio alla fine contro un target noto.",
           taskIdx: [7],
           skillIdx: [7],
@@ -1443,6 +1442,7 @@
         {
           type: "lab",
           id: "breaking-in", tier: "pt", labComponents: ["lxr:web-meridian"], title: "L'ingresso",
+          summary: "Concatena almeno due debolezze nello staging di un cliente fino a ottenere un accesso reale, non solo un elenco di problemi teorici.",
           scenario: "Questa volta Meridian vuole un test vero: trova un modo per entrare, non solo un elenco di problemi. Hai pieno perimetro sul loro ambiente di staging e devi concatenare almeno due debolezze fino a ottenere un accesso reale.",
           taskIdx: [1],
           skillIdx: [2, 3],
@@ -1455,17 +1455,13 @@
           difficulty: "Intermedio",
           duration: "~4h",
           brief: {
-            narrative: "L'ambiente di staging di Meridian rispecchia la produzione abbastanza da spingere il cliente a farlo testare per bene prima della prossima release importante. Questa volta il brief è diverso da «Primo contatto»: non vogliono un elenco di problemi teorici, vogliono sapere se qualcuno potrebbe davvero entrare, e fin dove arriverebbe.\n\nHai pieno perimetro sull'host di staging e sulla sua applicazione web. Un developer junior ha lasciato un artefatto di debug in una directory pubblica durante l'ultimo deploy, e il pannello admin non è mai stato toccato dal lancio. Nessuno dei due fatti significa qualcosa da solo. Concatenati, potrebbero essere tutto.",
-            evidence: [
-              { label: "File di backup esposto", value: "/backup/staging_db_2024-11-03.sql.bak", hint: "Trovato tramite un directory listing lasciato aperto sulla web root di staging." },
-              { label: "Pannello admin", value: "/admin/login.php — installazione di default, mai riconfigurata", hint: "Nessun rate limiting osservato sui tentativi falliti." },
-              { label: "Hash di credenziale estratto", value: "admin:5f4dcc3b5aa765d61d8327deb882cf99", hint: "Recuperato dalla tabella users del file di backup." }
-            ]
+            narrative: "L'ambiente di staging di Meridian rispecchia la produzione abbastanza da spingere il cliente a farlo testare per bene prima della prossima release importante. Questa volta il brief è diverso da «Primo contatto»: non vogliono un elenco di problemi teorici, vogliono sapere se qualcuno potrebbe davvero entrare, e fin dove arriverebbe.\n\nHai pieno perimetro sull'host di staging e sulla sua applicazione web. Un developer junior ha lasciato un artefatto di debug in una directory pubblica durante l'ultimo deploy, e il pannello admin non è mai stato toccato dal lancio. Nessuno dei due fatti significa qualcosa da solo. Concatenati, potrebbero essere tutto."
           }
         },
         {
           type: "lab",
           id: "write-your-own-playbook", tier: "pt", labComponents: ["lxr:custom-app"], title: "Scriviti il tuo playbook",
+          summary: "Scriviti un tool o script su misura per testare un'applicazione interna troppo vecchia per qualunque exploit pronto all'uso.",
           scenario: "Meridian usa un'applicazione interna custom più vecchia di qualunque database pubblico di exploit. Nessuno strumento pronto la scalfisce, quindi ti scrivi un tuo piccolo tool o script per testarla come si deve.",
           taskIdx: [3],
           skillIdx: [0, 4, 10],
@@ -1481,6 +1477,7 @@
         {
           type: "lab",
           id: "the-engagement", tier: "pt", labComponents: ["lxr:web-meridian", "lxr:report-portal"], title: "L'ingaggio",
+          summary: "Gestisci un ingaggio di pentest completo, dalle regole d'ingaggio firmate al report che uno stakeholder reale leggerà e userà per agire.",
           scenario: "Un ingaggio completo, dall'inizio alla fine: concorda perimetro e regole d'ingaggio con «il cliente», esegui il test e poi scrivi il report che uno stakeholder reale leggerebbe davvero e su cui agirebbe.",
           taskIdx: [4, 5, 6],
           skillIdx: [6, 8],
@@ -1496,6 +1493,7 @@
         {
           type: "lab",
           id: "the-long-game", tier: "rt", labComponents: ["lxr:ad-forest", "lxr:siem-soc", "lxr:c2-infra"], title: "Il gioco lungo",
+          summary: "Da un singolo account a bassi privilegi, muoviti con pazienza per due settimane simulate fino alla condivisione file della finanza senza far scattare un alert del SOC.",
           scenario: "Il consiglio di Meridian ha approvato una vera esercitazione di red team dopo il ransomware sfiorato da un concorrente. Il loro SOC è attivo e vigila. Hai una finestra simulata di due settimane per raggiungere la condivisione file della finanza senza far scattare un alert.",
           taskIdx: [1],
           skillIdx: [2, 3, 4],
@@ -1508,17 +1506,13 @@
           difficulty: "Avanzato",
           duration: "~6h",
           brief: {
-            narrative: "Il consiglio di Meridian ha approvato una vera esercitazione di red team dopo il ransomware sfiorato l'anno scorso da un concorrente. Non è un ingaggio scan-and-report: il team del SOC è attivo, vigila e non sa esattamente quando o come ti muoverai. Hai una finestra simulata di due settimane e un solo obiettivo — raggiungere la condivisione file della finanza senza generare un alert che ti faccia fermare.\n\nParti da quasi nulla: un singolo account a bassi privilegi recuperato da un assessment precedente e non collegato, e la consapevolezza che l'EDR di Meridian segnala qualsiasi comportamento evidente di process-injection o credential-dumping nel giro di minuti. Qui la velocità non è il tuo vantaggio. Lo è la pazienza.",
-            evidence: [
-              { label: "Punto d'appoggio iniziale", value: "Un account di dominio a bassi privilegi recuperato da un assessment precedente non collegato", hint: "La sua password non viene ruotata da anni — il nome dell'account sta a te trovarlo nel lab." },
-              { label: "Soglie di alert dell'EDR (runbook trapelato)", value: "Il runbook del SOC definisce i comportamenti rumorosi e un tetto orario di fallimenti di autenticazione", hint: "Resta sotto le soglie documentate per passare in silenzio — i numeri esatti sono nel runbook." },
-              { label: "Obiettivo", value: "La condivisione file della finanza", hint: "L'accesso in lettura a questa condivisione conclude l'esercitazione." }
-            ]
+            narrative: "Il consiglio di Meridian ha approvato una vera esercitazione di red team dopo il ransomware sfiorato l'anno scorso da un concorrente. Non è un ingaggio scan-and-report: il team del SOC è attivo, vigila e non sa esattamente quando o come ti muoverai. Hai una finestra simulata di due settimane e un solo obiettivo — raggiungere la condivisione file della finanza senza generare un alert che ti faccia fermare.\n\nParti da quasi nulla: un singolo account a bassi privilegi recuperato da un assessment precedente e non collegato, e la consapevolezza che l'EDR di Meridian segnala qualsiasi comportamento evidente di process-injection o credential-dumping nel giro di minuti. Qui la velocità non è il tuo vantaggio. Lo è la pazienza."
           }
         },
         {
           type: "lab",
           id: "the-human-firewall", tier: "rt", labComponents: ["lxr:phish-sim", "lxr:mail-gw"], title: "Il firewall umano",
+          summary: "Progetta ed esegui un pretesto di phishing credibile contro il team finanza e scopri fin dove ti porta davvero un singolo clic.",
           scenario: "Le difese tecniche di Meridian sono solide, quindi questa esercitazione le aggira del tutto. Progetta ed esegui un pretesto di phishing contro il team finanza e scopri fin dove ti porta davvero un singolo clic.",
           taskIdx: [1],
           skillIdx: [1],
@@ -1534,6 +1528,7 @@
         {
           type: "lab",
           id: "beyond-it", tier: "pt", track: "ot", labComponents: ["lxr:ot-segment"], title: "Oltre l'IT",
+          summary: "Valuta il confine tra IT aziendale e piano OT di un magazzino industriale senza mai inviare un pacchetto a un controller di produzione attivo.",
           scenario: "Il magazzino di Meridian usa ancora sistemi di controllo industriale che nessuno tocca da anni. Valuta il confine tra l'IT aziendale e il piano OT senza mai inviare un pacchetto a un controller di produzione attivo.",
           taskIdx: [3],
           skillIdx: [9],
@@ -1551,6 +1546,7 @@
           id: "app-layer", tier: "pt", track: "web-api",
           labComponents: ["lxr:web-meridian", "lxr:api-gw"],
           title: "Il livello applicativo",
+          summary: "Testa un portale clienti e la sua REST API mai passati da revisione di sicurezza, dimostrando sia un accesso IDOR ai dati altrui sia una SQL injection.",
           scenario: "Il nuovo portale clienti di Meridian e la REST API dietro di esso sono andati in produzione senza una revisione di sicurezza. Testa entrambi e dimostra di poter raggiungere dati che non dovrebbero mai essere tuoi.",
           taskIdx: [1, 3],
           skillIdx: [2, 10],
@@ -1563,12 +1559,7 @@
           difficulty: "Intermedio",
           duration: "~4h",
           brief: {
-            narrative: "Meridian ha lanciato un portale clienti e una REST API abbinata, messi in produzione in fretta per il trimestre intenso e mai passati da una revisione di sicurezza. L'API si fida di qualsiasi id invii il client, i token sono validati appena appena e una casella di ricerca dialoga con il database in modo un po' troppo diretto. Il tuo compito è mostrare concretamente cosa può raggiungere un cliente autenticato che appartiene a qualcun altro — e cosa può estrarre da quella casella di ricerca un attaccante senza alcun account.",
-            evidence: [
-              { label: "Target nel perimetro", value: "portal.meridian.example e api.meridian.example", hint: "Il front end web e la REST API dietro di esso — nient'altro." },
-              { label: "Account di test", value: "Un ruolo cliente normale con due ordini passati", hint: "Parti da autenticato e vedi fin dove l'API ti lascia vagare." },
-              { label: "Osservazione", value: "Gli endpoint degli ordini accettano un id numerico; la casella di ricerca riflette gli errori del database così come sono", hint: "Qui vivono due classi di bug molto diverse." }
-            ]
+            narrative: "Meridian ha lanciato un portale clienti e una REST API abbinata, messi in produzione in fretta per il trimestre intenso e mai passati da una revisione di sicurezza. L'API si fida di qualsiasi id invii il client, i token sono validati appena appena e una casella di ricerca dialoga con il database in modo un po' troppo diretto. Il tuo compito è mostrare concretamente cosa può raggiungere un cliente autenticato che appartiene a qualcun altro — e cosa può estrarre da quella casella di ricerca un attaccante senza alcun account."
           }
         },
         {
@@ -1576,6 +1567,7 @@
           id: "inside-domain", tier: "pt", track: "infra-ad",
           labComponents: ["lxr:ad-forest"],
           title: "Dentro il dominio",
+          summary: "Da un utente di dominio qualunque, sfrutta le configurazioni errate di Active Directory stessa per arrivare a un controllo di fatto da Domain Admin.",
           scenario: "Hai un punto d'appoggio su una workstation del dominio Windows di Meridian. Trasforma un singolo utente a bassi privilegi nel controllo del dominio, usando solo ciò che Active Directory ti concede quando è mal configurato.",
           taskIdx: [1],
           skillIdx: [2, 3],
@@ -1588,12 +1580,7 @@
           difficulty: "Avanzato",
           duration: "~5h",
           brief: {
-            narrative: "Meridian fa girare tutto su un unico dominio Windows cresciuto per accumulo: service account che nessuno ricorda, una certificate authority lasciata sui valori predefiniti e password di admin locale che si ripetono su tutta la flotta. Atterri come un utente qualunque su un laptop qualunque. Quell'account non ha nulla di speciale — sono le configurazioni errate del dominio stesso a trasformarlo in Domain Admin, e a te basta leggerle come le legge un attaccante.",
-            evidence: [
-              { label: "Punto d'appoggio", value: "Un utente di dominio standard su una workstation aggiunta al dominio", hint: "Niente admin locale. Tutto ciò che ottieni te lo guadagni da AD stesso." },
-              { label: "Superficie di ricognizione", value: "Oggetti AD leggibili: SPN, appartenenze ai gruppi, certificate template", hint: "Un utente normale può leggere molta più directory di quanto dovrebbe." },
-              { label: "Obiettivo", value: "Domain Admin di fatto, dimostrato dall'accesso a una risorsa riservata ai DA", hint: "Tre diverse configurazioni errate ti ci portano ciascuna — trova un percorso pulito." }
-            ]
+            narrative: "Meridian fa girare tutto su un unico dominio Windows cresciuto per accumulo: service account che nessuno ricorda, una certificate authority lasciata sui valori predefiniti e password di admin locale che si ripetono su tutta la flotta. Atterri come un utente qualunque su un laptop qualunque. Quell'account non ha nulla di speciale — sono le configurazioni errate del dominio stesso a trasformarlo in Domain Admin, e a te basta leggerle come le legge un attaccante."
           }
         },
         {
@@ -1601,6 +1588,7 @@
           id: "someone-elses-computer", tier: "pt", track: "cloud",
           labComponents: ["lxr:cloud-tenant"],
           title: "Il computer di qualcun altro",
+          summary: "Da una chiave cloud trapelata e un ruolo troppo permissivo, enumera cosa può fare un'identità programmatica e scala fino al controllo completo dell'account, in modo reversibile.",
           scenario: "Meridian ha spostato il suo archivio immagini e un paio di tool interni su un tenant di cloud pubblico. Bastano una chiave trapelata e un ruolo troppo permissivo. Enumera cosa possono fare le credenziali, poi scala fino al controllo completo dell'account — in modo sicuro e reversibile.",
           taskIdx: [0, 1],
           skillIdx: [2, 9],
@@ -1613,12 +1601,7 @@
           difficulty: "Avanzato",
           duration: "~4h",
           brief: {
-            narrative: "Il tenant cloud di Meridian è nato come posto dove scaricare le immagini dei prodotti ed è diventato qualcosa che fa girare in sordina dei tool interni. I permessi sono stati distribuiti con generosità per fare in fretta, delle chiavi sono finite committate in un file di configurazione approdato in un bucket pubblico, e un server può ancora leggere il servizio di instance metadata. Niente di esotico — concatenato, porta un nessuno al controllo amministrativo completo dell'account. Dimostrerai esattamente questo, in modo reversibile, così il cliente può vederlo accadere e poi chiudere ogni porta.",
-            evidence: [
-              { label: "Punto d'ingresso", value: "Un bucket di object storage leggibile pubblicamente", hint: "I file sensibili finiscono qui molto più spesso di quanto ci si aspetti." },
-              { label: "Identità", value: "Un'identità programmatica con più permessi di quanti ne serva al suo compito", hint: "Enumera cosa puoi fare prima di fare qualsiasi cosa." },
-              { label: "Obiettivo", value: "Controllo amministrativo del tenant, ottenuto in modo reversibile", hint: "Scala tramite un permesso che l'identità non avrebbe mai dovuto avere." }
-            ]
+            narrative: "Il tenant cloud di Meridian è nato come posto dove scaricare le immagini dei prodotti ed è diventato qualcosa che fa girare in sordina dei tool interni. I permessi sono stati distribuiti con generosità per fare in fretta, delle chiavi sono finite committate in un file di configurazione approdato in un bucket pubblico, e un server può ancora leggere il servizio di instance metadata. Niente di esotico — concatenato, porta un nessuno al controllo amministrativo completo dell'account. Dimostrerai esattamente questo, in modo reversibile, così il cliente può vederlo accadere e poi chiudere ogni porta."
           }
         },
         {
@@ -1627,6 +1610,7 @@
           labComponents: ["lxr:ad-forest", "lxr:c2-infra", "lxr:siem-soc", "lxr:ti-platform"],
           links: [{ role: "threatintel", kind: "capstone", label: "Cyber Threat Intelligence Specialist — scenario provider" }],
           title: "Guidato dalla minaccia",
+          summary: "Conduci un red team intelligence-led in stile TIBER-EU/DORA sulla produzione reale di una banca, con un solo White Team a conoscenza del test.",
           scenario: "Il ramo bancario di Meridian ora rientra nel perimetro di DORA. Conduci un red team intelligence-led come si aspetta un regolatore: la threat intelligence costruisce lo scenario, il red team esegue sulla produzione reale e solo un piccolissimo White Team sa che sta avvenendo.",
           taskIdx: [4, 5, 6],
           skillIdx: [6, 8],
@@ -1639,12 +1623,7 @@
           difficulty: "Avanzato",
           duration: "~8h",
           brief: {
-            narrative: "È l'esercitazione a cui ti hanno preparato tutte le fasi precedenti. Il ramo bancario di Meridian è ora un'entità designata da DORA, il che significa un threat-led penetration test con cadenza triennale, condotto secondo la metodologia TIBER-EU. Non è un pentest più grande: un fornitore di threat intelligence separato e accreditato profila gli avversari che colpiscono davvero il settore finanziario e scrive lo scenario; tu, il red team, lo esegui sulla produzione reale; e il SOC vero non viene avvisato. Solo un White Team di tre-cinque persone conosce la verità e tiene l'interruttore di stop. Il tuo compito è pianificare l'ingaggio, eseguirlo nel rispetto delle regole e scrivere il report che leggerà un supervisore.",
-            evidence: [
-              { label: "Driver normativo", value: "DORA Articolo 26 — TLPT almeno ogni tre anni per le entità designate", hint: "Il perimetro è il servizio critico end-to-end, non un singolo sistema." },
-              { label: "Fornitori", value: "Un fornitore di threat intelligence accreditato e un fornitore di red team accreditato, indipendenti l'uno dall'altro", hint: "L'indipendenza è un requisito vincolante, non un optional." },
-              { label: "Controllo", value: "Un White Team di 3–5 persone; il blue team reagisce come se fosse reale", hint: "Il test è «covered» — il realismo dipende dal fatto che il SOC non sappia." }
-            ]
+            narrative: "È l'esercitazione a cui ti hanno preparato tutte le fasi precedenti. Il ramo bancario di Meridian è ora un'entità designata da DORA, il che significa un threat-led penetration test con cadenza triennale, condotto secondo la metodologia TIBER-EU. Non è un pentest più grande: un fornitore di threat intelligence separato e accreditato profila gli avversari che colpiscono davvero il settore finanziario e scrive lo scenario; tu, il red team, lo esegui sulla produzione reale; e il SOC vero non viene avvisato. Solo un White Team di tre-cinque persone conosce la verità e tiene l'interruttore di stop. Il tuo compito è pianificare l'ingaggio, eseguirlo nel rispetto delle regole e scrivere il report che leggerà un supervisore."
           }
         }
       ],
@@ -3070,12 +3049,6 @@
     }
 
     html += '<section class="lab-section"><h2>Briefing della missione</h2><p class="lab-narrative">' + esc(brief && brief.narrative ? brief.narrative : stage.scenario) + '</p></section>';
-
-    if (brief && brief.evidence){
-      html += '<section class="lab-section"><h2>Evidenze del caso</h2><div class="evidence-grid">' + brief.evidence.map(function(ev){
-        return '<div class="evidence-card"><div class="evidence-label">' + esc(ev.label) + '</div><div class="evidence-value">' + esc(ev.value) + '</div><div class="evidence-hint">' + esc(ev.hint) + '</div></div>';
-      }).join('') + '</div></section>';
-    }
 
     if (isTabletop){
       html += '<section class="lab-section"><h2>Obiettivi</h2><p class="lab-section-hint">Checklist personale per questa sessione &mdash; nulla qui è valutato.</p>' + objectiveChecklist(stage, uid) + '</section>';

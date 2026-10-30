@@ -1185,6 +1185,7 @@
         {
           type: "lab",
           id: "signal-in-the-noise", tier: "tactical", title: "Signal in the Noise",
+          summary: "Turn three unconnected leads — a paste-site fragment, a flagged domain and a quarantined attachment — into a verified picture of the attacker's infrastructure.",
           scenario: "Northwind Traders has spotted odd outbound traffic. You get a VM with OSINT tooling (WHOIS, passive DNS, a paste-site scraper, a VirusTotal-style lookup) and a handful of breadcrumbs to turn into a real infrastructure picture of the attacker.",
           taskIdx: [3, 5],
           skillIdx: [1, 9, 3],
@@ -1197,17 +1198,13 @@
           difficulty: "Beginner",
           duration: "~2h",
           brief: {
-            narrative: "Northwind Traders' SOC has flagged a spike in outbound DNS lookups from three workstations in Finance, all resolving names that do not belong to any known vendor. Nothing has tripped the endpoint agents yet, and the help desk has no ticket that would explain it.\n\nYou have been handed a short case file assembled by the on-call analyst: a fragment of a paste-site dump, a domain flagged by the egress proxy, and a hash from a quarantined attachment. None of it means much on its own. Your job is to turn these three loose threads into a coherent picture of the infrastructure behind the traffic — who registered it, what else it touches, and what it drops on the workstations it reaches — before it turns into an incident report.",
-            evidence: [
-              { label: "Paste-site fragment", value: "pastebin-mirror/raw/7f3a91c", hint: "Forwarded by a peer CERT — mentions a domain and an alias." },
-              { label: "Proxy-flagged domain", value: "cdn-nwtraders-update.net", hint: "Repeated DNS lookups from three Finance workstations." },
-              { label: "Quarantined attachment (SHA-256)", value: "9c1f3ea77b8d5f...4d02", hint: "Blocked by the mail gateway sandbox this morning." }
-            ]
+            narrative: "Northwind Traders' SOC has flagged a spike in outbound DNS lookups from three workstations in Finance, all resolving names that do not belong to any known vendor. Nothing has tripped the endpoint agents yet, and the help desk has no ticket that would explain it.\n\nYou have been handed a short case file assembled by the on-call analyst: a fragment of a paste-site dump, a domain flagged by the egress proxy, and a hash from a quarantined attachment. None of it means much on its own. Your job is to turn these three loose threads into a coherent picture of the infrastructure behind the traffic — who registered it, what else it touches, and what it drops on the workstations it reaches — before it turns into an incident report."
           }
         },
         {
           type: "lab",
           id: "map-the-adversary", tier: "operational", title: "Map the Adversary",
+          summary: "Reconstruct an attack chain from logs and a packet capture, tag each step with its MITRE ATT&CK technique, and attribute the campaign to the right threat actor.",
           scenario: "Given logs and a packet capture from a compromised host, reconstruct the attack chain, tag each step with its MITRE ATT&CK technique, and attribute the campaign to one of three candidate threat-actor dossiers.",
           taskIdx: [4, 9],
           skillIdx: [2, 6],
@@ -1223,6 +1220,7 @@
         {
           type: "lab",
           id: "from-data-to-decision", tier: "operational", title: "From Data to Decision",
+          summary: "Turn the previous labs' findings into a structured CTI report, then triage the same finding for three very different audiences: SOC analyst, CISO and board.",
           scenario: "Turn the findings from the first two labs into a structured CTI report: a machine-readable indicator list plus a one-paragraph executive summary, then triage the same finding for three different audiences (SOC analyst, CISO, board).",
           taskIdx: [6, 8, 10, 11],
           skillIdx: [4, 8],
@@ -1237,6 +1235,7 @@
         {
           type: "tabletop",
           id: "the-intelligence-requirement", tier: "strategic", title: "The Intelligence Requirement",
+          summary: "Turn a vague request from the CEO into formal Priority Intelligence Requirements and a collection plan the team can actually execute.",
           scenario: "No VM this time. A vague email from the CEO (\"we don't want to end up like our competitor\") is all you get. Turn it into formal Priority Intelligence Requirements and a one-page collection plan the team can actually execute.",
           taskIdx: [0, 1, 2, 7],
           skillIdx: [0, 7, 5],
@@ -1429,29 +1428,28 @@
         {
           type: "lab",
           id: "first-contact", tier: "va", labComponents: ["lxr:net-perimeter"], links: [{ role: "incident", kind: "prereq", label: "Cyber Incident Responder — entry route" }], title: "First Contact",
+          summary: "Sweep a retailer's public perimeter before its busiest quarter and turn raw scanner output into a findings list triaged by severity.",
           scenario: "Meridian Outfitters wants an honest baseline of what is reachable from the internet before its busiest quarter. You get a signed scope and a scanner — find what is exposed and triage it by severity.",
           taskIdx: [0],
           skillIdx: [9],
           knowledgeIdx: [3, 4, 9],
           flags: [
-            { question: "What CVSS v3 severity band does the outdated OpenSSH banner on port 22 fall into (Low/Medium/High/Critical)?", flag: "FLAG{MEDIUM}" },
-            { question: "What CVSS v3 severity band does the outdated Apache banner on port 80 fall into (Low/Medium/High/Critical)?", flag: "FLAG{HIGH}" },
-            { question: "Which of the two services should be prioritised first in your remediation report?", flag: "FLAG{APACHE-PORT-80}" }
+            { question: "Which specific CVE affects OpenSSH 7.2p2, allowing a pre-authentication denial of service via an excessively long password?", flag: "FLAG{CVE-2016-6515}" },
+            { question: "According to NVD, this CVE is remotely exploitable, requires no privileges or user interaction, and impacts only availability (no data impact). Which CVSS v3 base vector describes it?", flag: "FLAG{AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
+            { question: "Which specific CVE affects Apache 2.4.17/2.4.18 with mod_http2 enabled, allowing a denial of service via HTTP/2 flow-control window manipulation?", flag: "FLAG{CVE-2016-1546}" },
+            { question: "This CVE is remotely exploitable, requires no privileges or user interaction, but has high attack complexity, with impact limited to availability. Which CVSS v3 base vector describes it?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
+            { question: "Comparing the two base CVSS v3 scores you just derived, which of the two services shows the higher overall impact and should be prioritised first in the remediation report?", flag: "FLAG{SSH-PORT-22}" }
           ],
           difficulty: "Beginner",
-          duration: "~2h",
+          duration: "~2.5h-3h",
           brief: {
-            narrative: "Meridian Outfitters is a mid-size outdoor-gear retailer preparing for its busiest online quarter. Before the traffic spike, their new IT lead wants an honest baseline of what is actually reachable from the internet — not a marketing claim, an actual list. Nobody has run a real assessment in over two years.\n\nYou are given a signed authorisation letter and a single scoped IP range: the public web tier and its supporting services. Nothing else is in scope. Your job for this stage is simple in principle and unforgiving in practice: sweep the range, fingerprint every open service, and turn a wall of scanner output into a short, defensible list of what is exposed and how bad each finding really is.",
-            evidence: [
-              { label: "Signed scope authorisation", value: "IP range 203.0.113.0/28 — web tier only", hint: "Anything outside this range is explicitly out of scope." },
-              { label: "Service banner (port 22)", value: "SSH-2.0-OpenSSH_7.2p2 Ubuntu-4ubuntu2.8", hint: "Captured during the initial port sweep." },
-              { label: "Service banner (port 80)", value: "Apache/2.4.18 (Ubuntu)", hint: "Same host, web front end." }
-            ]
+            narrative: "Meridian Outfitters is a mid-size outdoor-gear retailer preparing for its busiest online quarter. Before the traffic spike, their new IT lead wants an honest baseline of what is actually reachable from the internet — not a marketing claim, an actual list. Nobody has run a real assessment in over two years.\n\nYou are given a signed authorisation letter and a single scoped IP range: the public web tier and its supporting services. Nothing else is in scope. Your job for this stage is simple in principle and unforgiving in practice: sweep the range, fingerprint every open service, and turn a wall of scanner output into a short, defensible list of what is exposed and how bad each finding really is."
           }
         },
         {
           type: "lab",
           id: "by-the-book", tier: "va", labComponents: ["lxr:net-perimeter"], title: "By the Book",
+          summary: "Translate First Contact's findings into an auditor's language, mapping each one to the right control family and flagging what would fail an audit today.",
           scenario: "Meridian's compliance officer needs your First Contact findings translated into something an auditor recognises. Map each finding to the right control family and flag what would fail an audit today.",
           taskIdx: [2],
           skillIdx: [5],
@@ -1467,6 +1465,7 @@
         {
           type: "lab",
           id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "The Toolbox",
+          summary: "Build a working toolkit from scratch — scanner, proxy and wordlists on a bare VM — and prove the whole chain works end to end against a known target.",
           scenario: "Before your next engagement you need a working toolkit, not a wishlist. Set up your scanner, proxy and wordlists on a bare assessment VM and prove the whole chain works end to end against a known target.",
           taskIdx: [7],
           skillIdx: [7],
@@ -1482,6 +1481,7 @@
         {
           type: "lab",
           id: "breaking-in", tier: "pt", labComponents: ["lxr:web-meridian"], title: "Breaking In",
+          summary: "Chain at least two weaknesses in a client's staging environment into working access, not just a list of theoretical issues.",
           scenario: "Meridian wants a real test this time: find a way in, not just a list of issues. You have full scope on their staging environment and need to chain at least two weaknesses into working access.",
           taskIdx: [1],
           skillIdx: [2, 3],
@@ -1494,17 +1494,13 @@
           difficulty: "Intermediate",
           duration: "~4h",
           brief: {
-            narrative: "Meridian's staging environment mirrors production closely enough that the client wants it tested properly before the next major release. This time the brief is different from First Contact: they do not want a list of theoretical issues, they want to know if someone could actually get in, and how far they would get.\n\nYou have full scope on the staging host and its web application. A junior developer left a debug artefact in a public directory during the last deploy, and the admin panel has never been touched since launch. Neither fact means anything on its own. Chained together, they might be everything.",
-            evidence: [
-              { label: "Exposed backup file", value: "/backup/staging_db_2024-11-03.sql.bak", hint: "Found via a directory listing left open on the staging web root." },
-              { label: "Admin panel", value: "/admin/login.php — default install, never reconfigured", hint: "No rate limiting observed on failed attempts." },
-              { label: "Extracted credential hash", value: "admin:5f4dcc3b5aa765d61d8327deb882cf99", hint: "Recovered from the backup file's users table." }
-            ]
+            narrative: "Meridian's staging environment mirrors production closely enough that the client wants it tested properly before the next major release. This time the brief is different from First Contact: they do not want a list of theoretical issues, they want to know if someone could actually get in, and how far they would get.\n\nYou have full scope on the staging host and its web application. A junior developer left a debug artefact in a public directory during the last deploy, and the admin panel has never been touched since launch. Neither fact means anything on its own. Chained together, they might be everything."
           }
         },
         {
           type: "lab",
           id: "write-your-own-playbook", tier: "pt", labComponents: ["lxr:custom-app"], title: "Write Your Own Playbook",
+          summary: "Write your own purpose-built tool to test an internal application too old for any off-the-shelf exploit.",
           scenario: "Meridian runs a custom internal application that predates every public exploit database. Nothing off the shelf touches it, so you write your own small tool or script to test it properly.",
           taskIdx: [3],
           skillIdx: [0, 4, 10],
@@ -1520,6 +1516,7 @@
         {
           type: "lab",
           id: "the-engagement", tier: "pt", labComponents: ["lxr:web-meridian", "lxr:report-portal"], title: "The Engagement",
+          summary: "Run a full pentest engagement from signed rules of engagement to a report a real stakeholder will actually read and act on.",
           scenario: "A full engagement, start to finish: agree scope and rules of engagement with 'the client', run the test, then write the report a real stakeholder would actually read and act on.",
           taskIdx: [4, 5, 6],
           skillIdx: [6, 8],
@@ -1535,6 +1532,7 @@
         {
           type: "lab",
           id: "the-long-game", tier: "rt", labComponents: ["lxr:ad-forest", "lxr:siem-soc", "lxr:c2-infra"], title: "The Long Game",
+          summary: "Starting from one low-privilege account, move patiently for a two-week simulated window to reach the finance file share without tripping a SOC alert.",
           scenario: "Meridian's board approved a real red team exercise after a competitor's ransomware near-miss. Their SOC is live and watching. You have a two-week simulated window to reach the finance file share without triggering an alert.",
           taskIdx: [1],
           skillIdx: [2, 3, 4],
@@ -1547,17 +1545,13 @@
           difficulty: "Advanced",
           duration: "~6h",
           brief: {
-            narrative: "Meridian's board approved a real red team exercise after last year's ransomware near-miss at a competitor. This is not a scan-and-report engagement: their SOC team is live, watching, and unaware of exactly when or how you will move. You have a two-week simulated window and one objective — reach the finance file share without generating an alert that gets you shut down.\n\nYou start with almost nothing: a single low-privilege account recovered from a previous, unrelated assessment, and the knowledge that Meridian's EDR flags any obvious process-injection or credential-dumping behaviour within minutes. Speed is not your advantage here. Patience is.",
-            evidence: [
-              { label: "Starting foothold", value: "One low-privilege domain account recovered from an unrelated prior assessment", hint: "Its password has not been rotated in years — the account name is yours to find in the lab." },
-              { label: "EDR alert thresholds (leaked runbook)", value: "The SOC runbook defines noisy behaviours and a per-hour authentication-failure ceiling", hint: "Stay under the documented thresholds to pass silently — the exact numbers are in the runbook." },
-              { label: "Target", value: "The finance file share", hint: "Read access to this share ends the exercise." }
-            ]
+            narrative: "Meridian's board approved a real red team exercise after last year's ransomware near-miss at a competitor. This is not a scan-and-report engagement: their SOC team is live, watching, and unaware of exactly when or how you will move. You have a two-week simulated window and one objective — reach the finance file share without generating an alert that gets you shut down.\n\nYou start with almost nothing: a single low-privilege account recovered from a previous, unrelated assessment, and the knowledge that Meridian's EDR flags any obvious process-injection or credential-dumping behaviour within minutes. Speed is not your advantage here. Patience is."
           }
         },
         {
           type: "lab",
           id: "the-human-firewall", tier: "rt", labComponents: ["lxr:phish-sim", "lxr:mail-gw"], title: "The Human Firewall",
+          summary: "Design and run a credible phishing pretext against the finance team and see how far a single click really gets you.",
           scenario: "Meridian's technical defences are solid, so this exercise skips them entirely. Design and run a phishing pretext against the finance team and see how far a single click actually gets you.",
           taskIdx: [1],
           skillIdx: [1],
@@ -1573,6 +1567,7 @@
         {
           type: "lab",
           id: "beyond-it", tier: "pt", track: "ot", labComponents: ["lxr:ot-segment"], title: "Beyond IT",
+          summary: "Assess the boundary between corporate IT and an industrial warehouse floor without ever sending a packet to a live production controller.",
           scenario: "Meridian's warehouse still runs industrial control systems nobody has touched in years. Assess the boundary between corporate IT and the OT floor without ever sending a packet to a live production controller.",
           taskIdx: [3],
           skillIdx: [9],
@@ -1590,6 +1585,7 @@
           id: "app-layer", tier: "pt", track: "web-api",
           labComponents: ["lxr:web-meridian", "lxr:api-gw"],
           title: "The Application Layer",
+          summary: "Test a customer portal and its REST API that never saw a security review, proving both an IDOR into someone else's data and a SQL injection.",
           scenario: "Meridian's new customer portal and the REST API behind it went live without a security review. Test both, and prove you can reach data that should never be yours.",
           taskIdx: [1, 3],
           skillIdx: [2, 10],
@@ -1602,12 +1598,7 @@
           difficulty: "Intermediate",
           duration: "~4h",
           brief: {
-            narrative: "Meridian launched a customer portal and a matching REST API, shipped fast for the busy quarter and never security-reviewed. The API trusts whatever id the client sends, the tokens are barely validated, and one search box talks to the database a little too directly. Your job is to show concretely what a logged-in customer can reach that belongs to someone else — and what an attacker with no account at all can pull out of that search box.",
-            evidence: [
-              { label: "In-scope targets", value: "portal.meridian.example and api.meridian.example", hint: "The web front end and the REST API behind it — nothing else." },
-              { label: "Test account", value: "A normal customer role with two past orders", hint: "Start authenticated and see how far the API lets you wander." },
-              { label: "Observation", value: "Order endpoints take a numeric id; the search box reflects database errors verbatim", hint: "Two very different classes of bug live here." }
-            ]
+            narrative: "Meridian launched a customer portal and a matching REST API, shipped fast for the busy quarter and never security-reviewed. The API trusts whatever id the client sends, the tokens are barely validated, and one search box talks to the database a little too directly. Your job is to show concretely what a logged-in customer can reach that belongs to someone else — and what an attacker with no account at all can pull out of that search box."
           }
         },
         {
@@ -1615,6 +1606,7 @@
           id: "inside-domain", tier: "pt", track: "infra-ad",
           labComponents: ["lxr:ad-forest"],
           title: "Inside the Domain",
+          summary: "From one ordinary domain user, exploit Active Directory's own misconfigurations to reach effective Domain Admin control.",
           scenario: "You have a foothold on one workstation in Meridian's Windows domain. Turn a single low-privilege user into control of the domain, using only what Active Directory hands you when it is misconfigured.",
           taskIdx: [1],
           skillIdx: [2, 3],
@@ -1627,12 +1619,7 @@
           difficulty: "Advanced",
           duration: "~5h",
           brief: {
-            narrative: "Meridian runs everything on a single Windows domain that grew by accretion: service accounts nobody remembers, a certificate authority left on defaults, and local admin passwords that repeat across the fleet. You land as one ordinary user on one ordinary laptop. Nothing about that account is special — the domain's own misconfigurations are what turn it into Domain Admin, and you just have to read them the way an attacker does.",
-            evidence: [
-              { label: "Foothold", value: "One standard domain user on a domain-joined workstation", hint: "No local admin. Everything you gain, you earn from AD itself." },
-              { label: "Recon surface", value: "Readable AD objects: SPNs, group memberships, certificate templates", hint: "A normal user can read far more of the directory than they should." },
-              { label: "Objective", value: "Effective Domain Admin, evidenced by access to a DA-only resource", hint: "Three different misconfigurations each get you there — find one clean path." }
-            ]
+            narrative: "Meridian runs everything on a single Windows domain that grew by accretion: service accounts nobody remembers, a certificate authority left on defaults, and local admin passwords that repeat across the fleet. You land as one ordinary user on one ordinary laptop. Nothing about that account is special — the domain's own misconfigurations are what turn it into Domain Admin, and you just have to read them the way an attacker does."
           }
         },
         {
@@ -1640,6 +1627,7 @@
           id: "someone-elses-computer", tier: "pt", track: "cloud",
           labComponents: ["lxr:cloud-tenant"],
           title: "Someone Else's Computer",
+          summary: "From a leaked cloud key and an over-permissive role, enumerate what a programmatic identity can do and escalate to full account control, reversibly.",
           scenario: "Meridian moved its image store and a couple of internal tools to a public cloud tenant. A leaked key and an over-permissive role are all it takes. Enumerate what the credentials can do, then escalate to full account control — safely and reversibly.",
           taskIdx: [0, 1],
           skillIdx: [2, 9],
@@ -1652,12 +1640,7 @@
           difficulty: "Advanced",
           duration: "~4h",
           brief: {
-            narrative: "Meridian's cloud tenant started as a place to dump product images and grew into something that quietly runs internal tools. Permissions were handed out generously to move fast, keys were committed to a config file that ended up in a public bucket, and one server can still read the instance metadata service. None of that is exotic — chained, it walks a nobody into full administrative control of the account. You are going to demonstrate exactly that, reversibly, so the client can watch it happen and then close every door.",
-            evidence: [
-              { label: "Entry point", value: "A publicly readable object-storage bucket", hint: "Sensitive files end up here far more often than anyone expects." },
-              { label: "Identity", value: "A programmatic identity with more permissions than its job needs", hint: "Enumerate what you can do before you do anything." },
-              { label: "Objective", value: "Administrative control of the tenant, achieved reversibly", hint: "Escalate via a permission the identity should never have had." }
-            ]
+            narrative: "Meridian's cloud tenant started as a place to dump product images and grew into something that quietly runs internal tools. Permissions were handed out generously to move fast, keys were committed to a config file that ended up in a public bucket, and one server can still read the instance metadata service. None of that is exotic — chained, it walks a nobody into full administrative control of the account. You are going to demonstrate exactly that, reversibly, so the client can watch it happen and then close every door."
           }
         },
         {
@@ -1666,6 +1649,7 @@
           labComponents: ["lxr:ad-forest", "lxr:c2-infra", "lxr:siem-soc", "lxr:ti-platform"],
           links: [{ role: "threatintel", kind: "capstone", label: "Cyber Threat Intelligence Specialist — scenario provider" }],
           title: "Threat-Led",
+          summary: "Run a TIBER-EU/DORA-style intelligence-led red team against a bank's live production, with only a tiny White Team aware the test is happening.",
           scenario: "Meridian's banking arm is now in scope for DORA. Run an intelligence-led red team the way a regulator expects: threat intelligence builds the scenario, the red team executes against live production, and only a tiny White Team knows it is happening.",
           taskIdx: [4, 5, 6],
           skillIdx: [6, 8],
@@ -1678,12 +1662,7 @@
           difficulty: "Advanced",
           duration: "~8h",
           brief: {
-            narrative: "This is the exercise every earlier stage was preparing you for. Meridian's banking arm is now a DORA-designated entity, which means a threat-led penetration test on a three-year cycle, run to the TIBER-EU methodology. It is not a bigger pentest: a separate, accredited threat-intelligence provider profiles the adversaries that actually target the financial sector and writes the scenario; you, the red team, execute it against live production; and the real SOC is not told. Only a three-to-five-person White Team knows the truth and holds the stop switch. Your job is to plan the engagement, run it within the rules, and write the report a supervisor will read.",
-            evidence: [
-              { label: "Regulatory driver", value: "DORA Article 26 — TLPT at least every three years for designated entities", hint: "Scope is the end-to-end critical service, not a single system." },
-              { label: "Providers", value: "One accredited threat-intelligence provider and one accredited red-team provider, independent of each other", hint: "Independence is a hard requirement, not a nicety." },
-              { label: "Control", value: "A 3–5 person White Team; the blue team reacts as if it were real", hint: "The test is covered — realism depends on the SOC not knowing." }
-            ]
+            narrative: "This is the exercise every earlier stage was preparing you for. Meridian's banking arm is now a DORA-designated entity, which means a threat-led penetration test on a three-year cycle, run to the TIBER-EU methodology. It is not a bigger pentest: a separate, accredited threat-intelligence provider profiles the adversaries that actually target the financial sector and writes the scenario; you, the red team, execute it against live production; and the real SOC is not told. Only a three-to-five-person White Team knows the truth and holds the stop switch. Your job is to plan the engagement, run it within the rules, and write the report a supervisor will read."
           }
         }
       ],
@@ -3087,12 +3066,6 @@
     }
 
     html += '<section class="lab-section"><h2>Mission briefing</h2><p class="lab-narrative">' + esc(brief && brief.narrative ? brief.narrative : stage.scenario) + '</p></section>';
-
-    if (brief && brief.evidence){
-      html += '<section class="lab-section"><h2>Case evidence</h2><div class="evidence-grid">' + brief.evidence.map(function(ev){
-        return '<div class="evidence-card"><div class="evidence-label">' + esc(ev.label) + '</div><div class="evidence-value">' + esc(ev.value) + '</div><div class="evidence-hint">' + esc(ev.hint) + '</div></div>';
-      }).join('') + '</div></section>';
-    }
 
     if (isTabletop){
       html += '<section class="lab-section"><h2>Objectives</h2><p class="lab-section-hint">Personal checklist for this session &mdash; nothing here is graded.</p>' + objectiveChecklist(stage, uid) + '</section>';
