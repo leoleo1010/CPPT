@@ -1399,7 +1399,7 @@
             { question: "Secondo NVD, questa CVE è sfruttabile da remoto, senza privilegi né interazione utente, con impatto solo sulla disponibilità (nessun impatto su dati). Quale vettore CVSS v3 base la descrive?", flag: "FLAG{AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
             { question: "Quale CVE specifica affligge Apache 2.4.17/2.4.18 con mod_http2 abilitato, permettendo una negazione di servizio tramite manipolazione delle finestre di flow-control HTTP/2?", flag: "FLAG{CVE-2016-1546}" },
             { question: "Questa CVE è sfruttabile da remoto, senza privilegi né interazione utente, ma con complessità di attacco alta, e impatto solo sulla disponibilità. Quale vettore CVSS v3 base la descrive?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
-            { question: "Confrontando i due punteggi base CVSS v3 appena derivati, quale dei due servizi presenta l'impatto complessivo più alto e va prioritizzato per primo nel report di remediation?", flag: "FLAG{SSH-PORT-22}" }
+            { question: "Convertendo i due vettori CVSS v3 appena derivati nei rispettivi base score numerici (es. tramite il calcolatore ufficiale CVSS v3.0), qual è il base score esatto del servizio da prioritizzare per primo nel report di remediation?", flag: "FLAG{7.5}" }
           ],
           difficulty: "Base",
           duration: "~2.5h-3h",

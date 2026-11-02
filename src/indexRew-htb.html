@@ -1438,7 +1438,7 @@
             { question: "According to NVD, this CVE is remotely exploitable, requires no privileges or user interaction, and impacts only availability (no data impact). Which CVSS v3 base vector describes it?", flag: "FLAG{AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
             { question: "Which specific CVE affects Apache 2.4.17/2.4.18 with mod_http2 enabled, allowing a denial of service via HTTP/2 flow-control window manipulation?", flag: "FLAG{CVE-2016-1546}" },
             { question: "This CVE is remotely exploitable, requires no privileges or user interaction, but has high attack complexity, with impact limited to availability. Which CVSS v3 base vector describes it?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
-            { question: "Comparing the two base CVSS v3 scores you just derived, which of the two services shows the higher overall impact and should be prioritised first in the remediation report?", flag: "FLAG{SSH-PORT-22}" }
+            { question: "Converting the two CVSS v3 vectors you just derived into their numeric base scores (e.g. via the official CVSS v3 calculator), what is the exact base score of the service that should be prioritised first in the remediation report?", flag: "FLAG{7.5}" }
           ],
           difficulty: "Beginner",
           duration: "~2.5h-3h",
