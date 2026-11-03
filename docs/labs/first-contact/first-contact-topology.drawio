@@ -171,13 +171,13 @@
           <mxGeometry height="14" width="150" x="80" y="461" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-43" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 (WAN) - 198.51.100.1" vertex="1">
-          <mxGeometry height="18" width="190" x="480" y="262" as="geometry" />
+          <mxGeometry height="18" width="180" x="285" y="340" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-44" edge="1" parent="1" source="7COCHMggMcATfMVmV7mN-21" style="endArrow=none;html=1;strokeColor=#2E7D32;strokeWidth=3;" target="7COCHMggMcATfMVmV7mN-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-45" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 (LAN/DMZ) - 203.0.113.1" vertex="1">
-          <mxGeometry height="18" width="200" x="480" y="244" as="geometry" />
+          <mxGeometry height="16" width="200" x="685" y="324" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-46" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 - 203.0.113.10" vertex="1">
           <mxGeometry height="14" width="170" x="940" y="121" as="geometry" />
