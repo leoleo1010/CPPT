@@ -227,8 +227,8 @@
         <mxCell id="e_router_dev01" edge="1" parent="1" source="7COCHMggMcATfMVmV7mN-21" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="dev01-card">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_dev01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 (LAN/DMZ) - 203.0.113.12" vertex="1">
-          <mxGeometry height="18" width="200" x="700" y="400" as="geometry" />
+        <mxCell id="lbl_router_dev01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 - 203.0.113.12" vertex="1">
+          <mxGeometry height="18" width="180" x="870" y="330" as="geometry" />
         </mxCell>
         <mxCell id="note_dev01_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#E0A458;fontStyle=2;" value="Stesso segmento 203.0.113.0/28 di meridian-web01 - la lettera autorizza il web tier descritto nel brief, non qualunque host risponda in quel range. Va identificato via fingerprint ed escluso, non toccato." vertex="1">
           <mxGeometry height="50" width="230" x="900" y="468" as="geometry" />
