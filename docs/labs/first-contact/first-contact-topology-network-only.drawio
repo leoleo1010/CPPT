@@ -12,31 +12,31 @@
           <mxGeometry height="26" width="700" x="40" y="10" as="geometry" />
         </mxCell>
 
-        <!-- ================= Outer scope boundary: 203.0.113.0/24 ================= -->
-        <mxCell id="box_net24" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#8A94A6;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#8A94A6;fontSize=10;fontStyle=2;" value="Rete Meridian - 203.0.113.0/24 (web tier)" vertex="1">
+        <!-- ================= Scope boundary: 203.0.113.0/28 (declared scope, both hosts live here) ================= -->
+        <mxCell id="box_scope" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9CCC65;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#9CCC65;fontSize=10;fontStyle=1;" value="SCOPE DICHIARATO - 203.0.113.0/28 (lettera: web tier pubblico)" vertex="1">
           <mxGeometry height="420" width="280" x="680" y="40" as="geometry" />
         </mxCell>
 
-        <!-- ================= Inner box: in-scope /28 ================= -->
-        <mxCell id="box_inscope" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontColor=#9CCC65;fontSize=10;fontStyle=1;" value="IN SCOPE - 203.0.113.0/28" vertex="1">
-          <mxGeometry height="90" width="240" x="700" y="90" as="geometry" />
-        </mxCell>
-        <mxCell id="node_web01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-web01" vertex="1">
-          <mxGeometry height="40" width="210" x="715" y="115" as="geometry" />
+        <!-- ================= Host 1: meridian-web01 (matches the letter's description) ================= -->
+        <mxCell id="node_web01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2E7D32;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-web01" vertex="1">
+          <mxGeometry height="40" width="240" x="700" y="100" as="geometry" />
         </mxCell>
         <mxCell id="node_web01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .10" vertex="1">
-          <mxGeometry height="14" width="210" x="715" y="157" as="geometry" />
+          <mxGeometry height="14" width="240" x="700" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="tag_web01" parent="1" style="text;html=1;fontSize=9;fontColor=#9CCC65;fontStyle=3;align=center;" value="corrisponde al web tier descritto nella lettera" vertex="1">
+          <mxGeometry height="16" width="240" x="700" y="160" as="geometry" />
         </mxCell>
 
-        <!-- ================= Inner box: out-of-scope /28 ================= -->
-        <mxCell id="box_outscope" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#B98B3E;strokeWidth=2;dashed=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontColor=#E0A458;fontSize=10;fontStyle=1;" value="FUORI SCOPE - 203.0.113.16/28" vertex="1">
-          <mxGeometry height="90" width="240" x="700" y="330" as="geometry" />
+        <!-- ================= Host 2: meridian-dev01 (shares the range, not the described target) ================= -->
+        <mxCell id="node_dev01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#B98B3E;strokeWidth=2;dashed=1;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-dev01" vertex="1">
+          <mxGeometry height="40" width="240" x="700" y="340" as="geometry" />
         </mxCell>
-        <mxCell id="node_dev01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#B98B3E;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-dev01" vertex="1">
-          <mxGeometry height="40" width="210" x="715" y="355" as="geometry" />
+        <mxCell id="node_dev01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .12" vertex="1">
+          <mxGeometry height="14" width="240" x="700" y="382" as="geometry" />
         </mxCell>
-        <mxCell id="node_dev01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .21" vertex="1">
-          <mxGeometry height="14" width="210" x="715" y="397" as="geometry" />
+        <mxCell id="tag_dev01" parent="1" style="text;html=1;fontSize=9;fontColor=#E0A458;fontStyle=3;align=center;" value="non descritto nella lettera - da identificare ed escludere" vertex="1">
+          <mxGeometry height="16" width="240" x="700" y="400" as="geometry" />
         </mxCell>
 
         <!-- ================= Other nodes ================= -->
@@ -80,22 +80,19 @@
           <mxGeometry height="18" width="220" x="400" y="462" as="geometry" />
         </mxCell>
 
-        <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="box_inscope">
+        <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_web01">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="verso .0/28 (autorizzato)" vertex="1">
-          <mxGeometry height="18" width="200" x="560" y="130" as="geometry" />
+        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 203.0.113.1 (verso .0/28)" vertex="1">
+          <mxGeometry height="18" width="220" x="500" y="140" as="geometry" />
         </mxCell>
 
-        <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=2;dashed=1;" target="box_outscope">
+        <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_dev01">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_dev01" parent="1" style="text;html=1;fontSize=10;fontColor=#E0A458;fontStyle=1;" value="verso .16/28 (NON autorizzato)" vertex="1">
-          <mxGeometry height="18" width="220" x="560" y="345" as="geometry" />
-        </mxCell>
 
-        <mxCell id="note_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#8A94A6;fontStyle=2;" value="Stesso blocco fisico /24 instradato da VyOS; solo .0/28 e' coperto dalla lettera di autorizzazione. meridian-dev01 e' visibile solo scansionando oltre lo scope dato - non va mai toccato o riportato." vertex="1">
-          <mxGeometry height="40" width="280" x="680" y="470" as="geometry" />
+        <mxCell id="note_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#8A94A6;fontStyle=2;" value="Stesso range /28 instradato da VyOS, entrambi gli host rispondono dentro lo scope dichiarato. La lettera autorizza il web tier descritto nel brief, non qualunque host nel range: meridian-dev01 va riconosciuto via fingerprint e lasciato intatto." vertex="1">
+          <mxGeometry height="50" width="280" x="680" y="470" as="geometry" />
         </mxCell>
 
       </root>
