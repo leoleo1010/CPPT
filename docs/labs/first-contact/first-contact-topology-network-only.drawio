@@ -1,0 +1,104 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Primo contatto - Topologia di rete" id="primo-contatto-topology-network-only">
+    <mxGraphModel dx="959" dy="757" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+
+        <mxCell id="bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D1B2A;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="620" width="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" value="Lab: Primo contatto (tier va) - Topologia di rete (vista senza componenti)" vertex="1">
+          <mxGeometry height="26" width="700" x="40" y="10" as="geometry" />
+        </mxCell>
+
+        <!-- ================= Outer scope boundary: 203.0.113.0/24 ================= -->
+        <mxCell id="box_net24" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#8A94A6;dashed=1;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#8A94A6;fontSize=10;fontStyle=2;" value="Rete Meridian - 203.0.113.0/24 (web tier)" vertex="1">
+          <mxGeometry height="420" width="280" x="680" y="40" as="geometry" />
+        </mxCell>
+
+        <!-- ================= Inner box: in-scope /28 ================= -->
+        <mxCell id="box_inscope" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#2E7D32;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontColor=#9CCC65;fontSize=10;fontStyle=1;" value="IN SCOPE - 203.0.113.0/28" vertex="1">
+          <mxGeometry height="90" width="240" x="700" y="90" as="geometry" />
+        </mxCell>
+        <mxCell id="node_web01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-web01" vertex="1">
+          <mxGeometry height="40" width="210" x="715" y="115" as="geometry" />
+        </mxCell>
+        <mxCell id="node_web01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .10" vertex="1">
+          <mxGeometry height="14" width="210" x="715" y="157" as="geometry" />
+        </mxCell>
+
+        <!-- ================= Inner box: out-of-scope /28 ================= -->
+        <mxCell id="box_outscope" parent="1" style="rounded=1;arcSize=6;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#B98B3E;strokeWidth=2;dashed=1;verticalAlign=top;align=left;spacingLeft=8;spacingTop=6;fontColor=#E0A458;fontSize=10;fontStyle=1;" value="FUORI SCOPE - 203.0.113.16/28" vertex="1">
+          <mxGeometry height="90" width="240" x="700" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="node_dev01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#B98B3E;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-dev01" vertex="1">
+          <mxGeometry height="40" width="210" x="715" y="355" as="geometry" />
+        </mxCell>
+        <mxCell id="node_dev01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .21" vertex="1">
+          <mxGeometry height="14" width="210" x="715" y="397" as="geometry" />
+        </mxCell>
+
+        <!-- ================= Other nodes ================= -->
+        <mxCell id="node_ansible" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="ansible-control" vertex="1">
+          <mxGeometry height="50" width="200" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="node_ansible_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Debian 12 - provisioning (fuori dal path di attacco)" vertex="1">
+          <mxGeometry height="20" width="200" x="40" y="100" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_attacker" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="attacker" vertex="1">
+          <mxGeometry height="50" width="200" x="40" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="node_attacker_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Kali Linux 2024.x - 198.51.100.50" vertex="1">
+          <mxGeometry height="16" width="200" x="40" y="472" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_router" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="router" vertex="1">
+          <mxGeometry height="50" width="200" x="380" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="node_router_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="VyOS 1.5 - router/firewall" vertex="1">
+          <mxGeometry height="16" width="200" x="380" y="312" as="geometry" />
+        </mxCell>
+
+        <mxCell id="node_internet" parent="1" style="rounded=1;arcSize=20;whiteSpace=wrap;html=1;fillColor=#263252;strokeColor=#4A5A7A;dashed=1;fontColor=#D6DCE5;fontSize=12;fontStyle=1;" value="Internet (reale)" vertex="1">
+          <mxGeometry height="50" width="200" x="380" y="490" as="geometry" />
+        </mxCell>
+
+        <!-- ================= Connections ================= -->
+        <mxCell id="e_attacker_router" edge="1" parent="1" source="node_attacker" style="endArrow=none;html=1;strokeColor=#2E7D32;strokeWidth=3;" target="node_router">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_attacker_router" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="198.51.100.0/24 (LAN attaccante)" vertex="1">
+          <mxGeometry height="18" width="230" x="250" y="400" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_router_internet" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;dashed=1;" target="node_internet">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_router_internet" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="NAT (solo segmento attaccante)" vertex="1">
+          <mxGeometry height="18" width="220" x="400" y="462" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="box_inscope">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="verso .0/28 (autorizzato)" vertex="1">
+          <mxGeometry height="18" width="200" x="560" y="130" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=2;dashed=1;" target="box_outscope">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_router_dev01" parent="1" style="text;html=1;fontSize=10;fontColor=#E0A458;fontStyle=1;" value="verso .16/28 (NON autorizzato)" vertex="1">
+          <mxGeometry height="18" width="220" x="560" y="345" as="geometry" />
+        </mxCell>
+
+        <mxCell id="note_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#8A94A6;fontStyle=2;" value="Stesso blocco fisico /24 instradato da VyOS; solo .0/28 e' coperto dalla lettera di autorizzazione. meridian-dev01 e' visibile solo scansionando oltre lo scope dato - non va mai toccato o riportato." vertex="1">
+          <mxGeometry height="40" width="280" x="680" y="470" as="geometry" />
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
