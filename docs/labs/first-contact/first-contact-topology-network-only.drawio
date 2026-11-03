@@ -70,7 +70,7 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="lbl_attacker_router" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="198.51.100.0/24 (LAN attaccante)" vertex="1">
-          <mxGeometry height="18" width="230" x="245" y="440" as="geometry" />
+          <mxGeometry height="18" width="230" x="380" y="222" as="geometry" />
         </mxCell>
 
         <mxCell id="e_router_internet" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;dashed=1;" target="node_internet">
@@ -83,8 +83,8 @@
         <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_web01">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 203.0.113.1 (verso entrambi gli host)" vertex="1">
-          <mxGeometry height="18" width="240" x="590" y="272" as="geometry" />
+        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 203.0.113.1 (verso scope dichiarato)" vertex="1">
+          <mxGeometry height="18" width="240" x="380" y="240" as="geometry" />
         </mxCell>
 
         <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_dev01">
