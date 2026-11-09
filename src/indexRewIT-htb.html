@@ -706,6 +706,24 @@
     cursor:not-allowed;
   }
 
+  .va-piece-card{
+    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;padding:16px;
+  }
+  .va-piece-label{
+    font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;
+    color:var(--ink-faint);margin-bottom:8px;
+  }
+  .va-piece-prompt{font-size:13px;line-height:1.5;color:var(--ink-muted);margin-bottom:12px;}
+  .va-piece-path{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12.5px;}
+  .va-piece-path-tag{
+    font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);
+    background:var(--panel);border:1px solid var(--line-soft);border-radius:100px;padding:3px 10px;
+  }
+  .va-piece-path code{
+    color:var(--accent);background:var(--panel);border:1px solid var(--line-soft);
+    border-radius:6px;padding:4px 8px;
+  }
+
   @media (max-width:560px){
     .lab-topbar-title{display:none;}
   }
@@ -1440,6 +1458,11 @@
             { question: "Questa CVE è sfruttabile da remoto, senza privilegi né interazione utente, ma con complessità di attacco alta, e impatto solo sulla disponibilità. Quale vettore CVSS v3 base la descrive?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
             { question: "Convertendo i due vettori CVSS v3 appena derivati nei rispettivi base score numerici (es. tramite il calcolatore ufficiale CVSS v3.0), qual è il base score esatto del servizio da prioritizzare per primo nel report di remediation?", flag: "FLAG{7.5}" }
           ],
+          vaPiece: {
+            label: "Scope & Methodology + prime righe Findings",
+            prompt: "Documenta lo scope autorizzato per questo assessment e la metodologia che hai usato (tool, approccio di scansione), poi apri la tabella Findings del report con le due righe CVE → CVSS → raccomandazione che hai appena derivato. Scrivilo come un documento vero, non qui dentro: è la prima sezione del Vulnerability Assessment Results Report che completerai nel lab finale del percorso.",
+            filename: "reports/01-primo-contatto_scope-e-findings.pdf"
+          },
           difficulty: "Base",
           duration: "~2.5h-3h",
           brief: {
@@ -1461,6 +1484,11 @@
             { question: "Eseguendo una content discovery su meridian-web01, trovi un endpoint diagnostico di default di Apache mai disabilitato dopo l'installazione, che espone dati live su connessioni e worker. Qual è il suo path?", flag: "FLAG{SERVER-STATUS}" },
             { question: "Hai ora sei finding totali tra Primo Contatto e questo lab. La maggior parte sono difetti di patch o configurazione che rientrano nella famiglia System and Information Integrity (SI) di NIST SP 800-53 - ma uno riguarda la protezione dei dati in transito e appartiene a una famiglia completamente diversa. Quale?", flag: "FLAG{SC}" }
           ],
+          vaPiece: {
+            label: "Findings compliance-mapped + nota aperta",
+            prompt: "Estendi la tabella Findings del report con le quattro righe di oggi, ciascuna con la famiglia di controllo NIST SP 800-53 assegnata, e aggiungi la nota sul finding che hai lasciato aperto (l'header mancante) in attesa di conferma dal compliance officer.",
+            filename: "reports/02-come-da-manuale_findings-compliance.pdf"
+          },
           difficulty: "Base",
           duration: "~2h-2.5h"
         },
@@ -3051,6 +3079,18 @@
     return html;
   }
 
+  function vaPieceSection(stage){
+    var vp = stage.vaPiece;
+    if (!vp) return '';
+    var html = '<section class="lab-section"><h2>Il tuo pezzo di VA</h2>';
+    html += '<p class="lab-section-hint">Non valutato qui — confluisce nel Vulnerability Assessment Results Report che assemblerai nel lab finale del percorso.</p>';
+    html += '<div class="va-piece-card"><div class="va-piece-label">' + esc(vp.label) + '</div>';
+    html += '<p class="va-piece-prompt">' + esc(vp.prompt) + '</p>';
+    html += '<div class="va-piece-path"><span class="va-piece-path-tag">Salva come</span><code>' + esc(vp.filename) + '</code></div>';
+    html += '</div></section>';
+    return html;
+  }
+
   function updateChallengeProgress(container, total){
     var solved = container.querySelectorAll('.challenge-card.solved').length;
     var progressEl = container.querySelector('.challenge-progress');
@@ -3095,6 +3135,7 @@
       html += '<section class="lab-section"><h2>Obiettivi</h2><p class="lab-section-hint">Checklist personale per questa sessione &mdash; nulla qui è valutato.</p>' + objectiveChecklist(stage, uid) + '</section>';
     } else {
       html += '<section class="lab-section"><h2>Obiettivi</h2><p class="lab-section-hint">Rispondi a ogni domanda, poi invia la flag per segnarla risolta. Il controllo avviene qui nel tuo browser &mdash; nulla viene inviato da nessuna parte.</p>' + challengeSection(stage, uid) + '</section>';
+      html += vaPieceSection(stage);
     }
 
     html += '<section class="lab-section"><h2>Cosa costruirai</h2><div class="stage-sub">Competenze</div><div class="stage-tags">' + stage.skillIdx.map(function(idx){ return '<span class="tag-skill">' + esc(role.skills[idx]) + '</span>'; }).join('') + '</div><div class="stage-sub" style="margin-top:12px">Conoscenze</div><div class="stage-tags">' + stage.knowledgeIdx.map(function(idx){ return '<span class="tag-knowledge">' + esc(role.knowledge[idx]) + '</span>'; }).join('') + '</div></section>';
