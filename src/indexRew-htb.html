@@ -1473,7 +1473,7 @@
           type: "lab",
           id: "by-the-book", tier: "va", labComponents: ["lxr:net-perimeter"], title: "By the Book",
           summary: "Run targeted compliance checks against Meridian's web tier, then translate every finding - old and new - into an auditor's language and the right control mapping.",
-          scenario: "Meridian's compliance officer doesn't just want First Contact's findings reworded - they want the web tier checked against the controls an auditor actually tests: encryption in transit, SSH hardening, HTTP security headers, exposed default endpoints. Run the checks, then map everything, old findings included, onto the right control family.",
+          scenario: "Meridian's compliance officer wants the web tier checked against the controls an auditor actually tests: encryption in transit, SSH hardening, HTTP security headers, exposed default endpoints. Same client and same environment as First Contact, if you've already done it — but this lab stands on its own, no prior lab required.",
           taskIdx: [2, 7],
           skillIdx: [7, 8],
           knowledgeIdx: [7, 10],
@@ -1482,11 +1482,11 @@
             { question: "You scan meridian-web01's web ports and find 80 open but 443 closed. For a PCI DSS-scoped retailer, what security control is therefore completely missing from the customer-facing site?", flag: "FLAG{NO-TLS}" },
             { question: "Auditing meridian-web01's HTTP response headers, which missing one is the header that normally stops the page being framed by another site (clickjacking protection)?", flag: "FLAG{X-FRAME-OPTIONS}" },
             { question: "Running content discovery against meridian-web01, you find a default Apache diagnostic endpoint that was never disabled after installation, exposing live connection and worker data. What is its path?", flag: "FLAG{SERVER-STATUS}" },
-            { question: "You now have six findings total between First Contact and this lab. Most are patch or configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
+            { question: "You've collected four findings in this lab. Two are configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
           ],
           vaPiece: {
             label: "Compliance-mapped findings + open item",
-            prompt: "Extend the report's Findings table with today's four new rows, each tagged with its NIST SP 800-53 control family, and add the note on the finding you left open (the missing header) pending the compliance officer's confirmation.",
+            prompt: "Write this lab's Findings section: the four rows you found, each tagged with its NIST SP 800-53 control family (or flagged as still open, if it doesn't fit one). If you've already completed First Contact, you can add its two rows to the same report — but it's not required to finish this piece.",
             filename: "reports/02-by-the-book_compliance-findings.pdf"
           },
           difficulty: "Beginner",
