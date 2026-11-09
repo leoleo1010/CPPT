@@ -1449,18 +1449,20 @@
         {
           type: "lab",
           id: "by-the-book", tier: "va", labComponents: ["lxr:net-perimeter"], title: "Come da manuale",
-          summary: "Traduci i finding di «Primo contatto» nel linguaggio di un auditor, mappandoli sulla giusta famiglia di controlli e segnalando cosa non supererebbe un audit oggi.",
-          scenario: "Il responsabile compliance di Meridian ha bisogno che i findings di «Primo contatto» siano tradotti in qualcosa che un auditor riconosce. Associa ogni finding alla giusta famiglia di controlli e segnala ciò che oggi non supererebbe un audit.",
-          taskIdx: [2],
-          skillIdx: [5],
-          knowledgeIdx: [10],
+          summary: "Esegui controlli di conformità mirati sul web tier di Meridian, poi traduci ogni finding - vecchio e nuovo - nel linguaggio di un auditor e nella giusta mappatura dei controlli.",
+          scenario: "Il responsabile compliance di Meridian non vuole solo i finding di «Primo contatto» riformulati - vuole il web tier verificato sui controlli che un auditor testa davvero: cifratura in transito, hardening SSH, header di sicurezza HTTP, endpoint di default esposti. Esegui i controlli, poi mappa tutto, finding vecchi inclusi, sulla giusta famiglia di controlli.",
+          taskIdx: [2, 7],
+          skillIdx: [7, 8],
+          knowledgeIdx: [7, 10],
           flags: [
-            { question: "In NIST SP 800-53 la flaw remediation (tenere il software aggiornato) sta nel controllo SI-2. Qual è l'identificativo di due lettere di quella famiglia di controlli?", flag: "FLAG{SI}" },
-            { question: "Quale livello di gravità rende un finding «bloccante per l'audit» invece che semplicemente «annotato» nella maggior parte delle baseline di compliance?", flag: "FLAG{HIGH}" },
-            { question: "PCI DSS v4.0 (requisito 6.3.3) si aspetta che le vulnerabilità critiche siano risolte entro quanti giorni?", flag: "FLAG{30-DAYS}" }
+            { question: "Lanciando ssh-audit contro l'OpenSSH 7.2p2 di meridian-web01, quale algoritmo host-key viene segnalato [fail] per l'uso di curve ellittiche sospettate di essere compromesse dalla NSA?", flag: "FLAG{ECDSA-SHA2-NISTP256}" },
+            { question: "Scansionando le porte web di meridian-web01 trovi la 80 aperta e la 443 chiusa. Per un retailer in ambito PCI DSS, quale controllo di sicurezza risulta quindi completamente assente sul sito verso i clienti?", flag: "FLAG{NO-TLS}" },
+            { question: "Controllando gli header HTTP di risposta di meridian-web01, qual è l'header mancante che normalmente impedisce alla pagina di essere incorporata in un frame di un altro sito (protezione da clickjacking)?", flag: "FLAG{X-FRAME-OPTIONS}" },
+            { question: "Eseguendo una content discovery su meridian-web01, trovi un endpoint diagnostico di default di Apache mai disabilitato dopo l'installazione, che espone dati live su connessioni e worker. Qual è il suo path?", flag: "FLAG{SERVER-STATUS}" },
+            { question: "Hai ora sei finding totali tra Primo Contatto e questo lab. Cinque sono difetti di patch o configurazione che rientrano nella famiglia System and Information Integrity (SI) di NIST SP 800-53 - ma uno riguarda la protezione dei dati in transito e appartiene a una famiglia completamente diversa. Quale?", flag: "FLAG{SC}" }
           ],
           difficulty: "Base",
-          duration: "~1.5h"
+          duration: "~2h-2.5h"
         },
         {
           type: "lab",

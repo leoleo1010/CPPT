@@ -1410,18 +1410,20 @@
         {
           type: "lab",
           id: "by-the-book", tier: "va", labComponents: ["lxr:net-perimeter"], title: "By the Book",
-          summary: "Translate First Contact's findings into an auditor's language, mapping each one to the right control family and flagging what would fail an audit today.",
-          scenario: "Meridian's compliance officer needs your First Contact findings translated into something an auditor recognises. Map each finding to the right control family and flag what would fail an audit today.",
-          taskIdx: [2],
-          skillIdx: [5],
-          knowledgeIdx: [10],
+          summary: "Run targeted compliance checks against Meridian's web tier, then translate every finding - old and new - into an auditor's language and the right control mapping.",
+          scenario: "Meridian's compliance officer doesn't just want First Contact's findings reworded - they want the web tier checked against the controls an auditor actually tests: encryption in transit, SSH hardening, HTTP security headers, exposed default endpoints. Run the checks, then map everything, old findings included, onto the right control family.",
+          taskIdx: [2, 7],
+          skillIdx: [7, 8],
+          knowledgeIdx: [7, 10],
           flags: [
-            { question: "Under NIST SP 800-53, flaw remediation (keeping software patched) lives in control SI-2. What is the two-letter identifier of that control family?", flag: "FLAG{SI}" },
-            { question: "What severity tier makes a finding 'audit-blocking' rather than just 'noted' in most compliance baselines?", flag: "FLAG{HIGH}" },
-            { question: "PCI DSS v4.0 (requirement 6.3.3) expects critical vulnerabilities to be remediated within how many days?", flag: "FLAG{30-DAYS}" }
+            { question: "Running ssh-audit against meridian-web01's OpenSSH 7.2p2, which host-key algorithm is flagged [fail] for using elliptic curves suspected of being backdoored by the NSA?", flag: "FLAG{ECDSA-SHA2-NISTP256}" },
+            { question: "You scan meridian-web01's web ports and find 80 open but 443 closed. For a PCI DSS-scoped retailer, what security control is therefore completely missing from the customer-facing site?", flag: "FLAG{NO-TLS}" },
+            { question: "Auditing meridian-web01's HTTP response headers, which missing one is the header that normally stops the page being framed by another site (clickjacking protection)?", flag: "FLAG{X-FRAME-OPTIONS}" },
+            { question: "Running content discovery against meridian-web01, you find a default Apache diagnostic endpoint that was never disabled after installation, exposing live connection and worker data. What is its path?", flag: "FLAG{SERVER-STATUS}" },
+            { question: "You now have six findings total between First Contact and this lab. Five are patch or configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
           ],
           difficulty: "Beginner",
-          duration: "~1.5h"
+          duration: "~2h-2.5h"
         },
         {
           type: "lab",
