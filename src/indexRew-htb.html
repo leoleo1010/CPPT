@@ -706,24 +706,6 @@
     cursor:not-allowed;
   }
 
-  .va-piece-card{
-    background:var(--panel-2);border:1px solid var(--line-soft);border-radius:10px;padding:16px;
-  }
-  .va-piece-label{
-    font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;
-    color:var(--ink-faint);margin-bottom:8px;
-  }
-  .va-piece-prompt{font-size:13px;line-height:1.5;color:var(--ink-muted);margin-bottom:12px;}
-  .va-piece-path{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-family:var(--font-mono);font-size:12.5px;}
-  .va-piece-path-tag{
-    font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);
-    background:var(--panel);border:1px solid var(--line-soft);border-radius:100px;padding:3px 10px;
-  }
-  .va-piece-path code{
-    color:var(--accent);background:var(--panel);border:1px solid var(--line-soft);
-    border-radius:6px;padding:4px 8px;
-  }
-
   @media (max-width:560px){
     .lab-topbar-title{display:none;}
   }
@@ -1458,11 +1440,6 @@
             { question: "This CVE is remotely exploitable, requires no privileges or user interaction, but has high attack complexity, with impact limited to availability. Which CVSS v3 base vector describes it?", flag: "FLAG{AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H}" },
             { question: "Converting the two CVSS v3 vectors you just derived into their numeric base scores (e.g. via the official CVSS v3 calculator), what is the exact base score of the service that should be prioritised first in the remediation report?", flag: "FLAG{7.5}" }
           ],
-          vaPiece: {
-            label: "Scope & Methodology + first Findings rows",
-            prompt: "Document the authorised scope for this assessment and the methodology you used (tools, scanning approach), then open the report's Findings table with the two CVE → CVSS → recommendation rows you just derived. Write it as an actual document, not in here: it's the first section of the Vulnerability Assessment Results Report you'll complete in the path's final lab.",
-            filename: "reports/01-first-contact_scope-and-findings.pdf"
-          },
           difficulty: "Beginner",
           duration: "~2.5h-3h",
           brief: {
@@ -1484,11 +1461,6 @@
             { question: "Running content discovery against meridian-web01, you find a default Apache diagnostic endpoint that was never disabled after installation, exposing live connection and worker data. What is its path?", flag: "FLAG{SERVER-STATUS}" },
             { question: "You've collected four findings in this lab. Two are configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
           ],
-          vaPiece: {
-            label: "Compliance-mapped findings + open item",
-            prompt: "Write this lab's Findings section: the four rows you found, each tagged with its NIST SP 800-53 control family (or flagged as still open, if it doesn't fit one). If you've already completed First Contact, you can add its two rows to the same report — but it's not required to finish this piece.",
-            filename: "reports/02-by-the-book_compliance-findings.pdf"
-          },
           difficulty: "Beginner",
           duration: "~2h-2.5h"
         },
@@ -3057,17 +3029,6 @@
     return html;
   }
 
-  function vaPieceSection(stage){
-    var vp = stage.vaPiece;
-    if (!vp) return '';
-    var html = '<section class="lab-section"><h2>Your piece of the VA</h2>';
-    html += '<p class="lab-section-hint">Not graded here — it feeds into the Vulnerability Assessment Results Report you will assemble in the path\'s final lab.</p>';
-    html += '<div class="va-piece-card"><div class="va-piece-label">' + esc(vp.label) + '</div>';
-    html += '<p class="va-piece-prompt">' + esc(vp.prompt) + '</p>';
-    html += '<div class="va-piece-path"><span class="va-piece-path-tag">Save as</span><code>' + esc(vp.filename) + '</code></div>';
-    html += '</div></section>';
-    return html;
-  }
 
   function updateChallengeProgress(container, total){
     var solved = container.querySelectorAll('.challenge-card.solved').length;
@@ -3113,7 +3074,6 @@
       html += '<section class="lab-section"><h2>Objectives</h2><p class="lab-section-hint">Personal checklist for this session &mdash; nothing here is graded.</p>' + objectiveChecklist(stage, uid) + '</section>';
     } else {
       html += '<section class="lab-section"><h2>Objectives</h2><p class="lab-section-hint">Answer each question, then submit the flag to mark it solved. Checked right here in your browser &mdash; nothing is sent anywhere.</p>' + challengeSection(stage, uid) + '</section>';
-      html += vaPieceSection(stage);
     }
 
     html += '<section class="lab-section"><h2>What you will build</h2><div class="stage-sub">Skills</div><div class="stage-tags">' + stage.skillIdx.map(function(idx){ return '<span class="tag-skill">' + esc(role.skills[idx]) + '</span>'; }).join('') + '</div><div class="stage-sub" style="margin-top:12px">Knowledge</div><div class="stage-tags">' + stage.knowledgeIdx.map(function(idx){ return '<span class="tag-knowledge">' + esc(role.knowledge[idx]) + '</span>'; }).join('') + '</div></section>';
