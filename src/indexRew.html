@@ -1420,7 +1420,7 @@
             { question: "You scan meridian-web01's web ports and find 80 open but 443 closed. For a PCI DSS-scoped retailer, what security control is therefore completely missing from the customer-facing site?", flag: "FLAG{NO-TLS}" },
             { question: "Auditing meridian-web01's HTTP response headers, which missing one is the header that normally stops the page being framed by another site (clickjacking protection)?", flag: "FLAG{X-FRAME-OPTIONS}" },
             { question: "Running content discovery against meridian-web01, you find a default Apache diagnostic endpoint that was never disabled after installation, exposing live connection and worker data. What is its path?", flag: "FLAG{SERVER-STATUS}" },
-            { question: "You now have six findings total between First Contact and this lab. Five are patch or configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
+            { question: "You now have six findings total between First Contact and this lab. Most are patch or configuration gaps under NIST SP 800-53's System and Information Integrity (SI) family - but one is about protecting data in transit and belongs to a different family entirely. Which one?", flag: "FLAG{SC}" }
           ],
           difficulty: "Beginner",
           duration: "~2h-2.5h"
