@@ -2986,7 +2986,7 @@
       return '<li class="objective-item"><label for="' + id + '"><input type="checkbox" id="' + id + '"><span class="objective-box"></span><span class="objective-text">' + esc(f) + '</span></label></li>';
     }).join('') + '</ul>';
     html += '<label class="challenge-label" for="decision-' + uid + '">Your decision</label>';
-    html += '<textarea class="challenge-answer" id="decision-' + uid + '" rows="4" placeholder="Write the call you would actually make, and why — this is not graded"></textarea>';
+    html += '<textarea class="challenge-answer" id="decision-' + uid + '" rows="4" placeholder="Write the call you would actually make, and why"></textarea>';
     return html;
   }
 
@@ -2997,7 +2997,7 @@
       html += '<div class="challenge-card" data-idx="' + i + '">';
       html += '<div class="challenge-q"><span class="challenge-num">' + (i + 1) + '</span>' + esc(obj.question) + '</div>';
       html += '<label class="challenge-label" for="' + qid + '">Your answer / notes</label>';
-      html += '<textarea class="challenge-answer" id="' + qid + '" rows="2" placeholder="Jot down your reasoning — this is not graded"></textarea>';
+      html += '<textarea class="challenge-answer" id="' + qid + '" rows="2" placeholder="Jot down your reasoning"></textarea>';
       html += '<label class="challenge-label">Flag</label>';
       html += '<div class="challenge-flag-row"><input class="challenge-flag-input" type="text" placeholder="FLAG{...}" autocomplete="off" spellcheck="false"><button type="button" class="challenge-submit">Submit</button></div>';
       html += '<div class="challenge-feedback" aria-live="polite"></div>';

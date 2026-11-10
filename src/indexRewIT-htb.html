@@ -3047,7 +3047,7 @@
       return '<li class="objective-item"><label for="' + id + '"><input type="checkbox" id="' + id + '"><span class="objective-box"></span><span class="objective-text">' + esc(f) + '</span></label></li>';
     }).join('') + '</ul>';
     html += '<label class="challenge-label" for="decision-' + uid + '">La tua decisione</label>';
-    html += '<textarea class="challenge-answer" id="decision-' + uid + '" rows="4" placeholder="Scrivi la decisione che prenderesti davvero, e perché — non è valutata"></textarea>';
+    html += '<textarea class="challenge-answer" id="decision-' + uid + '" rows="4" placeholder="Scrivi la decisione che prenderesti davvero, e perché"></textarea>';
     return html;
   }
 
@@ -3058,7 +3058,7 @@
       html += '<div class="challenge-card" data-idx="' + i + '">';
       html += '<div class="challenge-q"><span class="challenge-num">' + (i + 1) + '</span>' + esc(obj.question) + '</div>';
       html += '<label class="challenge-label" for="' + qid + '">La tua risposta / note</label>';
-      html += '<textarea class="challenge-answer" id="' + qid + '" rows="2" placeholder="Annota il tuo ragionamento — non viene valutato"></textarea>';
+      html += '<textarea class="challenge-answer" id="' + qid + '" rows="2" placeholder="Annota il tuo ragionamento"></textarea>';
       html += '<label class="challenge-label">Flag</label>';
       html += '<div class="challenge-flag-row"><input class="challenge-flag-input" type="text" placeholder="FLAG{...}" autocomplete="off" spellcheck="false"><button type="button" class="challenge-submit">Invia</button></div>';
       html += '<div class="challenge-feedback" aria-live="polite"></div>';
