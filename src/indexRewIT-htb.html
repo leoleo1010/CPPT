@@ -1466,6 +1466,23 @@
         },
         {
           type: "lab",
+          id: "risk-language", tier: "va", labComponents: ["lxr:net-perimeter"], title: "Il linguaggio del rischio",
+          summary: "Un nuovo servizio MySQL compare sul web tier di Meridian, mai sottoposto a hardening. Trova il rischio reale e traducilo in termini che contano per il business.",
+          scenario: "Da quando hai verificato il web tier per l'audit, Meridian ha messo in produzione - sullo stesso host, senza coinvolgere security - un nuovo servizio di gestione ordini basato su MySQL. Nessuno l'ha mai sottoposto a hardening. Il responsabile IT vuole sapere in due righe se il CEO deve preoccuparsi, non un elenco di CVE.",
+          taskIdx: [0],
+          skillIdx: [6, 8],
+          knowledgeIdx: [9, 10],
+          flags: [
+            { question: "Scansionando tutte le porte di meridian-web01 trovi un nuovo servizio in ascolto sulla 3306. Quale versione esatta di MySQL identifica il banner?", flag: "FLAG{5.7.17}" },
+            { question: "Quale CVE specifica affligge MySQL 5.7.17, permettendo una negazione di servizio pre-autenticazione tramite un pacchetto di autenticazione malformato? Nelle note, annota anche come un attaccante potrebbe sfruttarla per causare danno a Meridian.", flag: "FLAG{CVE-2017-3599}" },
+            { question: "Uno script di controllo (mysql-empty-password) rivela un account senza password. Quale?", flag: "FLAG{ROOT}" },
+            { question: "Hai due finding aperti su questo servizio: la CVE DoS (disponibilità) e l'account root senza password (accesso completo ai dati ordini). Quale dei due apriresti per primo nell'executive summary al CEO?", flag: "FLAG{EMPTY-ROOT-PASSWORD}" }
+          ],
+          difficulty: "Base",
+          duration: "~1.5h-2h"
+        },
+        {
+          type: "lab",
           id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "La cassetta degli attrezzi",
           summary: "Configura da zero scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona contro un target noto.",
           scenario: "Prima del prossimo ingaggio ti serve un toolkit funzionante, non una lista dei desideri. Configura scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona dall'inizio alla fine contro un target noto.",

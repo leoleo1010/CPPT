@@ -1466,6 +1466,23 @@
         },
         {
           type: "lab",
+          id: "risk-language", tier: "va", labComponents: ["lxr:net-perimeter"], title: "The Language of Risk",
+          summary: "A new MySQL service shows up on Meridian's web tier, never hardened. Find the real risk and translate it into terms the business cares about.",
+          scenario: "Since you checked the web tier for the audit, Meridian has put a new order-management service into production on the same host - without looping in security. Nobody has ever hardened it. The IT lead wants to know in two lines whether the CEO needs to worry, not a list of CVEs.",
+          taskIdx: [0],
+          skillIdx: [6, 8],
+          knowledgeIdx: [9, 10],
+          flags: [
+            { question: "Scanning all ports on meridian-web01 you find a new service listening on 3306. Which exact MySQL version does the banner identify?", flag: "FLAG{5.7.17}" },
+            { question: "Which specific CVE affects MySQL 5.7.17, allowing a pre-authentication denial of service via a malformed authentication packet? In the notes, also jot down how an attacker could exploit it to cause damage to Meridian.", flag: "FLAG{CVE-2017-3599}" },
+            { question: "An audit script (mysql-empty-password) reveals an account with no password set. Which one?", flag: "FLAG{ROOT}" },
+            { question: "You have two open findings on this service: the DoS CVE (availability) and the root account with no password (full access to order data). Which one would you lead with in the executive summary to the CEO?", flag: "FLAG{EMPTY-ROOT-PASSWORD}" }
+          ],
+          difficulty: "Beginner",
+          duration: "~1.5h-2h"
+        },
+        {
+          type: "lab",
           id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "The Toolbox",
           summary: "Build a working toolkit from scratch — scanner, proxy and wordlists on a bare VM — and prove the whole chain works end to end against a known target.",
           scenario: "Before your next engagement you need a working toolkit, not a wishlist. Set up your scanner, proxy and wordlists on a bare assessment VM and prove the whole chain works end to end against a known target.",
