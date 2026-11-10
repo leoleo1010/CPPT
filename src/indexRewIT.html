@@ -1418,7 +1418,7 @@
           flags: [
             { question: "Lanciando ssh-audit contro l'OpenSSH 7.2p2 di meridian-web01, quale algoritmo host-key viene segnalato [fail] per l'uso di curve ellittiche sospettate di essere compromesse dalla NSA?", flag: "FLAG{ECDSA-SHA2-NISTP256}" },
             { question: "Scansionando le porte web di meridian-web01 trovi la 80 aperta e la 443 chiusa. Per un retailer in ambito PCI DSS, quale controllo di sicurezza risulta quindi completamente assente sul sito verso i clienti?", flag: "FLAG{NO-TLS}" },
-            { question: "Controllando gli header HTTP di risposta di meridian-web01, qual è l'header mancante che normalmente impedisce alla pagina di essere incorporata in un frame di un altro sito (protezione da clickjacking)?", flag: "FLAG{X-FRAME-OPTIONS}" },
+            { question: "Controllando gli header HTTP di risposta di meridian-web01 con nikto, l'avviso segnala un header di sicurezza deprecato e consiglia una Content-Security-Policy in sostituzione. Qual è il nome esatto dell'header che risulta assente (non il meccanismo alternativo che nikto suggerisce)?", flag: "FLAG{X-FRAME-OPTIONS}" },
             { question: "Eseguendo una content discovery su meridian-web01, trovi un endpoint diagnostico di default di Apache mai disabilitato dopo l'installazione, che espone dati live su connessioni e worker. Qual è il suo path?", flag: "FLAG{SERVER-STATUS}" },
             { question: "Hai raccolto quattro finding in questo lab. Due sono difetti di configurazione che rientrano nella famiglia System and Information Integrity (SI) di NIST SP 800-53 - ma uno riguarda la protezione dei dati in transito e appartiene a una famiglia completamente diversa. Quale?", flag: "FLAG{SC}" }
           ],

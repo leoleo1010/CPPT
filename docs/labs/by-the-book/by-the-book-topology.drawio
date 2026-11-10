@@ -45,7 +45,7 @@
         <mxCell id="7COCHMggMcATfMVmV7mN-12" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=left;verticalAlign=middle;" value="Kali Linux 2026.x" vertex="1">
           <mxGeometry height="14" width="150" x="80" y="446" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_exploitdb" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureExploitDBUpdate" vertex="1">
+        <mxCell id="cfg_exploitdb" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_ExploitDB" vertex="1">
           <mxGeometry height="20" width="180" x="50" y="478" as="geometry" />
         </mxCell>
         <mxCell id="cfg_exploitdb_dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
@@ -68,19 +68,19 @@
         <mxCell id="7COCHMggMcATfMVmV7mN-25" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=left;verticalAlign=middle;" value="VyOS 1.5 - Router/Firewall" vertex="1">
           <mxGeometry height="14" width="160" x="510" y="306" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-26" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureInterfaces" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-26" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_VyOS_Interfaces" vertex="1">
           <mxGeometry height="20" width="190" x="480" y="338" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-27" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="662" y="343" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-28" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureFirewallRules" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-28" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_VyOS_Firewall" vertex="1">
           <mxGeometry height="20" width="190" x="480" y="364" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-29" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="662" y="369" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_nat" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureNATInternetUplink" vertex="1">
+        <mxCell id="cfg_nat" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_NAT_Internet_Uplink" vertex="1">
           <mxGeometry height="20" width="190" x="480" y="390" as="geometry" />
         </mxCell>
         <mxCell id="cfg_nat_dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
@@ -108,31 +108,31 @@
         <mxCell id="7COCHMggMcATfMVmV7mN-34" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=left;verticalAlign=middle;" value="Ubuntu Server 22.04 LTS" vertex="1">
           <mxGeometry height="14" width="170" x="940" y="106" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-35" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureLegacyAptSource" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-35" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_Legacy_Apt_Source" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="138" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-36" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="1112" y="143" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-37" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="InstallApache2" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-37" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Install_Apache" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="164" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-38" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="1112" y="169" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_apache" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#EB2D2D;strokeWidth=2;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureApache2" vertex="1">
+        <mxCell id="cfg_apache" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#EB2D2D;strokeWidth=2;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_Apache" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="190" as="geometry" />
         </mxCell>
         <mxCell id="cfg_apache_dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="1112" y="195" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-39" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="InstallOpenSSHServer" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-39" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Install_OpenSSH_Server" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="216" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-40" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="1112" y="221" as="geometry" />
         </mxCell>
-        <mxCell id="cfg_sshd" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureOpenSSHServer" vertex="1">
+        <mxCell id="cfg_sshd" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#EB2D2D;strokeWidth=2;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_OpenSSH_Server" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="242" as="geometry" />
         </mxCell>
         <mxCell id="cfg_sshd_dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
@@ -149,13 +149,13 @@
         <mxCell id="7COCHMggMcATfMVmV7mN-42" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 - 198.51.100.50" vertex="1">
           <mxGeometry height="14" width="150" x="80" y="461" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-43" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 (WAN) - 198.51.100.1" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-43" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 (rete attaccante) - 198.51.100.1" vertex="1">
           <mxGeometry height="18" width="180" x="285" y="340" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-44" edge="1" parent="1" source="7COCHMggMcATfMVmV7mN-21" style="endArrow=none;html=1;strokeColor=#2E7D32;strokeWidth=3;" target="7COCHMggMcATfMVmV7mN-30">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="7COCHMggMcATfMVmV7mN-45" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 (LAN/DMZ) - 203.0.113.1" vertex="1">
+        <mxCell id="7COCHMggMcATfMVmV7mN-45" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth2 (rete Meridian) - 203.0.113.1" vertex="1">
           <mxGeometry height="16" width="200" x="685" y="324" as="geometry" />
         </mxCell>
         <mxCell id="7COCHMggMcATfMVmV7mN-46" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth0 - 203.0.113.10" vertex="1">
@@ -168,7 +168,7 @@
         <mxCell id="e_router_internet" edge="1" parent="1" source="7COCHMggMcATfMVmV7mN-21" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;dashed=1;" target="net_internet">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_internet" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth2 (WAN uplink) - NAT verso internet reale" vertex="1">
+        <mxCell id="lbl_router_internet" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth3 (WAN uplink) - NAT verso internet reale" vertex="1">
           <mxGeometry height="18" width="260" x="500" y="458" as="geometry" />
         </mxCell>
         <mxCell id="note_internet_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#8A94A6;fontStyle=2;" value="Solo il segmento attaccante esce verso internet; il target resta isolato (nessuna regola di NAT/forward per 203.0.113.0/28)" vertex="1">
@@ -191,13 +191,13 @@
         <mxCell id="dev01-os" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=left;verticalAlign=middle;" value="Ubuntu Server 22.04 LTS" vertex="1">
           <mxGeometry height="14" width="170" x="940" y="371" as="geometry" />
         </mxCell>
-        <mxCell id="dev01-row1" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="InstallOpenSSHServer" vertex="1">
+        <mxCell id="dev01-row1" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Install_OpenSSH_Server" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="403" as="geometry" />
         </mxCell>
         <mxCell id="dev01-row1-dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
           <mxGeometry height="8" width="8" x="1112" y="408" as="geometry" />
         </mxCell>
-        <mxCell id="dev01-row2" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="ConfigureOpenSSHServer" vertex="1">
+        <mxCell id="dev01-row2" parent="1" style="rounded=1;arcSize=15;whiteSpace=wrap;html=1;fillColor=#0F1729;strokeColor=#263252;fontColor=#D6DCE5;fontSize=10;align=left;spacingLeft=8;" value="Configure_OpenSSH_Server" vertex="1">
           <mxGeometry height="20" width="210" x="910" y="429" as="geometry" />
         </mxCell>
         <mxCell id="dev01-row2-dot" parent="1" style="ellipse;whiteSpace=wrap;html=1;fillColor=#E53E3E;strokeColor=none;" value="" vertex="1">
