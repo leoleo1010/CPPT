@@ -1,0 +1,82 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Il linguaggio del rischio - Topologia di rete" id="risk-language-topology-network-only">
+    <mxGraphModel dx="1388" dy="1202" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1000" pageHeight="620" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="bg" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#0D1B2A;strokeColor=none;" value="" vertex="1">
+          <mxGeometry height="620" width="1000" as="geometry" />
+        </mxCell>
+        <mxCell id="title" parent="1" style="text;html=1;fontSize=16;fontStyle=1;fontColor=#FFFFFF;" value="Lab: Il linguaggio del rischio (tier va) - Topologia di rete (vista senza componenti)" vertex="1">
+          <mxGeometry height="26" width="700" x="40" y="10" as="geometry" />
+        </mxCell>
+        <mxCell id="box_scope" parent="1" style="rounded=1;arcSize=4;whiteSpace=wrap;html=1;fillColor=none;strokeColor=#9CCC65;strokeWidth=2;verticalAlign=top;align=left;spacingLeft=10;spacingTop=8;fontColor=#9CCC65;fontSize=10;fontStyle=1;" value="SCOPE DICHIARATO - 203.0.113.0/28 (lettera: web tier pubblico)" vertex="1">
+          <mxGeometry height="420" width="280" x="680" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="node_web01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2E7D32;strokeWidth=2;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-web01" vertex="1">
+          <mxGeometry height="40" width="240" x="700" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="node_web01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .10" vertex="1">
+          <mxGeometry height="14" width="240" x="700" y="142" as="geometry" />
+        </mxCell>
+        <mxCell id="tag_web01" parent="1" style="text;html=1;fontSize=9;fontColor=#9CCC65;fontStyle=3;align=center;" value="corrisponde al web tier descritto nella lettera" vertex="1">
+          <mxGeometry height="16" width="240" x="700" y="160" as="geometry" />
+        </mxCell>
+        <mxCell id="node_dev01" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#B98B3E;strokeWidth=2;dashed=1;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="meridian-dev01" vertex="1">
+          <mxGeometry height="40" width="240" x="700" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="node_dev01_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Ubuntu Server 22.04 LTS - .12" vertex="1">
+          <mxGeometry height="14" width="240" x="700" y="382" as="geometry" />
+        </mxCell>
+        <mxCell id="tag_dev01" parent="1" style="text;html=1;fontSize=9;fontColor=#E0A458;fontStyle=3;align=center;" value="non descritto nella lettera - da identificare ed escludere" vertex="1">
+          <mxGeometry height="16" width="240" x="700" y="400" as="geometry" />
+        </mxCell>
+        <mxCell id="node_ansible" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="ansible-control" vertex="1">
+          <mxGeometry height="50" width="200" x="40" y="50" as="geometry" />
+        </mxCell>
+        <mxCell id="node_ansible_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Debian 12 - provisioning (fuori dal path di attacco)" vertex="1">
+          <mxGeometry height="20" width="200" x="40" y="100" as="geometry" />
+        </mxCell>
+        <mxCell id="node_attacker" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="attacker" vertex="1">
+          <mxGeometry height="50" width="200" x="40" y="420" as="geometry" />
+        </mxCell>
+        <mxCell id="node_attacker_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="Kali Linux 2026.x - 198.51.100.50" vertex="1">
+          <mxGeometry height="16" width="200" x="40" y="472" as="geometry" />
+        </mxCell>
+        <mxCell id="node_router" parent="1" style="rounded=1;arcSize=8;whiteSpace=wrap;html=1;fillColor=#16213E;strokeColor=#2B3A67;fontColor=#FFFFFF;fontSize=13;fontStyle=1;verticalAlign=middle;align=center;" value="router" vertex="1">
+          <mxGeometry height="50" width="200" x="380" y="260" as="geometry" />
+        </mxCell>
+        <mxCell id="node_router_sub" parent="1" style="text;html=1;fontSize=10;fontColor=#8A94A6;align=center;" value="VyOS 1.5 - router/firewall" vertex="1">
+          <mxGeometry height="16" width="200" x="380" y="312" as="geometry" />
+        </mxCell>
+        <mxCell id="e_attacker_router" edge="1" parent="1" source="node_attacker" style="endArrow=none;html=1;strokeColor=#2E7D32;strokeWidth=3;" target="node_router">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zSTVWFbEmNcpxv02VTQd-2" edge="1" parent="1" source="lbl_attacker_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="bg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_attacker_router" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 198.51.100.0/24 (LAN attaccante)" vertex="1">
+          <mxGeometry height="18" width="250" x="210" y="276" as="geometry" />
+        </mxCell>
+        <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_web01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth2 - 203.0.113.1 (verso scope dichiarato)" vertex="1">
+          <mxGeometry height="18" width="240" x="570" y="270" as="geometry" />
+        </mxCell>
+        <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_dev01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="note_scope" parent="1" style="text;html=1;fontSize=9;fontColor=#8A94A6;fontStyle=2;" value="Stesso range /28 instradato da VyOS, entrambi gli host rispondono dentro lo scope dichiarato. La lettera autorizza il web tier descritto nel brief, non qualunque host nel range: meridian-dev01 va riconosciuto via fingerprint e lasciato intatto." vertex="1">
+          <mxGeometry height="50" width="280" x="680" y="470" as="geometry" />
+        </mxCell>
+        <mxCell id="zSTVWFbEmNcpxv02VTQd-1" edge="1" parent="1" source="lbl_router_web01" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=1.047;entryY=1.188;entryDx=0;entryDy=0;entryPerimeter=0;defaultLabelBackgroundColor=page;" target="lbl_router_web01">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zSTVWFbEmNcpxv02VTQd-3" edge="1" parent="1" source="lbl_attacker_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;innerLoopWaypoints=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.377;entryY=-0.09;entryDx=0;entryDy=0;entryPerimeter=0;defaultLabelBackgroundColor=page;" target="lbl_attacker_router">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

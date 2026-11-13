@@ -58,8 +58,8 @@
         <mxCell id="zSTVWFbEmNcpxv02VTQd-2" edge="1" parent="1" source="lbl_attacker_router" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;defaultLabelBackgroundColor=page;" target="bg">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_attacker_router" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="198.51.100.0/24 (LAN attaccante)" vertex="1">
-          <mxGeometry height="18" width="230" x="210" y="276" as="geometry" />
+        <mxCell id="lbl_attacker_router" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 198.51.100.0/24 (LAN attaccante)" vertex="1">
+          <mxGeometry height="18" width="250" x="210" y="276" as="geometry" />
         </mxCell>
         <mxCell id="e_router_internet" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;dashed=1;" target="node_internet">
           <mxGeometry relative="1" as="geometry" />
@@ -70,7 +70,7 @@
         <mxCell id="e_router_web01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_web01">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth1 - 203.0.113.1 (verso scope dichiarato)" vertex="1">
+        <mxCell id="lbl_router_web01" parent="1" style="text;html=1;fontSize=10;fontColor=#9CCC65;fontStyle=1;" value="eth2 - 203.0.113.1 (verso scope dichiarato)" vertex="1">
           <mxGeometry height="18" width="240" x="570" y="270" as="geometry" />
         </mxCell>
         <mxCell id="e_router_dev01" edge="1" parent="1" source="node_router" style="endArrow=none;html=1;strokeColor=#9CCC65;strokeWidth=3;" target="node_dev01">
