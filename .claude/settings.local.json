@@ -1,10 +1,16 @@
 {
-  "enabledMcpjsonServers": [
-    "claude-flow"
-  ],
   "permissions": {
     "allow": [
-      "WebSearch"
+      "WebSearch",
+      "WebFetch(domain:www.enisa.europa.eu)",
+      "Read(//c/Users/Asus/AppData/Local/Temp/claude/C--Users-Asus-mapECSF/c6487f02-bffe-451a-8f6d-0b5f1c7b1128/scratchpad/pptxgen/**)",
+      "Bash(node gen_overview_pptx.js)",
+      "Bash(\"/c/Program Files/LibreOffice/program/soffice.exe\" --headless --convert-to png cppt-overview.pptx)",
+      "Bash(node _s2.js)",
+      "Bash(\"/c/Program Files/LibreOffice/program/soffice.exe\" --headless --convert-to png cppt-overview-s2.pptx)"
     ]
-  }
+  },
+  "enabledMcpjsonServers": [
+    "claude-flow"
+  ]
 }

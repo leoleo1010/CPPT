@@ -1483,19 +1483,18 @@
         },
         {
           type: "lab",
-          id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "The Toolbox",
-          summary: "Build a working toolkit from scratch — scanner, proxy and wordlists on a bare VM — and prove the whole chain works end to end against a known target.",
-          scenario: "Before your next engagement you need a working toolkit, not a wishlist. Set up your scanner, proxy and wordlists on a bare assessment VM and prove the whole chain works end to end against a known target.",
+          id: "the-toolbox", tier: "va", labComponents: ["lxr:net-perimeter"], title: "The Toolbox",
+          summary: "Stand up and calibrate your own toolkit - intercepting proxy, tailored wordlist - proving every piece actually works against a target whose answer you already know.",
+          scenario: "Before your next engagement you need a toolkit that actually works, not just one that's installed. You've got your own calibration target, SharpenTool-target: you already know what each tool should give back. If something doesn't match, the problem is your setup - better to find that out now than during a real paying client's test.",
           taskIdx: [7],
           skillIdx: [7],
           knowledgeIdx: [7],
           flags: [
-            { question: "Which output format keeps your scanner's results machine-readable for the next stage of testing?", flag: "FLAG{JSON}" },
-            { question: "What proxy setting is required so your traffic-inspection tool actually captures the target's HTTPS traffic?", flag: "FLAG{INTERCEPT-CA-CERT}" },
-            { question: "What confirmation string does the known-vulnerable target return once your toolkit chain is validated end to end?", flag: "FLAG{TOOLKIT-OK}" }
+            { question: "After generating mitmproxy's CA certificate, trusting it on your system, and routing traffic to SharpenTool-target through the proxy, what value shows up in the response header once the HTTPS traffic is decrypted?", flag: "FLAG{TOOLKIT-VERIFIED}" },
+            { question: "Generating a tailored wordlist with cewl from SharpenTool-target's own site content and using it with gobuster for content discovery, what hidden endpoint - never linked from any page, unreachable with a generic wordlist - do you uncover?", flag: "FLAG{ZEPHYRION-STATUS}" }
           ],
-          difficulty: "Beginner",
-          duration: "~1.5h"
+          difficulty: "Intermediate",
+          duration: "~1.5h-2h"
         },
         {
           type: "lab",

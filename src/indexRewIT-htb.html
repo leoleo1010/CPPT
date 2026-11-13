@@ -1483,19 +1483,18 @@
         },
         {
           type: "lab",
-          id: "the-toolbox", tier: "va", labComponents: ["lxr:kali-workbench"], title: "La cassetta degli attrezzi",
-          summary: "Configura da zero scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona contro un target noto.",
-          scenario: "Prima del prossimo ingaggio ti serve un toolkit funzionante, non una lista dei desideri. Configura scanner, proxy e wordlist su una VM di assessment pulita e dimostra che l'intera catena funziona dall'inizio alla fine contro un target noto.",
+          id: "the-toolbox", tier: "va", labComponents: ["lxr:net-perimeter"], title: "La cassetta degli attrezzi",
+          summary: "Monta e calibra il tuo toolkit - proxy intercettante e wordlist su misura - dimostrando che ogni pezzo funziona davvero contro un bersaglio di cui conosci già la risposta.",
+          scenario: "Prima del prossimo ingaggio ti serve un toolkit che funzioni per davvero, non solo installato. Hai un bersaglio di calibrazione tutto tuo, SharpenTool-target: sai già cosa deve restituirti ogni strumento. Se qualcosa non torna, il problema è la tua configurazione - meglio scoprirlo ora che durante un test vero per un cliente che paga.",
           taskIdx: [7],
           skillIdx: [7],
           knowledgeIdx: [7],
           flags: [
-            { question: "Quale formato di output mantiene i risultati dello scanner leggibili da una macchina per la fase di test successiva?", flag: "FLAG{JSON}" },
-            { question: "Quale impostazione del proxy serve perché il tuo strumento di ispezione del traffico catturi davvero il traffico HTTPS del target?", flag: "FLAG{INTERCEPT-CA-CERT}" },
-            { question: "Quale stringa di conferma restituisce il target notoriamente vulnerabile una volta che la catena del tuo toolkit è validata dall'inizio alla fine?", flag: "FLAG{TOOLKIT-OK}" }
+            { question: "Dopo aver generato il certificato CA di mitmproxy, averlo reso fidato sul sistema e instradato il traffico verso SharpenTool-target attraverso il proxy, quale valore compare nell'header di risposta una volta decifrato il traffico HTTPS?", flag: "FLAG{TOOLKIT-VERIFIED}" },
+            { question: "Generando con cewl una wordlist su misura dal contenuto del sito di SharpenTool-target e usandola con gobuster per la content discovery, quale endpoint nascosto - mai linkato da nessuna pagina, introvabile con una wordlist generica - riesci a scoprire?", flag: "FLAG{ZEPHYRION-STATUS}" }
           ],
-          difficulty: "Base",
-          duration: "~1.5h"
+          difficulty: "Intermedio",
+          duration: "~1.5h-2h"
         },
         {
           type: "lab",
